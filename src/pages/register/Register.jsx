@@ -30,17 +30,17 @@ export default function Register() {
         <span className="registerTitle">Register</span>
       <form  className="registerForm" onSubmit={handleSubmit}>
         <label>Username</label>
-        <input type="text" className="registerInput " placeholder="Nam kya h re baba ..."  onChange={e=>setUsername(e.target.value)}/>
+        <input type="text" className="registerInput " placeholder="Enter your name ..."  onChange={e=>setUsername(e.target.value)}/>
         <label>Email</label>
-        <input type="text" className="registerInput " placeholder="Chal email bata..." onChange={e=>setEmail(e.target.value)}/>
+        <input type="text" className="registerInput " placeholder="Enter your email..." onChange={e=>setEmail(e.target.value)}/>
         <label>Password</label>
-        <input type="password" className="registerInput " placeholder="Aye tu password dal re..." onChange={e=>setPassword(e.target.value)}/>
+        <input type="password" className="registerInput " placeholder="Enter your password..." onChange={e=>setPassword(e.target.value)}/>
         <button className="registerButton" type="submit">Register</button>
       </form>
       <button className="registerLoginButton">
         <Link className="link" to="/login"> Login </Link>
       </button>
-      {error && <span style={{color:"yellow", marginTop:"15px", fontSize:"25px"}}>Garbar h re baba!</span>}
+      {error && <span style={{color:"yellow", marginTop:"15px", fontSize:"25px"}}>Something went wrong...</span>}
       {/* this'll show when error happens in submitting */}
     </div>
   )

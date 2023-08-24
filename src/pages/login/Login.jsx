@@ -33,14 +33,14 @@ export default function Login() {
         <input 
           type="text"
           className="loginInput " 
-          placeholder="Naam bata ..." 
+          placeholder="Enter your name ..." 
           ref={userRef}
         />
         <label>Password</label>
         <input 
           type="password" 
           className="loginInput " 
-          placeholder="password bata..."
+          placeholder="Enter your password ..."
           ref = {passwordRef}
         />
         <button className="loginButton" type="submit" disabled={isFetching}>Login</button>
