@@ -7,7 +7,7 @@ export default function Post({post}) {
   return (
     <>
       <div className="post">
-        {post.photo && <img className='postImg' src={PF + post.photo} alt="" />}
+        { <img className='postImg' src={post.photo} alt="" />}
         <div className="postInfo">
             <div className="postCats">
               {post.categories.map((c)=>(

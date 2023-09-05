@@ -13,6 +13,7 @@ export default function SinglePost() {
   const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [photo, setPhoto] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function SinglePost() {
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
+      setPhoto(res.data.photo);
     };
     getPost();
   }, [path]);
@@ -40,6 +42,7 @@ export default function SinglePost() {
         username: user.username,
         title,
         desc,
+        photo,
       });
       setUpdateMode(false)
     } catch (err) {}
@@ -48,8 +51,16 @@ export default function SinglePost() {
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        {post.photo && (
-          <img src={PF + post.photo} alt="" className="singlePostImg" />
+        {updateMode ? (
+          <input
+            type="text"
+            value={photo}
+            className="singlePostTitleInput"
+            autoFocus
+            onChange={(e) => setPhoto(e.target.value)}
+          />
+        ) : (
+          <img src={photo} alt="" className="singlePostImg" />
         )}
         {updateMode ? (
           <input

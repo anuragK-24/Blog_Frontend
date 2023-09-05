@@ -11,7 +11,7 @@ export default function TopBar() {
     }
 
   return (
-    <div class="top">
+    <div className="top">
         <div className="topLeft">
             <i className="topIcon fa-brands fa-facebook"></i>
             <i className="topIcon fa-brands fa-instagram"></i>
