@@ -88,13 +88,13 @@ export default function SinglePost() {
           </span>
         </div>
         {updateMode ? (
-          <textarea
+          <input
             className="singlePostDescInput"
             rows="40" 
             cols="50"
             value={desc}
+            autoFocus
             onChange={(e) => setDesc(e.target.value)}
-            readOnly
           />
         ) : (
           <pre className="singlePostDesc">{desc}</pre>
