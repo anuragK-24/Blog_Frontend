@@ -1,5 +1,6 @@
 import './post.css'
 import {Link} from "react-router-dom"
+import { marked } from 'marked';
 
 export default function Post({post}) {
   const PF = "https://blogapi-gpp7.onrender.com/images/"
@@ -21,7 +22,8 @@ export default function Post({post}) {
             <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
                         {/* this line is used to display date in proper format  */}
         </div>
-        <p className="postDesc" >{post.desc}</p>
+        <div className="postDesc"   dangerouslySetInnerHTML={{ __html: marked(post.desc) }} />
+        {/* <p className="postDesc" >{post.desc}</p> */}
         </Link>
       </div>
     </>
