@@ -8,8 +8,6 @@ export default function Posts({posts}) {
       {posts.map( (p) =>( 
           <Post post={p}/>
       ))}
-       
-
     </div>
   )
 }
