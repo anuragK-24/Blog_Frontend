@@ -7,6 +7,7 @@ export default function Post({post}) {
   return (
     <>
       <div className="post">
+        <Link to={`/post/${post._id}`}  className="link">
         { <img className='postImg' src={post.photo} alt="" />}
         <div className="postInfo">
             <div className="postCats">
@@ -14,15 +15,14 @@ export default function Post({post}) {
                 <span className="postCats">{c.name}</span>
               ))}
             </div>
-            <Link to={`/post/${post._id}`}  className="link">
               <span className="postTitle">{post.title}</span>
-            </Link>
 
             <hr />
             <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
                         {/* this line is used to display date in proper format  */}
         </div>
         <p className="postDesc" >{post.desc}</p>
+        </Link>
       </div>
     </>
   )
