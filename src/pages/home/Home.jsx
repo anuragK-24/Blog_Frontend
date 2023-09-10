@@ -22,10 +22,8 @@ export default function Home() {
   return (
   <>
     <Header/>
-    {/* <h3>Welcome </h3> */}
     <div className="home">
       <Posts posts={posts}/>
-      {/* <Sidebar/> */}
     </div>
   </>
     
