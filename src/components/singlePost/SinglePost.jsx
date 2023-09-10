@@ -60,7 +60,7 @@ export default function SinglePost() {
             onChange={(e) => setPhoto(e.target.value)}
           />
         ) : (
-          <img src={photo} alt="" className="singlePostImg" />
+          photo.length!==0&& <img src={photo} alt="" className="singlePostImg" />
         )}
         {updateMode ? (
           <input
