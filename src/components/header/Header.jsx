@@ -8,7 +8,7 @@ export default function Header() {
           <span   className="headerTitleSm">React & Node</span>
           <span   className="headerTitleLg">BlogSpark</span>
         </div>
-        <div className="headerImg" style={{ background:"#027b9a"}}  >
+        <div className="headerImg"   >
 
         </div>
         {/* <img 
