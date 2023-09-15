@@ -75,13 +75,15 @@ export default function TopBar() {
             </li>
           </ul>
         )}
-        <input
-          className="searchBox"
-          type="text"
-          onChange={(e) => {
-            setUserPost(e.target.value);
-          }}
-        />
+        <Link to={`/?user=${userPost}`} className="link">
+          <input
+            className="searchBox"
+            type="text"
+            onChange={(e) => {
+              setUserPost(e.target.value);
+            }}
+          />
+        </Link>
         <Link to={`/?user=${userPost}`} className="link">
           <i className="topSearchIcon fa-solid fa-magnifying-glass"></i>
         </Link>
