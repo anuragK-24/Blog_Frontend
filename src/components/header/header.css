@@ -18,7 +18,7 @@
 .headerTitleLg{
     position: absolute;
     top: 21%;
-    font-size: 100px;
+    font-size: 8em;
 }
 
 .headerImg{
@@ -26,4 +26,16 @@
     width: 100%;
     margin-top: 80px;
     object-fit: cover;
+}
+
+@media only screen and (max-width: 600px) {
+    .headerTitleLg{
+    font-size: 3em;
+    }
+    .header{
+        margin-top: -8em;
+    }
+    .headerImg{
+        opacity: 0.3;
+    }
 }

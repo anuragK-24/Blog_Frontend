@@ -36,8 +36,13 @@ export default function TopBar() {
             </Link>
           </li>
           <li className="topListItem">
-            <Link className="link" to="/">
+            <Link className="link" to="/contact">
               Contact
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/markdown">
+              Markdown
             </Link>
           </li>
           <li className="topListItem">

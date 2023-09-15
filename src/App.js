@@ -2,13 +2,15 @@ import TopBar from "./components/topbar/TopBar";
 import Home from "./pages/home/Home";
 import Write from "./pages/write/Write";
 import Single from "./pages/single/Single";
-import Settings from "./pages/settings/Settings";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
+import MarkDown from "./pages/markDown/MarkDown";
+import Contact from "./components/Contact/Contact";
+import Footer from "./components/footer/Footer";
 
 // In react-router-dom v6, "Switch" is replaced by routes "Routes". You need to update the import from
 
@@ -27,11 +29,15 @@ function App() {
 
         <Route path="/write" element={user ? <Write/> : <Register/> }/>
 
-        <Route path="/settings" element={user ? <Settings/> : <Register/> }/>
+        <Route path="/markdown" element={user ? <MarkDown/> : <Register/> }/>
+
+        <Route path="/contact" element={user ? <Contact/> : <Register/> }/>
+
 
         <Route path="/post/:postID" element={<Single/>}/>
 
       </Routes>
+      <Footer/>
     </Router>
    );
 }

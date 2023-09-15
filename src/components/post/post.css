@@ -55,3 +55,11 @@
     -webkit-line-clamp: 2;   /*it'll show the number of lines that should be shown to before .....*/
     -webkit-box-orient: vertical;
 }
+@media only screen and (max-width: 600px) {
+    .post{
+        width: 14em;
+    }
+    .postImg{
+        height: 10em;
+    }
+}
