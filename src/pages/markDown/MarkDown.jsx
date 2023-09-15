@@ -4,7 +4,7 @@ import "./MarkDown.scss";
 const data = [
   {
     heading: "CODE",
-    textToCopy: `<div style="background-color:black;  color:white; width:fit-content; height:fit-content; padding: 0 0.5em; border-radius:10px; ">\n\t<code>\n\t\twrite code here     \n\t<code>\n <div>`,
+    textToCopy: `<div style="background-color:black;  color:white; width:fit-content; height:fit-content; padding: 0 0.5em; border-radius:10px; ">\n\t<code>\n\t\twrite code here     \n\t</code>\n </div>`,
   },
   {
     heading: "HEADING",
