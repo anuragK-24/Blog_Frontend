@@ -29,10 +29,9 @@ function App() {
 
         <Route path="/write" element={user ? <Write/> : <Register/> }/>
 
-        <Route path="/markdown" element={user ? <MarkDown/> : <Register/> }/>
+        <Route path="/markdown" element={<MarkDown/>}/>
 
-        <Route path="/contact" element={user ? <Contact/> : <Register/> }/>
-
+        <Route path="/contact" element={<Contact/>  }/>
 
         <Route path="/post/:postID" element={<Single/>}/>
 
