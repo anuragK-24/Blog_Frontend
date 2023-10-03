@@ -4,7 +4,7 @@ import Posts from "../../components/posts/Posts";
 import "./home.css";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-import loadingIcon from "../../image/loading.gif";
+import loadingIcon from "../../image/loading__snail.gif";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -27,7 +27,9 @@ export default function Home() {
 
       <div className="home">
         {!isResolved ? (
-          <img src={loadingIcon} alt="" />
+          <div className="home__loading">
+            <img className="home__loading__icon" src={loadingIcon} alt="" />
+          </div>
         ) : (
           <Posts posts={posts} />
         )}

@@ -6,8 +6,8 @@ export default function Posts({posts}) {
     <div className='posts'>
       {posts.length===0 &&  <h1 className='text'>No Blog bound</h1>}
       {
-      posts.map( (p) =>( 
-          <Post post={p}/>
+      posts.map( (p,key) =>( 
+          <Post post={p} key={key}/>
       ))}
     </div>
   )
