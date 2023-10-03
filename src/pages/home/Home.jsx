@@ -26,7 +26,7 @@ export default function Home() {
       <Header />
 
       <div className="home">
-        {isResolved ? (
+        {!isResolved ? (
           <img src={loading.gif} alt="" />
         ) : (
           <Posts posts={posts} />
