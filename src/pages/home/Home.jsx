@@ -27,7 +27,7 @@ export default function Home() {
 
       <div className="home">
         {!isResolved ? (
-          <img src={loading.gif} alt="" />
+          <img src={loadingIcon} alt="" />
         ) : (
           <Posts posts={posts} />
         )}
