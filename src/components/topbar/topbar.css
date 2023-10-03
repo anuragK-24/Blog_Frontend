@@ -48,13 +48,40 @@
     cursor: pointer;
 }
 
+.topSearchIcon.active {
+    color: green;
+
+  }
+  .shake {
+    animation: shake 1s  linear;;
+  }
 .topSearchIcon{
     font-style: 18px;
     color: #666;
     cursor: pointer;
     margin-left: 15px;
+    margin-right: 1em;
 }
 
+@keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-8px);
+    }
+    50% {
+      transform: translateX(0);
+    }
+    75% {
+      transform: translateX(8px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  
 @media only screen and (max-width: 600px) {
     .top{
         width: 100%;
