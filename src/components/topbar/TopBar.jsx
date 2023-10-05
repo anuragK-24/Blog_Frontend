@@ -24,7 +24,7 @@ export default function TopBar() {
           <i className="topIcon fa-brands fa-facebook"></i>
         </a>
         <i className="topIcon fa-brands fa-instagram"></i>
-        <a href="https://twitter.com/AnuragS41695054">
+        <a href="">
           <i className="topIcon fa-brands fa-twitter"></i>
         </a>
         <i className="topIcon fa-brands fa-pinterest"></i>
@@ -39,11 +39,6 @@ export default function TopBar() {
           <li className="topListItem">
             <Link className="link" to="/">
               About
-            </Link>
-          </li>
-          <li className="topListItem">
-            <Link className="link" to="/contact">
-              Contact
             </Link>
           </li>
           <li className="topListItem">

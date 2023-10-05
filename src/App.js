@@ -9,7 +9,6 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 import MarkDown from "./pages/markDown/MarkDown";
-import Contact from "./components/Contact/Contact";
 import Footer from "./components/footer/Footer";
 
 // In react-router-dom v6, "Switch" is replaced by routes "Routes". You need to update the import from
@@ -30,8 +29,6 @@ function App() {
         <Route path="/write" element={user ? <Write/> : <Register/> }/>
 
         <Route path="/markdown" element={<MarkDown/>}/>
-
-        <Route path="/contact" element={<Contact/>  }/>
 
         <Route path="/post/:postID" element={<Single/>}/>
 

@@ -1,5 +1,4 @@
 import "./header.css";
-import homeImage from "../../image/home.jpg";
 export default function Header() {
   return (
     <>
