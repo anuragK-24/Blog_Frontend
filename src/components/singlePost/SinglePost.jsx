@@ -92,7 +92,7 @@ export default function SinglePost() {
           <span className="singlePostAuthor">
             Author:
             <Link to={`/?user=${post.username}`} className="link">
-              <b> {post.username.toUpperCase()}</b>
+              <b> {post.username ? post.username.toUpperCase() : ''}</b>
             </Link>
           </span>
           <span className="singlePostDate">

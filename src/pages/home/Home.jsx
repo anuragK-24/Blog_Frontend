@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
@@ -57,8 +57,6 @@ export default function Home() {
                 type="text"
                 onChange={(e) => {
                   setUserPost(e.target.value.toLowerCase());
-
-                  console.log(posts);
                   const filteredPosts = posts.filter((post) => {
                     return post.username
                       .toLowerCase()
