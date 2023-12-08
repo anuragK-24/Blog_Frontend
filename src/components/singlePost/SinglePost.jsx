@@ -29,6 +29,7 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
+      alert("Are you sure you want to delete this post?");
       await axios.delete(`https://blogapi-gpp7.onrender.com/api/posts/${post._id}`, {
         data: { username: user.username },
       });
@@ -91,7 +92,7 @@ export default function SinglePost() {
           <span className="singlePostAuthor">
             Author:
             <Link to={`/?user=${post.username}`} className="link">
-              <b> {post.username}</b>
+              <b> {post.username.toUpperCase()}</b>
             </Link>
           </span>
           <span className="singlePostDate">

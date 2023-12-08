@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState("https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-450x255.png");
   const { user } = useContext(Context);
 
   const handleSubmit = async (e) => {

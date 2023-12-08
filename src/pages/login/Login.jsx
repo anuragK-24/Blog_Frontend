@@ -15,7 +15,7 @@ export default function Login() {
     
     try {
       const res = await axios.post("https://blogapi-gpp7.onrender.com/api/auth/login",{
-        username : userRef.current.value,
+        username : userRef.current.value.toLowerCase(),
         password : passwordRef.current.value,
       })
       dispatch({type:"LOGIN_SUCCESS", payload:res.data});
