@@ -1,5 +1,6 @@
 .home {
   display: flex;
+  flex-direction: column;
 }
 .home__loading {
   display: block;
@@ -7,4 +8,34 @@
 }
 .home__loading img {
   height: 18em;
+}
+
+.home__content__search {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 2em;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 10px;
+  max-width: 25em;
+  height: 3em;
+}
+.home__content__search__input {
+  width: inherit;
+  border-radius: 10px;
+  border: none;
+  height: 2.8em;
+}
+.home__content__search__input:focus {
+  outline: none;
+}
+.home__content__search__input:focus {
+  background-color: antiquewhite;
+}
+.text {
+  text-align: center;
 }

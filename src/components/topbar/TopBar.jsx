@@ -10,13 +10,7 @@ export default function TopBar() {
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
-  const [userPost, setUserPost] = useState("");
-
-  const inputRef = useRef();
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
+ 
   return (
     <div className="top">
       <div className="topLeft">
@@ -76,23 +70,6 @@ export default function TopBar() {
             </li>
           </ul>
         )}
-        <Link to={`/?user=${userPost}`} className="link">
-          <input
-            ref={inputRef}
-            className="searchBox"
-            type="text"
-            onChange={(e) => {
-              setUserPost(e.target.value);
-            }}
-          />
-        </Link>
-        <Link to={`/?user=${userPost}`} className="link">
-          <i
-          className={`topSearchIcon fa-solid fa-magnifying-glass ${
-            userPost.length > 0 ? 'active' : ''
-          } ${userPost.length > 0 ? 'shake' : ''}`}
-        ></i>
-        </Link>
       </div>
     </div>
   );
