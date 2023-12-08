@@ -85,7 +85,7 @@ export default function Home() {
               {posts.length !== 0 ? (
                 <h3 className="text">
                   {" "}
-                  Here are {userPost}'s {posts.length} Blogs
+                  Total {userPost}  Blogs : {posts.length}
                 </h3>
               ) : (
                 ""
