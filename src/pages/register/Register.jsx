@@ -2,6 +2,7 @@ import "./register.css"
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import axios from "axios" 
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
   const [username,setUsername] = useState("")
@@ -9,7 +10,7 @@ export default function Register() {
   const [password,setPassword] = useState("")
   const [error,setError] = useState(false)
   
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {  //we are using async here cz it's just a fun not a useEffect
     e.preventDefault();
     setError(false);
@@ -19,7 +20,7 @@ export default function Register() {
         email,
         password,
       });
-      res.data && window.location.replace("/login")
+      res.data && navigate('/login');
       //if we don't have any error and if we have any data  it'll redirect to login page
     } catch (error) {
       setError(true);
