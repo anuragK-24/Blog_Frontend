@@ -7,12 +7,35 @@ export default function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [passwordError,setPasswordError] = useState(false);
+
+
+  function isValidEmail(email) {
+    const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    return regex.test(email);
+  }
+  function isStrongPassword(password) {
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
+  }
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(false);
+    setErrorEmail(false);
+    if (!isValidEmail(email)) {
+      setErrorEmail("Please enter a valid email.");
+      return;
+    }
+    
+  if (!isStrongPassword(password)) {
+    setPasswordError(
+      "Invalid password format."
+    );
+    return;
+  }
     try {
       const res = await axios.post(
         "https://blogapi-gpp7.onrender.com/api/auth/register",
@@ -23,8 +46,8 @@ export default function Register() {
         }
       );
       res.data && navigate("/login");
-    } catch (error) {
-      setError(true);
+    } catch (errorEmail) {
+      setErrorEmail(true);
     }
   };
   return (
@@ -39,12 +62,20 @@ export default function Register() {
           onChange={(e) => setUsername(e.target.value.toLowerCase())}
         />
         <label>Email</label>
+        
         <input
           type="text"
           className="registerInput "
           placeholder="Enter your email..."
           onChange={(e) => setEmail(e.target.value.toLowerCase())}
         />
+        {errorEmail && (
+          <p
+            style={{ color: "red", marginTop: "15px", fontSize: "15px" }}
+          >
+            {errorEmail}
+          </p>
+        )}
         <label>Password</label>
         <input
           type="password"
@@ -52,6 +83,13 @@ export default function Register() {
           placeholder="Enter your password..."
           onChange={(e) => setPassword(e.target.value)}
         />
+        {passwordError && (
+          <p
+            style={{ color: "red", marginTop: "15px", fontSize: "15px" }}
+          >
+            {passwordError}
+          </p>
+        )}
         <button className="registerButton" type="submit">
           Register
         </button>
@@ -62,11 +100,6 @@ export default function Register() {
           Login{" "}
         </Link>
       </button>
-      {error && (
-        <span style={{ color: "yellow", marginTop: "15px", fontSize: "25px" }}>
-          Something went wrong...
-        </span>
-      )}
     </div>
   );
 }

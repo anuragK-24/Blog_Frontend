@@ -12,24 +12,95 @@
     align-items: center;
 }
 
-/* Title styles */
-.registerTitle {
-    margin-top: 50px;
-    font-size: var(--main-font-size);
+
+.registerTitle{
+    font-size: 3.4em;
+    margin-top: 0.4em;
+    font-weight: 600;
 }
 
-/* Form styles */
 .registerForm {
-    margin-top: var(--form-margin-top);
+    margin-top: 2em;
     display: flex;
     flex-direction: column;
+    border: 1px solid black;
+    width: 18em;
+    height: 20em;
+    padding: 2em;
+    background-color: #e5ded1;
+    border-radius: 3em;
 }
 
 .registerForm > label {
-    margin: 10px 0;
+    font-weight: 700;
+    margin: 0px 0;
+    font-size: 2em;
+    padding: 0.2em;
 }
 
-.registerInput {
+.registerInput {    
     padding: 10px;
     background-color: #fff;
+    border: none;
+}
+.registerInput:focus {
+    border: none;
+    
+}
+.registerButton {
+    margin-top: 20px;
+    cursor: pointer;
+    background-color: green;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+.registerLoginButton{
+    margin-top: 5px;
+    cursor: pointer;
+    background-color: lightcoral;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1em;
+}
+
+@media only screen and (max-width: 600px) {
+    .registerTitle {
+        font-size: 5em;
+        margin-top: 1.7em;
+        font-weight: 600;
+    }
+    .registerLoginButton{
+        margin-top: 20px;
+        cursor: pointer;
+        background-color: lightcoral;
+        border: none;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    
+    .registerButton {
+        margin-top: 20px;
+        cursor: pointer;
+        background-color: green;
+        border: none;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .registerForm {
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        width: 18em;
+        height: 23em;
+        padding: 2em;
+        background-color: #e5ded1;
+        border-radius: 3em;
+    }
 }

@@ -5,20 +5,36 @@
     background-color: rgb(108, 171, 223);
     align-items: center;
 }
+.errorMessage{
+    color: red;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 1em;
+}
 
 .loginTitle{
-    font-size: 50px;
-    margin-top: 50px;
+    font-size: 3.4em;
+    margin-top: 0.4em;
+    font-weight: 600;
 }
 
 .loginForm{
-    margin-top: 20px;
+    margin-top: 2em;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 18em;
+    height: 18em;
+    padding: 2em;
+    background-color: #e5ded1;
+    border-radius: 3em;
 }
 
 .loginForm > label {
+    font-weight: 700;
     margin: 10px 0;
+    font-size: 2em;
+    padding: 0.2em;
 }
 .loginInput {
     padding: 10px;
@@ -48,7 +64,54 @@
     background-color: teal;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 0.4em;
     border-radius: 10px;
     cursor: pointer;
+    font-size: 1.2em;
+
+}
+@media only screen and (max-width: 600px) {
+    .loginRegisterButton{
+        position: absolute;
+        margin-top: 15px;
+        right: 20px;
+        background-color: teal;
+        color: white;
+        border: none;
+        padding: 0.4em;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.7em;
+    }
+    .loginButton{
+        margin-top: 20px;
+        cursor: pointer;
+        background-color: lightcoral;
+        border: none;
+        color: #fff;
+        border-radius: 10px;
+        padding: 10px;
+    }
+    .loginForm > label {
+        font-weight: 700;
+        margin: 10px 0;
+        font-size: 2em;
+        padding: 0.2em;
+    }
+    .loginForm{
+        margin-top: 5em;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        width: 18em;
+        height: 18em;
+        padding: 2em;
+        background-color: #e5ded1;
+        border-radius: 3em;
+    }
+    .loginTitle{
+        font-size: 5em;
+        margin-top: 2em;
+        font-weight: 600;
+    }
 }
