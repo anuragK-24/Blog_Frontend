@@ -35,6 +35,7 @@ export default function Home() {
       <div className="home">
         {!isResolved ? (
           <div className="home__loading">
+            <h2 className="home__loading__text">Fetching API at startup, please wait. Thanks for your patience!</h2>
             <img className="home__loading__icon" src={loadingIcon} alt="" />
           </div>
         ) : (

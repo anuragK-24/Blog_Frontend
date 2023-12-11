@@ -11,7 +11,6 @@ export default function Register() {
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
-    //we are using async here cz it's just a fun not a useEffect
     e.preventDefault();
     setError(false);
     try {
@@ -24,7 +23,6 @@ export default function Register() {
         }
       );
       res.data && navigate("/login");
-      //if we don't have any error and if we have any data  it'll redirect to login page
     } catch (error) {
       setError(true);
     }
