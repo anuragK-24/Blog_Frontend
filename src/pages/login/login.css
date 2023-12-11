@@ -7,9 +7,8 @@
 }
 .errorMessage{
     color: red;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: 600;
-    margin-top: 1em;
 }
 
 .loginTitle{
@@ -30,10 +29,11 @@
     border-radius: 3em;
 }
 
+
 .loginForm > label {
     font-weight: 700;
     margin: 10px 0;
-    font-size: 2em;
+    font-size: 1.5em;
     padding: 0.2em;
 }
 .loginInput {
@@ -45,11 +45,17 @@
 .loginButton{
     margin-top: 20px;
     cursor: pointer;
-    background-color: lightcoral;
+    background-color: orange;
     border: none;
     color: #fff;
     border-radius: 10px;
     padding: 10px;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+.loginButton:hover {
+    color: orange;
+    background-color:white ;
 }
 
 .loginButton:disabled {

@@ -25,6 +25,13 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorEmail(false);
+    if (!isValidEmail(email) && !isStrongPassword(password)) {
+      setErrorEmail("Please enter a valid email.");
+      setPasswordError(
+        "Invalid password format."
+      );
+      return;
+    }
     if (!isValidEmail(email)) {
       setErrorEmail("Please enter a valid email.");
       return;

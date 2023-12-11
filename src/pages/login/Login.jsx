@@ -1,10 +1,11 @@
 import "./login.css";
 import { Link } from "react-router-dom";
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
 
 export default function Login() {
+  const [error, setError] = useState(false);
   const userRef = useRef();
   const passwordRef = useRef();
   const { dispatch, isFetching } = useContext(Context);
@@ -14,12 +15,6 @@ export default function Login() {
     const username = userRef.current.value.toLowerCase();
     const password = passwordRef.current.value;
 
-    // if (!isStrongPassword(password)) {
-    //   setError(
-    //     "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
-    //   );
-    //   return;
-    // }
 
     try {
       const res = await axios.post(
@@ -31,6 +26,7 @@ export default function Login() {
       );
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (error) {
+      setError(true);
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
@@ -38,8 +34,8 @@ export default function Login() {
   return (
     <div className="login">
       <span className="loginTitle">Login </span>
-      {/* {error && <p className="errorMessage">{error}</p>} */}
       <form className="loginForm" onSubmit={handleSubmit}>
+        {error && <p className="errorMessage">Invalid LOGIN, enter correct Username or Password</p> }
         <label>Username</label>
         <input
           type="text"
