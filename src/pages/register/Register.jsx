@@ -78,7 +78,7 @@ export default function Register() {
         />
         {errorEmail && (
           <p
-            style={{ color: "red", marginTop: "15px", fontSize: "15px" }}
+            style={{ color: "red", fontSize: "15px" }}
           >
             {errorEmail}
           </p>
@@ -92,7 +92,7 @@ export default function Register() {
         />
         {passwordError && (
           <p
-            style={{ color: "red", marginTop: "15px", fontSize: "15px" }}
+            style={{ color: "red", fontSize: "15px" }}
           >
             {passwordError}
           </p>

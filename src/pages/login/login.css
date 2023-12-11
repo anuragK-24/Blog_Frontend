@@ -74,7 +74,10 @@
     border-radius: 10px;
     cursor: pointer;
     font-size: 1.2em;
-
+}
+.loginRegisterButton:hover {
+    color: green;
+    background-color:white ;
 }
 @media only screen and (max-width: 600px) {
     .loginRegisterButton{
