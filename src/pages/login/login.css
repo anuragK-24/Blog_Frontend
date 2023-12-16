@@ -21,16 +21,15 @@
     margin-top: 2em;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     width: 18em;
-    height: 18em;
+    height: 16em;
     padding: 2em;
     background-color: #e5ded1;
     border-radius: 3em;
 }
 
 
-.loginForm > label {
+.label_input > label {
     font-weight: 700;
     margin: 10px 0;
     font-size: 1.5em;
@@ -40,6 +39,13 @@
     padding: 10px;
     background-color: #fff;
     border: none;
+    border-radius: 1em;
+    width: -webkit-fill-available;
+}
+.loginInput:focus{
+    outline: none;
+    background-color: cornflowerblue;
+    color: white;
 }
 
 .loginButton{
@@ -52,8 +58,10 @@
     padding: 10px;
     font-weight: 700;
     font-size: 1.5em;
+    margin-right: 3em;
+    margin-left: 3em;
 }
-.loginButton:hover {
+.loginButton:active {
     color: orange;
     background-color:white ;
 }
@@ -80,6 +88,9 @@
     background-color:white ;
 }
 @media only screen and (max-width: 600px) {
+    .login{
+        height: calc(100vh - 181px);
+    }
     .loginRegisterButton{
         position: absolute;
         margin-top: 15px;
@@ -93,33 +104,25 @@
         font-size: 1.7em;
     }
     .loginButton{
-        margin-top: 20px;
-        cursor: pointer;
-        background-color: lightcoral;
-        border: none;
-        color: #fff;
-        border-radius: 10px;
-        padding: 10px;
+       
+        margin-right: 2em;
+        margin-left: 2em;
     }
-    .loginForm > label {
+    .label_input > label {
         font-weight: 700;
         margin: 10px 0;
-        font-size: 2em;
+        font-size: 1.4em;
         padding: 0.2em;
     }
     .loginForm{
         margin-top: 5em;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid black;
-        width: 18em;
-        height: 18em;
-        padding: 2em;
-        background-color: #e5ded1;
-        border-radius: 3em;
+        width: 13em;
+        height: 16em;
     }
+
+
     .loginTitle{
-        font-size: 5em;
+        font-size: 3.5em;
         margin-top: 2em;
         font-weight: 600;
     }

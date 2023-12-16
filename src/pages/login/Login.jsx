@@ -15,7 +15,6 @@ export default function Login() {
     const username = userRef.current.value.toLowerCase();
     const password = passwordRef.current.value;
 
-
     try {
       const res = await axios.post(
         "https://blogapi-gpp7.onrender.com/api/auth/login",
@@ -35,21 +34,29 @@ export default function Login() {
     <div className="login">
       <span className="loginTitle">Login </span>
       <form className="loginForm" onSubmit={handleSubmit}>
-        {error && <p className="errorMessage">Invalid LOGIN, enter correct Username or Password</p> }
-        <label>Username</label>
-        <input
-          type="text"
-          className="loginInput "
-          placeholder="Enter your name ..."
-          ref={userRef}
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          className="loginInput "
-          placeholder="Enter your password ..."
-          ref={passwordRef}
-        />
+        {error && (
+          <p className="errorMessage">
+            Invalid username or password. Please try again!
+          </p>
+        )}
+        <div className="label_input">
+          <label>Username</label>
+          <input
+            type="text"
+            className="loginInput "
+            placeholder="Enter your name ..."
+            ref={userRef}
+          />
+        </div>
+        <div className="label_input">
+          <label>Password</label>
+          <input
+            type="password"
+            className="loginInput "
+            placeholder="Enter your password ..."
+            ref={passwordRef}
+          />
+        </div>
         <button className="loginButton" type="submit" disabled={isFetching}>
           Login
         </button>

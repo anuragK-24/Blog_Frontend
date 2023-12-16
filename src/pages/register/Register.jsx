@@ -8,8 +8,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorEmail, setErrorEmail] = useState(false);
-  const [passwordError,setPasswordError] = useState(false);
-
+  const [passwordError, setPasswordError] = useState(false);
 
   function isValidEmail(email) {
     const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
@@ -27,22 +26,18 @@ export default function Register() {
     setErrorEmail(false);
     if (!isValidEmail(email) && !isStrongPassword(password)) {
       setErrorEmail("Please enter a valid email.");
-      setPasswordError(
-        "Invalid password format."
-      );
+      setPasswordError("Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character.");
       return;
     }
     if (!isValidEmail(email)) {
       setErrorEmail("Please enter a valid email.");
       return;
     }
-    
-  if (!isStrongPassword(password)) {
-    setPasswordError(
-      "Invalid password format."
-    );
-    return;
-  }
+
+    if (!isStrongPassword(password)) {
+      setPasswordError("Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character.");
+      return;
+    }
     try {
       const res = await axios.post(
         "https://blogapi-gpp7.onrender.com/api/auth/register",
@@ -61,42 +56,39 @@ export default function Register() {
     <div className="register">
       <span className="registerTitle">Register</span>
       <form className="registerForm" onSubmit={handleSubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          className="registerInput "
-          placeholder="Enter your name ..."
-          onChange={(e) => setUsername(e.target.value.toLowerCase())}
-        />
-        <label>Email</label>
-        
-        <input
-          type="text"
-          className="registerInput "
-          placeholder="Enter your email..."
-          onChange={(e) => setEmail(e.target.value.toLowerCase())}
-        />
-        {errorEmail && (
-          <p
-            style={{ color: "red", fontSize: "15px" }}
-          >
-            {errorEmail}
-          </p>
-        )}
-        <label>Password</label>
-        <input
-          type="password"
-          className="registerInput "
-          placeholder="Enter your password..."
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {passwordError && (
-          <p
-            style={{ color: "red", fontSize: "15px" }}
-          >
-            {passwordError}
-          </p>
-        )}
+        <div className="label_input">
+          <label>Username</label>
+          <input
+            type="text"
+            className="registerInput "
+            placeholder="Enter your name ..."
+            onChange={(e) => setUsername(e.target.value.toLowerCase())}
+          />
+        </div>
+        <div className="label_input">
+          <label>Email</label>
+          <input
+            type="text"
+            className="registerInput "
+            placeholder="Enter your email..."
+            onChange={(e) => setEmail(e.target.value.toLowerCase())}
+          />
+          {errorEmail && (
+            <p style={{ color: "red", fontSize: "15px" }}>{errorEmail}</p>
+          )}
+        </div>
+        <div className="label_input">
+          <label>Password</label>
+          <input
+            type="password"
+            className="registerInput "
+            placeholder="Enter your password..."
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {passwordError && (
+            <p style={{ color: "red", fontSize: "15px" }}>{passwordError}</p>
+          )}
+        </div>
         <button className="registerButton" type="submit">
           Register
         </button>
