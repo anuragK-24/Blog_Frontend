@@ -83,7 +83,7 @@
     cursor: pointer;
     font-size: 1.2em;
 }
-.loginRegisterButton:hover {
+.loginRegisterButton:active {
     color: green;
     background-color:white ;
 }
@@ -101,7 +101,7 @@
         padding: 0.4em;
         border-radius: 10px;
         cursor: pointer;
-        font-size: 1.7em;
+        font-size: 1.2em;
     }
     .loginButton{
        
@@ -115,14 +115,14 @@
         padding: 0.2em;
     }
     .loginForm{
-        margin-top: 5em;
+        margin-top: 1em;
         width: 13em;
         height: 16em;
     }
 
 
     .loginTitle{
-        font-size: 3.5em;
+        font-size: 2.8em;
         margin-top: 2em;
         font-weight: 600;
     }

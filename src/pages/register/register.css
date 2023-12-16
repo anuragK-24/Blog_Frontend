@@ -85,10 +85,10 @@
 }
 @media only screen and (max-width: 600px) {
     .register{
-        height: calc(100vh - 175px);
+        height: 41em;
     }
     .registerTitle {
-        font-size: 3.5em;
+        font-size: 2.8em;
         margin-top: 2em;
         font-weight: 600;
     }
@@ -103,11 +103,11 @@
     }
     
     .registerButton {
-        margin-right: 2em;
-        margin-left: 2em;
+        margin-right: 1.8em;
+        margin-left: 1.8em;
     }
     .registerForm {
-        margin-top: 5em;
+        margin-top: 1em;
         width: 13em;
     }
 }
