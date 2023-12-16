@@ -40,7 +40,7 @@
     background-color: #fff;
     border: none;
     border-radius: 1em;
-    width: -webkit-fill-available;
+    width: 92%;
 }
 .loginInput:focus{
     outline: none;
