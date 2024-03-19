@@ -21,7 +21,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get(
-        "https://blogapi-gpp7.onrender.com/api/posts" + search
+        "https://blog-backend-zeta.vercel.app/api/posts" + search
       );
       setIsResolved(true);
       setPosts(res.data);

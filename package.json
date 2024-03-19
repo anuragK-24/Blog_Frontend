@@ -39,5 +39,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://blogapi-gpp7.onrender.com/api/"
+  "proxy": "https://blog-backend-zeta.vercel.app/api/"
 }

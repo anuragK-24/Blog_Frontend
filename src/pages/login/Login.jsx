@@ -17,7 +17,7 @@ export default function Login() {
 
     try {
       const res = await axios.post(
-        "https://blogapi-gpp7.onrender.com/api/auth/login",
+        "https://blog-backend-zeta.vercel.app/api/auth/login",
         {
           username,
           password,

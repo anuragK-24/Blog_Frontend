@@ -18,7 +18,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("https://blogapi-gpp7.onrender.com/api/posts/" + path);
+      const res = await axios.get("https://blog-backend-zeta.vercel.app/api/posts/" + path);
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -30,7 +30,7 @@ export default function SinglePost() {
   const handleDelete = async () => {
     try {
       alert("Are you sure you want to delete this post?");
-      await axios.delete(`https://blogapi-gpp7.onrender.com/api/posts/${post._id}`, {
+      await axios.delete(`https://blog-backend-zeta.vercel.app/api/posts/${post._id}`, {
         data: { username: user.username },
       });
       window.location.replace("/");
@@ -39,7 +39,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`https://blogapi-gpp7.onrender.com/api/posts/${post._id}`, {
+      await axios.put(`https://blog-backend-zeta.vercel.app/api/posts/${post._id}`, {
         username: user.username,
         title,
         desc,

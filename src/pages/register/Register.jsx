@@ -40,7 +40,7 @@ export default function Register() {
     }
     try {
       const res = await axios.post(
-        "https://blogapi-gpp7.onrender.com/api/auth/register",
+        "https://blog-backend-zeta.vercel.app/api/auth/register",
         {
           username,
           email,

@@ -20,7 +20,7 @@ export default function Write() {
     };
     try {
       const res = await axios.post(
-        "https://blogapi-gpp7.onrender.com/api/posts",
+        "https://blog-backend-zeta.vercel.app/api/posts",
         newPost
       );
       window.location.replace("/post/" + res.data._id);
