@@ -14,10 +14,29 @@ export default function Register() {
     const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     return regex.test(email);
   }
+
   function isStrongPassword(password) {
-    const regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return regex.test(password);
+    if (password.length < 8) {
+      return false;
+    }
+
+    if (!/[a-z]/.test(password)) {
+      return false;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      return false;
+    }
+
+    if (!/\d/.test(password)) {
+      return false;
+    }
+
+    if (!/[@$!%*?&#]/.test(password)) {
+      return false;
+    }
+
+    return true;
   }
 
   const navigate = useNavigate();
@@ -26,7 +45,9 @@ export default function Register() {
     setErrorEmail(false);
     if (!isValidEmail(email) && !isStrongPassword(password)) {
       setErrorEmail("Please enter a valid email.");
-      setPasswordError("Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character.");
+      setPasswordError(
+        "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character."
+      );
       return;
     }
     if (!isValidEmail(email)) {
@@ -35,7 +56,9 @@ export default function Register() {
     }
 
     if (!isStrongPassword(password)) {
-      setPasswordError("Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character.");
+      setPasswordError(
+        "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character."
+      );
       return;
     }
     try {
