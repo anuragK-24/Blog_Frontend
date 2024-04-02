@@ -32,7 +32,7 @@ export default function Login() {
 
   return (
     <div className="login">
-      <span className="loginTitle">Login </span>
+      <span className="loginTitle">Sign In </span>
       <form className="loginForm" onSubmit={handleSubmit}>
         {error && (
           <p className="errorMessage">
@@ -58,15 +58,9 @@ export default function Login() {
           />
         </div>
         <button className="loginButton" type="submit" disabled={isFetching}>
-          Login
+          Sign In
         </button>
       </form>
-      <button className="loginRegisterButton">
-        <Link className="link" to="/register">
-          {" "}
-          Register{" "}
-        </Link>
-      </button>
     </div>
   );
 }

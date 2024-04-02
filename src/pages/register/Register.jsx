@@ -77,7 +77,7 @@ export default function Register() {
   };
   return (
     <div className="register">
-      <span className="registerTitle">Register</span>
+      <span className="registerTitle">Sign Up</span>
       <form className="registerForm" onSubmit={handleSubmit}>
         <div className="label_input">
           <label>Username</label>
@@ -113,15 +113,9 @@ export default function Register() {
           )}
         </div>
         <button className="registerButton" type="submit">
-          Register
+        Sign Up
         </button>
       </form>
-      <button className="registerLoginButton">
-        <Link className="link" to="/login">
-          {" "}
-          Login{" "}
-        </Link>
-      </button>
     </div>
   );
 }
