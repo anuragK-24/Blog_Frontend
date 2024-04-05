@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
-import "./home.css";
+import "./home.scss";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import loadingIcon from "../../image/loading__snail.gif";
