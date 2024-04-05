@@ -63,8 +63,8 @@ export default function Home() {
             <div
               className="home__content__search"
               style={{
-                borderBottomLeftRadius: isFocused ? "0px" : "10px",
-                borderBottomRightRadius: isFocused ? "0px" : "10px",
+                borderBottomLeftRadius: isFocused ? "0px" : "1em",
+                borderBottomRightRadius: isFocused ? "0px" : "1em",
               }}
               onFocus={() => setIsFocused(true)}
               onBlur={(e) => {
@@ -100,24 +100,6 @@ export default function Home() {
                 ></i>
               </Link>
             </div>
-            {/* {isFocused && searchPost.length !== 0 ? (
-              <div className="home__content__searchItems">
-                {input.length !== 0 &&
-                  searchPost.map((post) => (
-                    <li
-                      onClick={() => navigate(`post/${post._id}`)}
-                      key={post._id}
-                    >
-                      {post.title}
-                    </li>
-                  ))}
-                {input.length !== 0 ? (
-                  <div>Search result : {searchPost.length}</div>
-                ) : (
-                  <div>Find your favourite blog</div>
-                )}
-              </div>
-            ) : null}{" "} */}
             {isFocused && searchPost.length !== 0 && (
               <div className="home__content__searchItems" ref={searchItemsRef}>
                 {input.length !== 0 &&
