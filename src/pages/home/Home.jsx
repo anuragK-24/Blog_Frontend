@@ -50,13 +50,13 @@ export default function Home() {
         ) : (
           <div className="home__content">
             {user ? (
-              <h3 className="greeting">
+              <h2 className="greeting">
                 Welcome{" "}
                 <b>
                   {" "}
                   <i>{user.username.toUpperCase()}</i>{" "}
                 </b>{" "}
-              </h3>
+              </h2>
             ) : (
               ""
             )}
