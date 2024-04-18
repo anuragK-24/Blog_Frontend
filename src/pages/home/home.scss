@@ -77,11 +77,15 @@
         border-radius: 10px;
         border: none;
         height: 2.8em;
+        flex: 7;
 
         &:focus {
           outline: none;
           background-color: antiquewhite;
         }
+      }
+      a{
+        flex: 1;
       }
     }
   }

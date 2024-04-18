@@ -11,7 +11,7 @@ export default function Post({post}) {
           
         {post.photo && post.photo.length!==0 && <img className='postImg' src={post.photo} alt="" />}
         <div className="postInfo">
-              <span className="postTitle">{post.title}</span>
+              <h2 className="postTitle">{post.title}</h2>
             <hr />
             <span className="postDate">{new Date(post.createdAt).toDateString()}</span>
             {/* this line is used to display date in proper format  */}

@@ -1,65 +1,75 @@
-.post{
-    width: 22em;
-    margin: 0px 20px 40px 25px ;
+.post {
+  border: 1px solid black;
+  width: 22em;
+  margin: 0px 20px 40px 25px;
+  padding: 0.4em;
+  display: flex;
+  border-radius: 10px;
+}
+.link {
+  font-weight: 600;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+}
+.postImg {
+  height: 10em;
+  object-fit: scale-down;
+  border-radius: 10px;
 }
 
-.postImg{
-    height: 280px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px;
+.postInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: bisque;
+  border-radius: 1em;
+  padding: 9px;
 }
 
-.postInfo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.postCats {
+  font-family: "Verela-Round", sans-serif;
+  font-size: 21px;
+  color: #bebebe;
+  font-weight: 1000;
+  line-height: 20px;
+  margin-top: 15px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
-.postCats{
-    font-family: "Verela-Round", sans-serif;                        
-    font-size: 21px;
-    color: #bebebe;
-    font-weight: 1000;
-    line-height: 20px;
-    margin-top: 15px;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.postTitle{
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 15px;
+.postTitle {
+  font-family: sans-serif;
+  font-weight: 500;
+  margin-top: 15px;
 }
 .postDate {
-    font-family:  sans-serif;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: 300;
-    margin-top: 10px;
-    color: brown;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 300;
+  margin-top: 10px;
+  color: brown;
 }
 
-.postDesc{
-    font-family: serif;
-    font-size: 14px;
-    color: #444;
-    line-height: 24px;
-    margin-top: 15px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /* to show the dot dot after some content */
-    display: -webkit-box;       
-    -webkit-line-clamp: 2;   /*it'll show the number of lines that should be shown to before .....*/
-    -webkit-box-orient: vertical;
+.postDesc {
+  font-family: serif;
+  font-size: 14px;
+  color: #444;
+  line-height: 24px;
+  margin-top: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* to show the dot dot after some content */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /*it'll show the number of lines that should be shown to before .....*/
+  -webkit-box-orient: vertical;
 }
 @media only screen and (max-width: 600px) {
-    .post{
-        width: 14em;
-    }
-    .postImg{
-        height: 10em;
-    }
+  .post {
+    width: 14em;
+  }
+  .postImg {
+    height: 10em;
+  }
 }

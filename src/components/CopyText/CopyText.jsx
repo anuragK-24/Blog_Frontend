@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./CopyText.scss";
 import copy from "../../image/copy.png";
-const CopyText = ({ textToCopy,heading }) => {
+const CopyText = ({ textToCopy, heading }) => {
+  const [showCopied, setShowCopied] = useState(false);
+
   const handleCopyClick = () => {
     const el = document.createElement("textarea");
     el.value = textToCopy;
@@ -9,23 +11,30 @@ const CopyText = ({ textToCopy,heading }) => {
     el.select();
     document.execCommand("copy");
     document.body.removeChild(el);
+
+    setShowCopied(true);
+    setTimeout(() => {
+      setShowCopied(false);
+    }, 1000);
   };
 
-  return (<>
-    <h2 className="CopyText__Heading">{heading}</h2>
-    <div className="CopyText">
-    <img
-      className="CopyText__Title"
-      onClick={handleCopyClick}
-      src={copy}
-      alt=""
-    />
-    <hr />
-    <div className="CopyText__Code" role="button" tabindex="0">
-      {textToCopy}
+  return (
+    <div className="CopyText" onClick={handleCopyClick}>
+      <h2 className="CopyText__Heading">{heading}</h2>
+      <div className="CopyText__Content">
+        <div className="CopyText__Content__Box">
+          <img className="CopyText__Content__Box__Title" src={copy} alt="" />
+          {showCopied && (
+            <h3 className="CopyText__Content__Box__Copied">Copied !!</h3>
+          )}
+        </div>
+        <hr />
+        <div className="CopyText__Code" role="button" tabindex="0">
+          {textToCopy}
+        </div>
+      </div>
     </div>
-  </div>
-</>  );
+  );
 };
 
 export default CopyText;

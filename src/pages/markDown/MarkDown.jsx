@@ -23,8 +23,7 @@ export default function MarkDown() {
       <div className="MarkDown__Heading"> Markdown </div>
       <hr />
       <div className="MarkDown__Desc">
-        {" "}
-        To write the readable blogs use these markdowns{" "}
+        Write neat and clean blogs with markdown. Here are some markdown
       </div>
       {data.map((e, key) => {
         return (

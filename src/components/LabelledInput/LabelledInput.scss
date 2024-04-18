@@ -10,14 +10,18 @@
   -moz-appearance: textfield;
 }
 
+.LabelledInput__Input--Error::placeholder {
+    color: red;
+}
 .LabelledInput {
     margin-bottom: 0.5em;
     background-color: inherit;
     &__Label {
         background-color: inherit;
-        font-weight: 500;
+        font-weight: 600;
         margin-bottom: 0.2em;
-        font-size: 1.5em;
+        font-size: 1.2em;
+        font-family: sans-serif;
     }
     
     &__Error{
@@ -42,6 +46,7 @@
         &:focus {
             outline: none;
             border: 1px solid green;
+            background-color: yellowgreen;
         }
     }
 }

@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import LabelledInput from "../../components/LabelledInput/LabelledInput";
+import SignUp_image from "../../image/signUp.svg";
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
+  const [password, setPassword] = useState(""); // Initialize password state with an empty string
+  const [errorEmail, setErrorEmail] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   function isValidEmail(email) {
     const regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
@@ -45,20 +46,24 @@ export default function SignUp() {
     e.preventDefault();
     setErrorEmail(false);
     if (!isValidEmail(email) && !isStrongPassword(password)) {
-      setErrorEmail("Please enter a valid email.");
+      setEmail('');
+      setPassword('');
+      setErrorEmail("* Please enter a valid email.");
       setPasswordError(
-        "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character."
+        "* Must be 8 or more characters and contain at least 1 number and 1 special character."
       );
       return;
     }
     if (!isValidEmail(email)) {
-      setErrorEmail("Please enter a valid email.");
+      setEmail('');
+      setErrorEmail("* Please enter a valid email address.");
       return;
     }
 
     if (!isStrongPassword(password)) {
+      setPassword('');
       setPasswordError(
-        "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character."
+        "* Must be 8 or more characters and contain at least 1 number and 1 special character."
       );
       return;
     }
@@ -78,43 +83,52 @@ export default function SignUp() {
   };
   return (
     <div className="SignUp">
-      <span className="SignUpTitle">Sign Up</span>
-      <form className="SignUpForm" onSubmit={handleSubmit}>
-        <LabelledInput
-          label="Username"
-          type="text"
-          value={username}
-          placeholder="Enter your name ..."
-          onChange={(e) => setUsername(e.target.value.toLowerCase())}
-        />
-        <div className="label_input">
+    <h1 className="SignUp_Heading">SignUp</h1>
+    <div className="SignUp_Content">
+    <div className="SignUp_Content_FormContainer">
+        <form
+          className="SignUp_Content_FormContainer_Form"
+          onSubmit={handleSubmit} 
+        >
+          <LabelledInput
+            label="Username"
+            type="text"
+            placeholder="Enter your name ..."
+            value={username}
+            onChange={(e) => setUsername(e.target.value.toLowerCase())}
+          />
           <LabelledInput
             label="Email"
-            type="text"
+            type="email"
             placeholder="Enter your email..."
             value={email}
+            errorMsg={errorEmail}
             onChange={(e) => setEmail(e.target.value.toLowerCase())}
           />
-          {errorEmail && (
-            <p style={{ color: "red", fontSize: "15px" }}>{errorEmail}</p>
-          )}
-        </div>
-        <div className="label_input">
+
           <LabelledInput
             label={"Password"}
             type="password"
             placeholder="Enter your password..."
             value={password}
+            errorMsg={passwordError}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {passwordError && (
-            <p style={{ color: "red", fontSize: "15px" }}>{passwordError}</p>
-          )}
-        </div>
-        <button className="SignUpButton" type="submit">
-          Sign Up
-        </button>
-      </form>
+
+          <button
+            className="SignUp_Content_FormContainer_Form_Button"
+            type="submit" // Set the button type to submit
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+      <div className="SignUp_Content_Image">
+        <img src={SignUp_image} alt="SignUp" />
+      </div>
+
+     
     </div>
+  </div>
   );
 }

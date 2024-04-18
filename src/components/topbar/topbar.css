@@ -23,14 +23,14 @@
 
 .link.login{
     color: white;
-    background-color: orange;
+    background-color: #64d764;
     border-radius: 0.5em;
     padding: 0.4em;
     height: auto;
 }
 .link.register{
     color: white;
-    background-color: green;
+    background-color: #fbb73b;
     border-radius: 0.5em;
     padding: 0.4em;
     height: auto;

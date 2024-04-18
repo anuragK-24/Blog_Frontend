@@ -6,7 +6,7 @@ import LabelledInput from "../../components/LabelledInput/LabelledInput";
 import Login_image from "../../image/signIn.svg";
 
 export default function SignIn() {
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
   const [userName, setUserName] = useState("");
   const [passWord, setPassword] = useState("");
 
@@ -27,7 +27,9 @@ export default function SignIn() {
       );
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (error) {
-      setError(true);
+      setUserName("");
+      setPassword("");
+      setError("* Invalid username or password!");
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
@@ -45,16 +47,12 @@ export default function SignIn() {
             className="SignIn_Content_FormContainer_Form"
             onSubmit={handleSubmit}
           >
-            {error && (
-              <p className="SignIn_Content_FormContainer_error">
-                Invalid username or password. Please try again!
-              </p>
-            )}
             <LabelledInput
               label="Username"
               type="text"
               placeholder="Enter your name ..."
               value={userName}
+              errorMsg={error}
               onChange={(e) => setUserName(e.target.value)}
             />
             <LabelledInput
@@ -62,6 +60,7 @@ export default function SignIn() {
               type="password"
               placeholder="Enter your password ..."
               value={passWord}
+              errorMsg={error}
               onChange={(e) => setPassword(e.target.value)}
             />
 

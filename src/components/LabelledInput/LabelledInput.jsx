@@ -2,31 +2,56 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./LabelledInput.scss";
 
+// export default function LabelledInput({
+//   label,
+//   placeholder,
+//   value,
+//   type,
+//   onChange,
+//   ref,
+//   error,
+// }) {
+//   return (
+//     <div className="LabelledInput">
+//       {label && <div className="LabelledInput__Label">{label}</div>}
+//       <input
+//         className="LabelledInput__Input"
+//         type={type}
+//         placeholder={placeholder}
+//         onChange={onChange}
+//         value={value}
+//         required
+//         ref = {ref}
+//       ></input>
+//       {error && (
+//         <div className="LabelledInput__Error">{error}</div>
+//       )}
+//     </div>
+//   );
+// }
+
+
 export default function LabelledInput({
   label,
   placeholder,
   value,
   type,
   onChange,
-  ref,
-  error,
+  errorMsg,
 }) {
   return (
     <div className="LabelledInput">
-      {label && <div className="LabelledInput__Label">{label}</div>}
-      <input
-        className="LabelledInput__Input"
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange}
-        value={value}
-        required
-        ref = {ref}
-      ></input>
-      {error && error.error && (
-        <div className="LabelledInput__Error">{error.msg}</div>
-      )}
-    </div>
+    {label && <div className="LabelledInput__Label">{label}</div>}
+    <input
+      className={`LabelledInput__Input ${errorMsg && errorMsg.length > 0 ? 'LabelledInput__Input--Error' : ''}`}
+      type={type}
+      placeholder={errorMsg || placeholder}
+      onChange={onChange}
+      title={errorMsg}
+      value={value}
+      required
+    />
+  </div>
   );
 }
 
@@ -35,9 +60,8 @@ LabelledInput.propTypes = {
   placeholder: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.string,
-  onChange: () => {},
-  error: PropTypes.object,
-  ref: PropTypes.string,
+  onChange: PropTypes.func,
+  error: PropTypes.string,
 };
 
 LabelledInput.defaultProps = {
@@ -45,6 +69,5 @@ LabelledInput.defaultProps = {
   placeholder: "",
   type: "text",
   value: "",
-  bool: {},
-  ref: null,
+  error: "",  
 };
