@@ -1,9 +1,10 @@
-import "./register.css";
-import { Link, useNavigate } from "react-router-dom";
+import "./SignUp.scss";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import LabelledInput from "../../components/LabelledInput/LabelledInput";
 
-export default function Register() {
+export default function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -76,24 +77,22 @@ export default function Register() {
     }
   };
   return (
-    <div className="register">
-      <span className="registerTitle">Sign Up</span>
-      <form className="registerForm" onSubmit={handleSubmit}>
+    <div className="SignUp">
+      <span className="SignUpTitle">Sign Up</span>
+      <form className="SignUpForm" onSubmit={handleSubmit}>
+        <LabelledInput
+          label="Username"
+          type="text"
+          value={username}
+          placeholder="Enter your name ..."
+          onChange={(e) => setUsername(e.target.value.toLowerCase())}
+        />
         <div className="label_input">
-          <label>Username</label>
-          <input
+          <LabelledInput
+            label="Email"
             type="text"
-            className="registerInput "
-            placeholder="Enter your name ..."
-            onChange={(e) => setUsername(e.target.value.toLowerCase())}
-          />
-        </div>
-        <div className="label_input">
-          <label>Email</label>
-          <input
-            type="text"
-            className="registerInput "
             placeholder="Enter your email..."
+            value={email}
             onChange={(e) => setEmail(e.target.value.toLowerCase())}
           />
           {errorEmail && (
@@ -101,19 +100,19 @@ export default function Register() {
           )}
         </div>
         <div className="label_input">
-          <label>Password</label>
-          <input
+          <LabelledInput
+            label={"Password"}
             type="password"
-            className="registerInput "
             placeholder="Enter your password..."
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           {passwordError && (
             <p style={{ color: "red", fontSize: "15px" }}>{passwordError}</p>
           )}
         </div>
-        <button className="registerButton" type="submit">
-        Sign Up
+        <button className="SignUpButton" type="submit">
+          Sign Up
         </button>
       </form>
     </div>
