@@ -9,19 +9,19 @@
 
 .headerTitleSm {
   position: absolute;
-  top: 15%;
+  top: 11%;
   font-size: 20px;
 }
 
 .headerTitleLg {
   position: absolute;
-  top: 21%;
+  top: 16%;
   font-size: 8em;
   z-index: 10;
 }
 
 .headerImg {
-  height: 18em;
+  height: 15em;
   background-image: url("../../image/home.jpg");
   opacity: 0.5;
   background-size: cover;
