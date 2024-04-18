@@ -1,19 +1,21 @@
 import "./login.css";
 import { Link } from "react-router-dom";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
 import axios from "axios";
+import LabelledInput from "../../components/LabelledInput/LabelledInput";
 
 export default function Login() {
   const [error, setError] = useState(false);
-  const userRef = useRef();
-  const passwordRef = useRef();
+  const [userName, setUserName] = useState("");
+  const [passWord, setPassword] = useState("");
+
   const { dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const username = userRef.current.value.toLowerCase();
-    const password = passwordRef.current.value;
+    const username = userName.toLowerCase();
+    const password = passWord;
 
     try {
       const res = await axios.post(
@@ -32,35 +34,34 @@ export default function Login() {
 
   return (
     <div className="login">
-      <span className="loginTitle">Sign In </span>
-      <form className="loginForm" onSubmit={handleSubmit}>
-        {error && (
-          <p className="errorMessage">
-            Invalid username or password. Please try again!
-          </p>
-        )}
-        <div className="label_input">
-          <label>Username</label>
-          <input
-            type="text"
-            className="loginInput "
-            placeholder="Enter your name ..."
-            ref={userRef}
-          />
-        </div>
-        <div className="label_input">
-          <label>Password</label>
-          <input
-            type="password"
-            className="loginInput "
-            placeholder="Enter your password ..."
-            ref={passwordRef}
-          />
-        </div>
-        <button className="loginButton" type="submit" disabled={isFetching}>
-          Sign In
-        </button>
-      </form>
+
+      {error && (
+        <p className="errorMessage">
+          Invalid username or password. Please try again!
+        </p>
+      )}
+      <LabelledInput
+        label="Username"
+        type="text"
+        placeholder="Enter your name ..."
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+      />
+      <LabelledInput
+        label="Password"
+        type="password"
+        placeholder="Enter your password ..."
+        value={passWord}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <button
+        className="loginButton"
+        disabled={isFetching}
+        onClick={handleSubmit}
+      >
+        Sign In
+      </button>
     </div>
   );
 }
