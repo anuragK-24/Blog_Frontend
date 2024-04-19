@@ -14,13 +14,13 @@
     color: red;
 }
 .LabelledInput {
-    margin-bottom: 0.5em;
     background-color: inherit;
+
     &__Label {
         background-color: inherit;
         font-weight: 600;
         margin-bottom: 0.2em;
-        font-size: 1.2em;
+        font-size: 0.7em;
         font-family: sans-serif;
     }
     
@@ -34,7 +34,7 @@
     &__Input {
         background-color: aliceblue;
         width: auto;
-        padding: 0.5em;
+        padding: 0.1em;
         border: 1px solid black;
         border-radius: 0.2em;
         font-size: 0.9em;
