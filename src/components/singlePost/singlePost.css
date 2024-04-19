@@ -1,17 +1,30 @@
 .singlePost {
   flex: 9;
+  width: -webkit-fill-available;
+}
+pre {
+  overflow-x: auto;
+  background-color: black;
+  color: white;
+  padding: 13px;
+  font-family: unset;
+  border-radius: 16px;
+}
+.singlePostDesc img {
+  width: -webkit-fill-available;
+  border-radius: 16px;
+  border: 1px solid #d3d3d3;
 }
 
+
 .singlePostWrapper {
+  overflow-x: hidden;
   padding: 0 6em 6em 6em;
   display: flex;
   flex-direction: column;
 }
 .singlePostImg {
-  padding-left: 2em;
-  padding-right: 3em;
-  width: 91%;
-  height: 15em;
+  max-height: 15em;
   object-fit: scale-down;
   border-radius: 5px;
 }
@@ -79,7 +92,7 @@
 }
 
 .singlePostDesc a {
-  color: #000; /* Or any color you prefer */
+  color: #000;
 }
 .singlePostDescInput:focus {
   outline: none;
@@ -95,7 +108,6 @@
   cursor: pointer;
   padding: 5px;
   align-self: flex-end;
-  /* by this the button will move to end  */
   margin-top: 20px;
 }
 @media only screen and (max-width: 600px) {
