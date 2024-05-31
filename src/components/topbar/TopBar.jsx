@@ -29,16 +29,6 @@ export default function TopBar() {
         <div className={`hamburger__line ${menuOpen ? "Active" : ""}`}></div>
         <div className={`hamburger__line ${menuOpen ? "Active" : ""}`}></div>
       </div>
-      <div className="topLeft">
-        <a href="">
-          <i className="topIcon fa-brands fa-facebook"></i>
-        </a>
-        <i className="topIcon fa-brands fa-instagram"></i>
-        <a href="">
-          <i className="topIcon fa-brands fa-twitter"></i>
-        </a>
-        <i className="topIcon fa-brands fa-pinterest"></i>
-      </div>
       <div className={`topCentre ${menuOpen ? "Active" : ""}`}>
         <ul className="topList">
           <li onClick={handleClick} className="topListItem">
