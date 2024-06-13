@@ -9,31 +9,38 @@
   font-family: "Varela", sans-serif;
   z-index: 999;
 }
-.link{
+.link {
   font-weight: 600;
+  width: max-content;
 }
-.topListItem.logout{
+.topList.logout {
+  cursor: pointer;
   color: white;
-    background-color: #e53535;
-    border-radius: 0.5em;
-    padding: 0.4em;
-    font-weight: 700;
-    height: auto;
+  background-color: red;
+  border-radius: 0.5em;
+  padding: 0.4em;
+  font-weight: 700;
+  height: auto;
 }
 
-.link.login{
-    color: white;
-    background-color: #64d764;
-    border-radius: 0.5em;
-    padding: 0.4em;
-    height: auto;
+.link.login {
+  width: max-content;
+  color: white;
+  font-weight: 700;
+  background-color: #64d764;
+  border-radius: 0.5em;
+  padding: 0.4em;
+  height: auto;
+  width: max-content;
 }
-.link.register{
-    color: white;
-    background-color: #fbb73b;
-    border-radius: 0.5em;
-    padding: 0.4em;
-    height: auto;
+.link.register {
+  width: max-content;
+  color: white;
+  background-color: #fbb73b;
+  border-radius: 0.5em;
+  padding: 0.4em;
+  height: auto;
+  width: max-content;
 }
 .topLeft,
 .topRight {
@@ -49,7 +56,7 @@
   cursor: pointer; /*by this when the cursor go to the particulr id elements it will change cursor*/
 }
 .topCentre {
-  flex: 6;
+  flex: 18 1;
 }
 
 .topImage {
@@ -117,22 +124,27 @@
       /* opacity: 1; */
     }
   }
-  .top.Active{
+  .topCentre {
+    flex: 6;
+  }
+
+  .top.Active {
     position: fixed;
     height: min-content;
     animation: slideIn 0.5s ease-in-out;
   }
   .top {
     width: 100%;
-    
   }
-  .topLeft, .topRight, .topCentre {
+  .topLeft,
+  .topRight,
+  .topCentre {
     display: none;
   }
-  .topRight.Active{
+  .topRight.Active {
     display: block;
   }
-  .topCentre.Active{
+  .topCentre.Active {
     display: block;
   }
   .topListItem {
@@ -152,7 +164,6 @@
   .topList {
     display: block;
   }
-  
 
   .top {
     /* padding-top: 1em; */
@@ -171,20 +182,20 @@
     transition: 0.4s;
     background-color: black;
   }
-  .hamburger.Active{
+  .hamburger.Active {
     /* width: 6em; */
   }
-  
-  .topListItem:nth-child(1){
+
+  .topListItem:nth-child(1) {
     margin-left: 1em;
   }
   .hamburger__line:nth-child(1).Active {
     transform: rotate(-45deg) translate(-5px, 9px);
   }
-  .hamburger__line:nth-child(2).Active{
+  .hamburger__line:nth-child(2).Active {
     opacity: 0;
   }
-  .hamburger__line:nth-child(3).Active{
+  .hamburger__line:nth-child(3).Active {
     transform: rotate(45deg) translate(-6px, -11px);
   }
   .topListItem {

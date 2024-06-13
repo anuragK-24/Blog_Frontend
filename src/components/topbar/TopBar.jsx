@@ -9,7 +9,7 @@ export default function TopBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [register, setRegister] = useState(false);
   const handleClick = () => {
-    if(location.pathname !== "/login" || location.pathname !== "/register"){
+    if (location.pathname !== "/login" || location.pathname !== "/register") {
       setRegister(!register);
     }
     setMenuOpen(!menuOpen);
@@ -51,27 +51,19 @@ export default function TopBar() {
               Write
             </Link>
           </li>
-          {user && (
-            <li className="topListItem logout" onClick={handleLogout}>
-              Logout
-            </li>
-          )}
         </ul>
       </div>
       <div className={`topRight ${menuOpen ? "Active" : ""}`}>
         {user ? (
-          <Link to="/settings">
-            {" "}
-            <img className="topImage" src={user.profilePic} alt="" />{" "}
-          </Link>
+          <li className="topList logout" onClick={handleLogout}>
+            Logout
+          </li>
         ) : (
           <ul className="topList">
             <li onClick={handleClick} className="topListItem">
               <Link
                 className={
-                  location.pathname === "/register"
-                    ? "link login"
-                    : "link"
+                  location.pathname === "/register" ? "link login" : "link"
                 }
                 to="/login"
               >
@@ -80,7 +72,9 @@ export default function TopBar() {
             </li>
             <li onClick={handleClick} className="topListItem">
               <Link
-                className={location.pathname === "/login" ? "link register" : "link"}
+                className={
+                  location.pathname === "/login" ? "link register" : "link"
+                }
                 to="/register"
               >
                 Sign Up
