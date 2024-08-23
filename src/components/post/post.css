@@ -70,6 +70,13 @@
     width: 14em;
   }
   .postImg {
-    height: 10em;
+    height: 7em;
+  }
+  .postInfo{
+    padding: 0;
+  }
+  .postDesc{
+    font-size: 12px;
+    margin-top: 0;
   }
 }

@@ -114,4 +114,7 @@ pre {
   .singlePostWrapper {
     padding: 1em 1em 6em 1em;
   }
+  .singlePostDesc{
+    font-size: 14px;
+  }
 }
