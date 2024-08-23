@@ -2,7 +2,6 @@ import React from "react";
 import { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
 import "./home.scss";
 import axios from "axios";
@@ -24,7 +23,7 @@ export default function Home() {
   const fetchPosts = async (searchQuery) => {
     try {
       const res = await axios.get(
-        `https://blo-backend-zeta.vercel.app/api/posts/search/${searchQuery}`
+        `https://blog-backend-zeta.vercel.app/api/posts/search/${searchQuery}`
       );
       setSearchPost(res.data);
       setError('');
@@ -51,7 +50,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
 
       <div className="home">
         <div className="home__content">

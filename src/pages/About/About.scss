@@ -1,0 +1,17 @@
+.About{
+    margin-left: 280px;
+    margin-right: 70px;
+    margin-top: -40px;
+
+    &_Heading{
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .About{
+        margin-top: -4em;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 1em;
+    }
+}

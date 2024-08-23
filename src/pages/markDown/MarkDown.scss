@@ -1,4 +1,7 @@
 .MarkDown{
+    margin-left: 240px;
+    margin-top: -80px;
+    padding: 3em;
     &__Heading{
         font-weight: 600;
         font-size: 2em;
@@ -10,5 +13,12 @@
         font-size: 1.5em;
         margin: 1em;
     }
-   
+    
+}
+@media only screen and (max-width: 600px) {
+    .MarkDown{
+        margin-top: -40px;
+        padding: 0em;
+        margin: 0;
+    }
 }
