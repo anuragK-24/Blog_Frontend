@@ -6,10 +6,10 @@ import Header from "../../components/header/Header";
 import Posts from "../../components/posts/Posts";
 import "./home.scss";
 import axios from "axios";
-import { Link, useLocation } from "react-router-dom";
-import loadingIcon from "../../image/loading__snail.gif";
+import { Link} from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
+
 
 export default function Home() {
   const { user } = useContext(Context);
@@ -20,15 +20,16 @@ export default function Home() {
   const searchRef = useRef(null);
   const searchItemsRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
-
+  const [error, setError] = useState('');
   const fetchPosts = async (searchQuery) => {
     try {
       const res = await axios.get(
-        `https://blog-backend-zeta.vercel.app/api/posts/search/${searchQuery}`
+        `https://blo-backend-zeta.vercel.app/api/posts/search/${searchQuery}`
       );
       setSearchPost(res.data);
+      setError('');
     } catch (error) {
-      console.error("Error fetching posts:", error);
+      setError('Failed to fetch posts. Please try again later.');
     }
   };
 
@@ -53,14 +54,6 @@ export default function Home() {
       <Header />
 
       <div className="home">
-        {/* {!isResolved ? (
-          <div className="home__loading">
-            <h2 className="home__loading__text">
-              Fetching API at startup, please wait. Thanks for your patience!
-            </h2>
-            <img className="home__loading__icon" src={loadingIcon} alt="" />
-          </div>
-        ) : ( */}
         <div className="home__content">
           {user ? (
             <h2 className="greeting">
@@ -140,6 +133,7 @@ export default function Home() {
               )}
             </div>
           )}
+          {error && <div className="error-message">{error}</div>}
           <div className="home__content__posts">
             <Posts />
           </div>

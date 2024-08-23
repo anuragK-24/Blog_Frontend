@@ -23,5 +23,5 @@
   transition: all 0.3s ease;
   height: fit-content;
   width: max-content;
-  animation: diagonalFlow 2s infinite;
+  margin-top: 8em;
 }
