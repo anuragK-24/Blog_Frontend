@@ -4,6 +4,7 @@ import Post from "../post/Post";
 import axios from "axios";
 import loadingIcon from "../../image/loading__snail.gif";
 import "../../pages/home/home.scss";
+import { Button } from "@mui/material";
 export default function Posts() {
   const [isResolved, setIsResolved] = useState(false);
   const [posts, setPosts] = useState([]);
@@ -48,12 +49,15 @@ export default function Posts() {
             <Post post={p} key={key} />
           ))}
           {hasMore && (
-            <button
-              className="postsButton"
+            <Button
+              variant="contained"
+              color="success"
+              sx={{ width: "100%", padding: "10px", margin: "2em 6em" }}
               onClick={() => setPage((prevPage) => prevPage + 1)}
             >
               Load More
-            </button>
+            </Button>
+            
           )}
         </div>
       )}
