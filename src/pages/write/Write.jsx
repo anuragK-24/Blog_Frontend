@@ -3,11 +3,14 @@ import "./write.css";
 import axios from "axios";
 import { Context } from "../../context/Context";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 export default function Write() {
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-  const [photo, setPhoto] = useState("https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-450x255.png");
+  const [photo, setPhoto] = useState(
+    "https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-450x255.png"
+  );
   const { user } = useContext(Context);
 
   const handleSubmit = async (e) => {
@@ -34,6 +37,16 @@ export default function Write() {
         <img className="writeImg" src={photo} alt="" />
       )}
       <form action="POST" className="writeForm" onSubmit={handleSubmit}>
+        <div className="writeSubmit">
+          <Button
+            variant="contained"
+            type="submit"
+            color="success"
+            sx={{ width: "auto" }}
+          >
+            Publish
+          </Button>
+        </div>
         <div className="writeFormGroup">
           <input
             type="text"
@@ -42,6 +55,7 @@ export default function Write() {
             onChange={(e) => setPhoto(e.target.value)}
           />
         </div>
+
         <div className="writeFormGroup">
           <input
             type="text"
@@ -52,11 +66,8 @@ export default function Write() {
           />
         </div>
         <div className="note">
-          Note :- Before writing this blog check this out, it'll help in writing blog
-          beautifully.{" "}
-          <Link to={`/markdown`} className="link">
-            <b> Markdown</b>
-          </Link>{" "}
+          Note :- Before writing this blog check out the markdown page, it'll help in writing
+          blog beautifully.
         </div>
         <div className="writeFormGroup">
           <textarea
@@ -66,9 +77,6 @@ export default function Write() {
             onChange={(e) => setDesc(e.target.value)}
           ></textarea>
         </div>
-        <button className="writeSubmit" type="submit">
-          Publish
-        </button>
       </form>
     </div>
   );

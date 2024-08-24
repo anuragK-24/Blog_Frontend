@@ -51,3 +51,11 @@
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .LabelledInput{
+        &__Input {
+            width:53vw;
+        }
+    }
+}

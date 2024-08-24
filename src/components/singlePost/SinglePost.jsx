@@ -3,8 +3,9 @@ import { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
-import { marked } from 'marked';
+import { marked } from "marked";
 import "./singlePost.css";
+import { Button } from "@mui/material";
 
 export default function SinglePost() {
   const location = useLocation();
@@ -18,7 +19,9 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("https://blog-backend-zeta.vercel.app/api/posts/" + path);
+      const res = await axios.get(
+        "https://blog-backend-zeta.vercel.app/api/posts/" + path
+      );
       setPost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -30,22 +33,28 @@ export default function SinglePost() {
   const handleDelete = async () => {
     try {
       alert("Are you sure you want to delete this post?");
-      await axios.delete(`https://blog-backend-zeta.vercel.app/api/posts/${post._id}`, {
-        data: { username: user.username },
-      });
+      await axios.delete(
+        `https://blog-backend-zeta.vercel.app/api/posts/${post._id}`,
+        {
+          data: { username: user.username },
+        }
+      );
       window.location.replace("/");
     } catch (err) {}
   };
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`https://blog-backend-zeta.vercel.app/api/posts/${post._id}`, {
-        username: user.username,
-        title,
-        desc,
-        photo,
-      });
-      setUpdateMode(false)
+      await axios.put(
+        `https://blog-backend-zeta.vercel.app/api/posts/${post._id}`,
+        {
+          username: user.username,
+          title,
+          desc,
+          photo,
+        }
+      );
+      setUpdateMode(false);
     } catch (err) {}
   };
 
@@ -61,7 +70,9 @@ export default function SinglePost() {
             onChange={(e) => setPhoto(e.target.value)}
           />
         ) : (
-          photo.length!==0&& <img src={photo} alt="" className="singlePostImg" />
+          photo.length !== 0 && (
+            <img src={photo} alt="" className="singlePostImg" />
+          )
         )}
         {updateMode ? (
           <input
@@ -92,7 +103,7 @@ export default function SinglePost() {
           <span className="singlePostAuthor">
             Author:
             <Link to={`/?user=${post.username}`} className="link">
-              <b> {post.username ? post.username.toUpperCase() : ''}</b>
+              <b> {post.username ? post.username.toUpperCase() : ""}</b>
             </Link>
           </span>
           <span className="singlePostDate">
@@ -102,20 +113,32 @@ export default function SinglePost() {
         {updateMode ? (
           <textarea
             className="singlePostDescInput"
-            rows="40" 
+            rows="40"
             cols="50"
             value={desc}
             autoFocus
             onChange={(e) => setDesc(e.target.value)}
           />
         ) : (
-          <div  className="singlePostDesc" dangerouslySetInnerHTML={{ __html: marked(desc) }} />
+          <div
+            className="singlePostDesc"
+            dangerouslySetInnerHTML={{ __html: marked(desc) }}
+          />
           // <pre className="singlePostDesc">{desc}</pre>
         )}
         {updateMode && (
-          <button className="singlePostButton" onClick={handleUpdate}>
+          <Button
+            variant="contained"
+            onClick={handleUpdate}
+            sx={{
+              backgroundColor: "purple",
+              "&:hover": {
+                backgroundColor: "darkpurple", 
+              },
+            }}
+          >
             Update
-          </button>
+          </Button>
         )}
       </div>
     </div>

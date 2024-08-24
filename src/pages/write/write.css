@@ -7,7 +7,7 @@
 }
 
 .writeFormGroup {
-  margin-left: 150px;
+  margin-left: 60px;
   display: flex;
   align-items: center;
 }
@@ -39,7 +39,8 @@
   font-size: 30px;
   border: none;
   padding: 20px;
-  width: 70vw;
+  width: 62vw;
+  border-bottom: 1px solid;
 }
 
 /* to remove the boundary while clicking on tite  */
@@ -50,6 +51,8 @@
 .writeText {
   font-size: 20px;
   height: 100vh;
+  border: 1px solid black;
+  border-radius: 25px;
 }
 
 .writeSubmit {
@@ -57,7 +60,6 @@
   top: 20px;
   right: 50px;
   color: white;
-  background-color: teal;
   padding: 10px;
   border: none;
   border-radius: 17px;
@@ -70,7 +72,7 @@
 }
 .note {
   color: #b39656;
-  margin-left: 10em;
+  text-align: center;
 }
 
 @media only screen and (max-width: 600px) {

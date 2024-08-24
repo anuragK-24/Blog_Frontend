@@ -76,14 +76,17 @@
       margin: 0.5em;
     }
     &_Content{
-      height: 60vh;
+      height: 40vh;
       width: auto;
       &_Image{
         display: none;
       }
       &_FormContainer{
+        width: 75vw;
         &_Form{
           margin: 0px 14px 0px 14px;
+          width: 65vw;
+        height: 54vw;
         }
       }
     }
