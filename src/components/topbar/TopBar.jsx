@@ -19,6 +19,13 @@ import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
+import HomeIcon from "@mui/icons-material/Home";
+import CreateIcon from "@mui/icons-material/Create";
+import { Create } from "@mui/icons-material";
+import PersonIcon from '@mui/icons-material/Person';
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { SvgIcon } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -28,7 +35,6 @@ function ResponsiveDrawer(props) {
   const [isClosing, setIsClosing] = React.useState(false);
   const { user, dispatch } = useContext(Context);
   const beforeSignin = ["Login", "Register"];
-  const afterSignin = ["Logout"];
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
   };
@@ -52,14 +58,28 @@ function ResponsiveDrawer(props) {
       <Toolbar />
       <Divider />
       <List>
-        {["Home", "About","Write",  "Markdown"].map((text, index) => (
+        {["Home", "About", "Write", "Markdown"].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton
               component={Link}
               to={text === "Home" ? "/" : `/${text.toLowerCase()}`}
             >
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {text === "Home" && <HomeIcon />}
+                {text === "About" && (<svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>)}
+                {text === "Markdown" && (
+                  <IconButton aria-label="edit">
+                    <SvgIcon>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 640 512"
+                      >
+                        <path d="M593.8 59.1H46.2C20.7 59.1 0 79.8 0 105.2v301.5c0 25.5 20.7 46.2 46.2 46.2h547.7c25.5 0 46.2-20.7 46.1-46.1V105.2c0-25.4-20.7-46.1-46.2-46.1zM338.5 360.6H277v-120l-61.5 76.9-61.5-76.9v120H92.3V151.4h61.5l61.5 76.9 61.5-76.9h61.5v209.2zm135.3 3.1L381.5 256H443V151.4h61.5V256H566z" />
+                      </svg>
+                    </SvgIcon>
+                  </IconButton>
+                )}
+                {text === "Write" && <Create />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -73,7 +93,7 @@ function ResponsiveDrawer(props) {
           <ListItem disablePadding>
             <ListItemButton onClick={handleLogout}>
               <ListItemIcon>
-                <InboxIcon />
+                <LogoutIcon />
               </ListItemIcon>
               <ListItemText primary="Logout" />
             </ListItemButton>
@@ -86,7 +106,8 @@ function ResponsiveDrawer(props) {
             <ListItem key={text} disablePadding>
               <ListItemButton component={Link} to={`/${text.toLowerCase()}`}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {text === "Login" && <LoginIcon />}
+                  {text  === "Register" && (<svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><rect fill="none" height="24" width="24"/></g><g><g><rect height="4" width="4" x="10" y="4"/><rect height="4" width="4" x="4" y="16"/><rect height="4" width="4" x="4" y="10"/><rect height="4" width="4" x="4" y="4"/><polygon points="14,12.42 14,10 10,10 10,14 12.42,14"/><path d="M20.88,11.29l-1.17-1.17c-0.16-0.16-0.42-0.16-0.58,0L18.25,11L20,12.75l0.88-0.88C21.04,11.71,21.04,11.45,20.88,11.29z"/><polygon points="11,18.25 11,20 12.75,20 19.42,13.33 17.67,11.58"/><rect height="4" width="4" x="16" y="4"/></g></g></svg>)}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

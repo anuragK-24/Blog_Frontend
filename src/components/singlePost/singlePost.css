@@ -18,8 +18,8 @@ pre {
 
 
 .singlePostWrapper {
-  overflow-x: hidden;
-  padding: 0 6em 6em 6em;
+  overflow-x: hidden; 
+  padding: 0px 3em 3em;
   display: flex;
   flex-direction: column;
 }
@@ -92,7 +92,7 @@ pre {
 }
 
 .singlePostDesc a {
-  color: #000;
+  color: blue;
 }
 .singlePostDescInput:focus {
   outline: none;
