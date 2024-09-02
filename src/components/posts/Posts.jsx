@@ -46,7 +46,16 @@ export default function Posts() {
         <div className="posts">
           {posts.length === 0 && <h1 className="text">No Blog found</h1>}
           {posts.map((p, key) => (
-            <Post post={p} key={key} classN={key === 0 ? 'firstPost' : ''}/>
+            <Post
+              post={p}
+              key={key}
+              classN={
+                new Date(p.createdAt).toDateString() ===
+                new Date().toDateString()
+                  ? "firstPost"
+                  : ""
+              }
+            />
           ))}
           {hasMore && (
             <Button
@@ -57,7 +66,6 @@ export default function Posts() {
             >
               Load More
             </Button>
-            
           )}
         </div>
       )}
