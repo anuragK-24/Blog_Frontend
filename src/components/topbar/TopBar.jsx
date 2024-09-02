@@ -26,6 +26,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { SvgIcon } from "@mui/material";
+import SearchBar from "../SearchBar/SearchBar";
 
 const drawerWidth = 240;
 
@@ -145,6 +146,7 @@ function ResponsiveDrawer(props) {
           <Typography variant="h6" noWrap component="div">
             BlogSpark
           </Typography>
+          {/* <SearchBar/> */} 
         </Toolbar>
       </AppBar>
       <Box
