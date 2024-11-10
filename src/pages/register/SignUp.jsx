@@ -69,7 +69,7 @@ export default function SignUp() {
     }
     try {
       const res = await axios.post(
-        "https://blog-backend-zeta.vercel.app/api/auth/register",
+        `${process.env.REACT_APP_API_URL}/api/auth/register`,
         {
           username,
           email,

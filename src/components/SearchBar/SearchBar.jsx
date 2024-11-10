@@ -14,7 +14,7 @@ export default function SearchBar() {
   const fetchPosts = async (searchQuery) => {
     try {
       const res = await axios.get(
-        `https://blog-backend-zeta.vercel.app/api/posts/search/${searchQuery}`
+        `${process.env.REACT_APP_API_URL}/api/posts/search/${searchQuery}`
       );
       setSearchPost(res.data);
       setError("");

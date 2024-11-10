@@ -14,7 +14,7 @@ export default function Posts() {
   const fetchPosts = async (page) => {
     try {
       const res = await axios.get(
-        `https://blog-backend-zeta.vercel.app/api/posts?page=${page}&limit=3`
+        `${process.env.REACT_APP_API_URL}/api/posts?page=${page}&limit=3`
       );
       setPosts((prevPosts) => {
         const newPosts = res.data.posts.filter(

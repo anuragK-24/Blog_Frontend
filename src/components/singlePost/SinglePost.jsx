@@ -20,7 +20,7 @@ export default function SinglePost() {
   useEffect(() => {
     const getPost = async () => {
       const res = await axios.get(
-        "https://blog-backend-zeta.vercel.app/api/posts/" + path
+        `${process.env.REACT_APP_API_URL}/api/posts/` + path
       );
       setPost(res.data);
       setTitle(res.data.title);
@@ -34,7 +34,7 @@ export default function SinglePost() {
     try {
       alert("Are you sure you want to delete this post?");
       await axios.delete(
-        `https://blog-backend-zeta.vercel.app/api/posts/${post._id}`,
+        `${process.env.REACT_APP_API_URL}/api/posts/${post._id}`,
         {
           data: { username: user.username },
         }
@@ -46,7 +46,7 @@ export default function SinglePost() {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `https://blog-backend-zeta.vercel.app/api/posts/${post._id}`,
+        `${process.env.REACT_APP_API_URL}/api/posts/${post._id}`,
         {
           username: user.username,
           title,
