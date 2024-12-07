@@ -1,6 +1,7 @@
 import "./SignIn.scss";
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
+import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import LabelledInput from "../../components/LabelledInput/LabelledInput";
 import Login_image from "../../image/signIn.svg";
@@ -9,7 +10,6 @@ export default function SignIn() {
   const [error, setError] = useState("");
   const [userName, setUserName] = useState("");
   const [passWord, setPassword] = useState("");
-
   const { dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
@@ -31,6 +31,24 @@ export default function SignIn() {
       setPassword("");
       setError("* Invalid username or password!");
       dispatch({ type: "LOGIN_FAILURE" });
+    }
+  };
+
+  const handleGoogleLogin = async (credentialResponse) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/auth/google-login`,
+        {
+          token: credentialResponse.credential,
+        }
+      );
+
+      const userData = response.data.user;
+      dispatch({ type: "LOGIN_SUCCESS", payload: userData });
+    } catch (error) {
+      console.error("Google login error:", error);
+      dispatch({ type: "LOGIN_FAILURE" });
+      setError("Google Login Failed.");
     }
   };
 
@@ -71,6 +89,13 @@ export default function SignIn() {
             >
               Sign In
             </button>
+
+            {/* Google Login Button */}
+            <GoogleLogin
+              onSuccess={handleGoogleLogin}
+              onFailure={() => setError("Google Login failed.")}
+              useOneTap
+            />
           </div>
         </div>
       </div>
