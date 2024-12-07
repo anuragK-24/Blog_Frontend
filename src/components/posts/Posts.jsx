@@ -16,18 +16,23 @@ export default function Posts() {
       const res = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/posts?page=${page}&limit=3`
       );
-      setPosts((prevPosts) => {
-        const newPosts = res.data.posts.filter(
-          (newPost) => !prevPosts.some((post) => post._id === newPost._id)
-        );
-        return [...prevPosts, ...newPosts];
-      });
-      setIsResolved(true);
-      setHasMore(res.data.hasMore);
+      if (Array.isArray(res.data.posts)) {
+        setPosts((prevPosts) => {
+          const newPosts = res.data.posts.filter(
+            (newPost) => !prevPosts.some((post) => post._id === newPost._id)
+          );
+          return [...prevPosts, ...newPosts];
+        });
+        setIsResolved(true);
+        setHasMore(res.data.hasMore);
+      } else {
+        console.error("Invalid posts data format:", res.data.posts);
+      }
     } catch (error) {
       console.error("Error fetching posts:", error);
     }
   };
+  
 
   useEffect(() => {
     fetchPosts(page);
