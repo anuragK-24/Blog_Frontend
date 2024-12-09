@@ -1,76 +1,27 @@
-# React Blog App
+# BlogSpark 
+### [Site is Live](https://blogspark-anuragk24.vercel.app/)
 
-## A react app build to post blogs.
+BlogSpark is a dynamic and efficient blog application built using **Node.js**, **React.js**, **Express.js**, and **MongoDB**. It includes key features like Google OAuth authentication, markdown parsing for seamless content creation, search debouncing for better performance, and lazy loading with pagination to optimize data handling and resource usage.
 
+### Github Link for the backend repository is here [Click Me](https://github.com/anuragK-24/Blog_Backend)
 
+## Features
 
-# Getting Started with Create React App
+- **Markdown Parser**: Write and read blogs using Markdown syntax, making content creation simple and user-friendly.
+- **Google OAuth Authentication**: Sign in with Google for secure and easy user authentication.
+- **Debounced Search**: Optimized search feature with a 0.5-second delay to reduce server load and improve performance.
+- **Lazy Loading with Pagination**: Loads 3 blog posts at a time to minimize data load and enhance the user experience.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologies Used
 
-## Available Scripts
+- **Frontend**:
+  - **React.js**: Built the user interface with React, providing a smooth and responsive experience.
+  - **JavaScript**: Core scripting language for the application.
 
-In the project directory, you can run:
+- **Backend**:
+  - **Node.js**: Server-side environment for handling requests and building the app.
+  - **Express.js**: Web framework used for routing and handling API requests.
+  - **MongoDB**: NoSQL database for storing user and blog data.
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Authentication**:
+  - **Google OAuth**: Seamless login functionality via Google accounts for users.
