@@ -68,7 +68,7 @@ export default function SignIn() {
             <LabelledInput
               label="Username"
               type="text"
-              placeholder="Enter your name ..."
+              placeholder="For demo enter : test"
               value={userName}
               errorMsg={error}
               onChange={(e) => setUserName(e.target.value)}
@@ -76,7 +76,7 @@ export default function SignIn() {
             <LabelledInput
               label="Password"
               type="password"
-              placeholder="Enter your password ..."
+              placeholder="For demo enter : 1234"
               value={passWord}
               errorMsg={error}
               onChange={(e) => setPassword(e.target.value)}
