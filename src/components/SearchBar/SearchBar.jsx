@@ -40,7 +40,7 @@ export default function SearchBar() {
   }, [debouncedSearchInput]);
 
   return (
-    <div>
+    <div id="#search">
       <div
         className="home__content__search"
         style={{

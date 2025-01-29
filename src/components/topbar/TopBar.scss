@@ -1,0 +1,145 @@
+
+.navbar__user {
+  display: flex;
+  align-items: center;
+  gap: 15px; // Adds spacing between elements
+}
+
+.navbar__toggle {
+  font-weight: bold;
+  color: #ecf0f1; // Light text color
+  background-color: #34495e; // Subtle background
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.Sidebar__SignOut {
+  color: #e74c3c; // Red for emphasis
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.Sidebar__SignOut:hover {
+  background-color: #c0392b; // Darker red on hover
+}
+
+.Session {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.Session__link {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: color 0.3s ease;
+}
+
+.Session__link:hover {
+  color: #f1c40f; // Yellow highlight on hover
+}
+
+.navbar__toggle {
+  img {
+    height: 1.5em;
+  }
+}
+
+
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 2rem;
+  background-color: #2c3e50;
+  color: #fff;
+  z-index: 1000;
+
+  .startElement,
+  .endElement {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .endElement {
+    img {
+      height: 34px;
+      width: 34px;
+      border-radius: 5px;
+      background-color: white;
+    }
+  }
+
+  .hamburger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .navLinks {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    margin: 0 auto;
+
+    .navItem a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #ff6347;
+      }
+    }
+  }
+
+  /* Mobile styles */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: block;
+    }
+
+    .navLinks {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background-color: #444;
+      padding: 1rem 0;
+
+      &.active {
+        display: none;
+      }
+
+      .navItem {
+        padding: 0.5rem 1rem;
+        text-align: center;
+      }
+    }
+
+    /* End section to the last */
+    .endElement {
+      order: 3; /* Moves "End" to the last position */
+    }
+
+    /* Center the theme toggle icon */
+    .navbar__toggle {
+      order: 2; /* Moves the toggle to the middle */
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+}
