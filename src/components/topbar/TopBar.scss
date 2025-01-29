@@ -107,6 +107,9 @@
 
   /* Mobile styles */
   @media (max-width: 768px) {
+    .Session {
+      display: none;
+    }
     .navbar__SignOut {
       display: none;
     }
