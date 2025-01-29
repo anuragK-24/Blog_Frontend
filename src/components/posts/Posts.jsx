@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./posts.css";
 import Post from "../post/Post";
 import axios from "axios";
 import loadingIcon from "../../image/loading__snail.gif";
 import "../../pages/home/home.scss";
-import { Button } from "@mui/material";
+import EndMsg from "../EndMsg/EndMsg";
+
 export default function Posts() {
   const [isResolved, setIsResolved] = useState(false);
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const observerRef = useRef(null); // Reference for Intersection Observer
 
   const fetchPosts = async (page) => {
     try {
@@ -32,11 +34,31 @@ export default function Posts() {
       console.error("Error fetching posts:", error);
     }
   };
-  
 
   useEffect(() => {
     fetchPosts(page);
   }, [page]);
+
+  // Intersection Observer Callback
+  const lastPostRef = useCallback(
+    (node) => {
+      if (!hasMore || !node) return;
+
+      if (observerRef.current) observerRef.current.disconnect();
+
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setPage((prevPage) => prevPage + 1);
+          }
+        },
+        { rootMargin: "100px", threshold: 1.0 } // Trigger when fully in view
+      );
+
+      observerRef.current.observe(node);
+    },
+    [hasMore]
+  );
 
   return (
     <>
@@ -50,29 +72,26 @@ export default function Posts() {
       ) : (
         <div className="posts">
           {posts.length === 0 && <h1 className="text">No Blog found</h1>}
-          {posts.map((p, key) => (
-            <Post
-              post={p}
-              key={key}
-              classN={
-                new Date(p.createdAt).toDateString() ===
-                new Date().toDateString()
-                  ? "firstPost"
-                  : ""
-              }
-            />
-          ))}
-          {hasMore && (
-            <Button
-              variant="contained"
-              color="success"
-              sx={{ width: "100%", padding: "10px", margin: "2em 6em" }}
-              onClick={() => setPage((prevPage) => prevPage + 1)}
+          {posts.map((p, index) => (
+            <div
+              ref={index === posts.length - 1 ? lastPostRef : null}
+              key={p._id}
             >
-              Load More
-            </Button>
-          )}
+              <Post
+                post={p}
+                classN={
+                  new Date(p.createdAt).toDateString() ===
+                  new Date().toDateString()
+                    ? "firstPost"
+                    : ""
+                }
+              />
+            </div>
+          ))}
         </div>
+      )}
+      {!hasMore && posts.length > 0 && (
+        <EndMsg/>
       )}
     </>
   );
