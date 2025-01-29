@@ -13,13 +13,14 @@
   border-radius: 5px;
 }
 
-.Sidebar__SignOut {
+.navbar__SignOut {
   color: #e74c3c; // Red for emphasis
   font-weight: bold;
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  margin-top: -15px;
 }
 
 .Sidebar__SignOut:hover {
@@ -106,6 +107,9 @@
 
   /* Mobile styles */
   @media (max-width: 768px) {
+    .navbar__SignOut {
+      display: none;
+    }
     .hamburger {
       display: block;
     }

@@ -45,7 +45,7 @@ const TopBar = () => {
           <div className="navbar__toggle">
             Hi, {user.username.toUpperCase()}!
           </div>
-          <div className="Sidebar__SignOut" onClick={handleLogout}>
+          <div className="navbar__SignOut" onClick={handleLogout}>
             Sign Out
           </div>
         </div>
