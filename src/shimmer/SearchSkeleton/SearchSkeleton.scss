@@ -1,0 +1,76 @@
+.SearchSkeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  gap: 10px;
+}
+
+.skeleton {
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.SearchSkeleton__inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.icon-skeleton {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.SearchSkeleton__input {
+  height: 40px;
+  flex: 1;
+}
+
+.SearchSkeleton__dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  width: 100%;
+  border-radius: 0 0 1em 1em;
+}
+
+.skeleton-line {
+  height: 14px;
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .SearchSkeleton {
+    max-width: 300px;
+  }
+}

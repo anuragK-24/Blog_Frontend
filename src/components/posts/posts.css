@@ -1,15 +1,17 @@
 .posts {
-    flex: 9 1;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 4em;
-    justify-content: center; /* Horizontally aligns the container in the center */
+  flex: 9 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Horizontally aligns the container in the center */
 }
 
 .text {
-    margin-bottom: 5em;
+  margin-bottom: 5em;
 }
-
+.CardShimmer {
+  display: flex;
+  flex-direction: column;
+}
 
 .postsButton {
   padding: 1em 2em;

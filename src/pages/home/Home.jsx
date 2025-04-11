@@ -21,7 +21,6 @@ export default function Home() {
         ) : (
           <h2 className="greeting">Welcome, Guest!</h2>
         )}
-        <SearchBar />
         <div className="home__content__posts">
           <Posts />
         </div>

@@ -1,16 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "./SearchBar.scss";
 
 export default function SearchBar() {
   const navigate = useNavigate();
   const [searchPost, setSearchPost] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [debouncedSearchInput, setDebouncedSearchInput] = useState("");
-  const searchRef = useRef(null);
-  const searchItemsRef = useRef(null);
+  const searchContainerRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   const [error, setError] = useState("");
+
   const fetchPosts = async (searchQuery) => {
     try {
       const res = await axios.get(
@@ -28,9 +29,7 @@ export default function SearchBar() {
       setDebouncedSearchInput(searchInput);
     }, 500);
 
-    return () => {
-      clearTimeout(handler);
-    };
+    return () => clearTimeout(handler);
   }, [searchInput]);
 
   useEffect(() => {
@@ -39,76 +38,77 @@ export default function SearchBar() {
     }
   }, [debouncedSearchInput]);
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        searchContainerRef.current &&
+        !searchContainerRef.current.contains(e.target)
+      ) {
+        setIsFocused(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
-    <div id="#search">
+    <div className="searchBar__container" ref={searchContainerRef}>
       <div
-        className="home__content__search"
-        style={{
-          borderBottomLeftRadius: isFocused ? "0px" : "1em",
-          borderBottomRightRadius: isFocused ? "0px" : "1em",
-        }}
+        className="searchBar__inputWrapper"
         onFocus={() => setIsFocused(true)}
-        onBlur={(e) => {
-          if (
-            !searchRef.current.contains(e.relatedTarget) &&
-            !searchItemsRef.current.contains(e.relatedTarget)
-          ) {
-            setIsFocused(false);
-          }
-        }}
       >
         <input
-          className="home__content__search__input"
+          className="searchBar__input"
           placeholder="Search blogs..."
           type="text"
-          onChange={(e) => {
-            setSearchInput(e.target.value);
-          }}
+          onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
           onFocus={() => setIsFocused(true)}
-          onBlur={(e) => {
-            if (
-              !searchRef.current.contains(e.relatedTarget) &&
-              !searchItemsRef.current.contains(e.relatedTarget)
-            ) {
-              setIsFocused(false);
-            }
-          }}
         />
+        {searchInput && (
+          <i
+            className="searchBar__clearIcon fa-solid fa-xmark"
+            onClick={() => {
+              setSearchInput("");
+              setSearchPost([]);
+            }}
+          ></i>
+        )}
         <Link to={`/?user=${searchInput}`} className="link">
           <i
-            className={`topSearchIcon fa-solid fa-magnifying-glass ${
-              searchInput.length > 0 ? "active" : ""
-            } ${searchInput.length > 0 ? "shake" : ""}`}
+            className={`searchBar__icon fa-solid fa-magnifying-glass ${
+              searchInput.length > 0 ? "active shake" : ""
+            }`}
           ></i>
         </Link>
       </div>
+
       {isFocused && (
-        <div className="home__content__searchItems" ref={searchItemsRef}>
+        <div className="searchBar__results">
           {searchInput.length !== 0 && searchPost.length !== 0 ? (
             <>
               {searchPost.map((post) => (
                 <li
-                  onClick={() => {
-                    navigate(`post/${post._id}`);
-                  }}
                   key={post._id}
+                  onClick={() => navigate(`post/${post._id}`)}
+                  className="searchBar__item"
                 >
                   {post.title}
                 </li>
               ))}
-              <div>Top Search results: {searchPost.length}</div>
+              <div className="searchBar__info">
+                Top Search results: {searchPost.length}
+              </div>
             </>
           ) : searchInput.length !== 0 ? (
-            <div>No blog post found</div>
+            <div className="searchBar__info">No blog post found</div>
           ) : (
-            <div>
-              <div>Find your favourite blog post</div>
-            </div>
+            <div className="searchBar__info">Find your favourite blog post</div>
           )}
         </div>
       )}
-      {error && <div className="error-message">{error}</div>}
+
+      {error && <div className="searchBar__error">{error}</div>}
     </div>
   );
 }

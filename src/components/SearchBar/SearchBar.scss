@@ -1,56 +1,108 @@
-.navbar {
-    position: relative; // Ensure positioning context for search results
-    width: 100%; // Keep the navbar at full width
-  }
-  
-  .navbar__search {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%; // Ensure full width for search bar
-  }
-  
-  .home__content__search {
-    position: relative; // Keep the search box inside the navbar
-    display: flex;
-    align-items: center;
-    width: 200px; // Adjust width as needed
-  }
-  
-  .home__content__search__input {
-    width: 100%; // Make the input take up the full space of its parent
-    padding: 8px;
-    font-size: 16px;
-  }
-  
-  .home__content__searchItems {
-    position: absolute; // Position the search result box outside the flow
-    top: 100%; // Place it directly below the search box
-    left: 0;
-    right: 0;
-    background-color: white;
-    border: 1px solid #ccc;
-    z-index: 10; // Ensure it appears above other content
-    max-height: 300px;
-    overflow-y: auto;
-    padding: 1em;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px; // Match width of the search input
-  }
-  
-  .home__content__searchItems li {
-    cursor: pointer;
-    padding: 4px 8px;
-    list-style-type: none;
-  }
-  
-  .home__content__searchItems li:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .error-message {
-    color: red;
-    padding: 10px;
-    font-size: 14px;
-  }
-  
+.searchBar__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.searchBar__inputWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+  overflow: hidden;
+  background-color: white;
+}
+
+.searchBar__input {
+  flex: 1;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+}
+
+.searchBar__icon,
+.searchBar__clearIcon {
+  padding: 0 12px;
+  cursor: pointer;
+  color: #555;
+  transition: transform 0.2s ease;
+}
+
+.searchBar__clearIcon {
+  font-size: 14px;
+  position: absolute;
+  right: 35px;
+}
+
+.searchBar__icon.active.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(8deg); }
+  50% { transform: rotate(-8deg); }
+  75% { transform: rotate(4deg); }
+  100% { transform: rotate(0); }
+}
+
+.searchBar__results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 1em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, 10px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.searchBar__item {
+  list-style: none;
+  padding: 8px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.searchBar__item:hover {
+  background-color: #f0f0f0;
+}
+
+.searchBar__info {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.searchBar__error {
+  color: red;
+  margin-top: 0.5rem;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .searchBar__container {
+    max-width: 300px;
+  }  
+}

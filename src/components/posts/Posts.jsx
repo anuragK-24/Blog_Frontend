@@ -2,9 +2,11 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./posts.css";
 import Post from "../post/Post";
 import axios from "axios";
-import loadingIcon from "../../image/loading__snail.gif";
 import "../../pages/home/home.scss";
 import EndMsg from "../EndMsg/EndMsg";
+import PostSkeleton from "../../shimmer/PostSkeleton/PostSkeleton";
+import SearchSkeleton from "../../shimmer/SearchSkeleton/SearchSkeleton";
+import SearchBar from "../SearchBar/SearchBar";
 
 export default function Posts() {
   const [isResolved, setIsResolved] = useState(false);
@@ -63,14 +65,14 @@ export default function Posts() {
   return (
     <>
       {!isResolved ? (
-        <div className="home__loading">
-          <h2 className="home__loading__text">
-            Fetching API at startup, please wait. Thanks for your patience!
-          </h2>
-          <img className="home__loading__icon" src={loadingIcon} alt="" />
+        <div className="CardShimmer">
+          <SearchSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
         </div>
       ) : (
         <div className="posts">
+          <SearchBar />
           {posts.length === 0 && <h1 className="text">No Blog found</h1>}
           {posts.map((p, index) => (
             <div
@@ -90,9 +92,7 @@ export default function Posts() {
           ))}
         </div>
       )}
-      {!hasMore && posts.length > 0 && (
-        <EndMsg/>
-      )}
+      {!hasMore && posts.length > 0 && <EndMsg />}
     </>
   );
 }
