@@ -1,121 +1,131 @@
 .singlePost {
   flex: 9;
-  width: -webkit-fill-available;
-}
-pre {
-  overflow-x: auto;
-  background-color: black;
-  color: white;
-  padding: 13px;
-  font-family: unset;
-  border-radius: 16px;
-}
-.singlePostDesc img {
-  width: -webkit-fill-available;
-  border-radius: 16px;
-  border: 1px solid #d3d3d3;
-  margin: 3em;
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  background: #fafafa;
 }
 
+.loaderWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
 
 .singlePostWrapper {
-  overflow-x: hidden; 
-  padding: 0px 3em 3em;
+  max-width: 800px;
+  background: white;
+  padding: 2em;
+  border-radius: 12px;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
+
 .singlePostImg {
-  max-height: 15em;
-  object-fit: scale-down;
-  border-radius: 5px;
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 1em;
+  transition: transform 0.3s ease-in-out;
 }
+.singlePostImg:hover {
+  transform: scale(1.02);
+}
+
 .singlePostTitle {
-  border-top: 2px solid #d3d3d3;
+  font-size: 2rem;
   text-align: center;
-  margin: 10px;
-  font-family: "Lora", serif;
-  font-size: 28px;
+  font-weight: bold;
+  margin: 10px 0;
+  position: relative;
 }
 
 .singlePostTitleInput {
+  font-size: 2rem;
   text-align: center;
-  margin: 10px;
-  font-family: "Lora", serif;
-  font-size: 28px;
+  border: none;
+  padding: 10px;
+  border-bottom: 2px solid #ccc;
+  margin-bottom: 10px;
 }
-
 .singlePostTitleInput:focus {
   outline: none;
+  border-color: #6a1b9a;
 }
 
 .singlePostEdit {
-  float: right; /* to move the edit and delete button in  */
-  font-size: 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
+
 .singlePostIcon {
-  padding-left: 25px;
+  font-size: 1.2rem;
+  margin-left: 10px;
   cursor: pointer;
 }
 
 .singlePostIcon:first-child {
-  color: rgba(29, 148, 208, 0.733);
+  color: #1e88e5;
 }
 
 .singlePostIcon:last-child {
-  color: tomato;
+  color: #e53935;
 }
 
 .singlePostInfo {
-  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
-  color: #b39656;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 1em;
 }
 
 .singlePostDesc {
-  color: rgba(22, 21, 21, 0.705);
-  font-size: 20px;
-  line-height: 28px;
-
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
   white-space: pre-line;
 }
-
-.singlePostDesc::first-letter {
-  margin-left: 30px;
-  font-size: 30px;
-  min-width: 600px;
-  font-weight: 600;
+.singlePostDesc pre {
+  background-color: #282c34;
+  color: #eee;
+  padding: 1em;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+.singlePostDesc a {
+  color: #1e88e5;
+  text-decoration: underline;
 }
 
 .singlePostDescInput {
-  border: none;
+  font-size: 1rem;
+  padding: 1em;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  resize: vertical;
 }
 
-.singlePostDesc a {
-  color: blue;
-}
-.singlePostDescInput:focus {
-  outline: none;
-}
-
-.singlePostButton {
-  background-color: green;
-  color: white;
-  width: 100px;
-  height: 40px;
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  align-self: flex-end;
-  margin-top: 20px;
-}
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
   .singlePostWrapper {
-    padding: 1em 1em 6em 1em;
+    padding: 1em;
   }
-  .singlePostDesc{
-    font-size: 14px;
+
+  .singlePostDesc {
+    font-size: 0.95rem;
+  }
+
+  .singlePostTitle {
+    font-size: 1.5rem;
+  }
+
+  .singlePostTitleInput {
+    font-size: 1.5rem;
   }
 }

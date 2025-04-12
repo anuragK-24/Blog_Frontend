@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../../context/Context";
 import { marked } from "marked";
 import "./singlePost.css";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 
 export default function SinglePost() {
   const location = useLocation();
@@ -16,47 +16,58 @@ export default function SinglePost() {
   const [desc, setDesc] = useState("");
   const [photo, setPhoto] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/posts/` + path
-      );
-      setPost(res.data);
-      setTitle(res.data.title);
-      setDesc(res.data.desc);
-      setPhoto(res.data.photo);
+      try {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/posts/${path}`);
+        setPost(res.data);
+        setTitle(res.data.title);
+        setDesc(res.data.desc);
+        setPhoto(res.data.photo);
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch post:", error);
+      }
     };
     getPost();
   }, [path]);
 
   const handleDelete = async () => {
+    if (!window.confirm("Are you sure you want to delete this post?")) return;
+
     try {
-      alert("Are you sure you want to delete this post?");
-      await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/posts/${post._id}`,
-        {
-          data: { username: user.username },
-        }
-      );
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/posts/${post._id}`, {
+        data: { username: user.username },
+      });
       window.location.replace("/");
-    } catch (err) {}
+    } catch (err) {
+      console.error("Error deleting post:", err);
+    }
   };
 
   const handleUpdate = async () => {
     try {
-      await axios.put(
-        `${process.env.REACT_APP_API_URL}/api/posts/${post._id}`,
-        {
-          username: user.username,
-          title,
-          desc,
-          photo,
-        }
-      );
+      await axios.put(`${process.env.REACT_APP_API_URL}/api/posts/${post._id}`, {
+        username: user.username,
+        title,
+        desc,
+        photo,
+      });
       setUpdateMode(false);
-    } catch (err) {}
+    } catch (err) {
+      console.error("Error updating post:", err);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="loaderWrapper">
+        <CircularProgress size={50} />
+      </div>
+    );
+  }
 
   return (
     <div className="singlePost">
@@ -67,13 +78,13 @@ export default function SinglePost() {
             value={photo}
             className="singlePostTitleInput"
             autoFocus
+            placeholder="Image URL"
             onChange={(e) => setPhoto(e.target.value)}
           />
         ) : (
-          photo.length !== 0 && (
-            <img src={photo} alt="" className="singlePostImg" />
-          )
+          photo && <img src={photo} alt="Post" className="singlePostImg" />
         )}
+
         {updateMode ? (
           <input
             type="text"
@@ -87,53 +98,47 @@ export default function SinglePost() {
             {title}
             {post.username === user?.username && (
               <div className="singlePostEdit">
-                <i
-                  className="singlePostIcon far fa-edit"
-                  onClick={() => setUpdateMode(true)}
-                ></i>
-                <i
-                  className="singlePostIcon far fa-trash-alt"
-                  onClick={handleDelete}
-                ></i>
+                <i className="singlePostIcon far fa-edit" onClick={() => setUpdateMode(true)} />
+                <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete} />
               </div>
             )}
           </h1>
         )}
+
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
             Author:
             <Link to={`/?user=${post.username}`} className="link">
-              <b> {post.username ? post.username.toUpperCase() : ""}</b>
+              <b> {post.username?.toUpperCase()}</b>
             </Link>
           </span>
-          <span className="singlePostDate">
-            {new Date(post.createdAt).toDateString()}
-          </span>
+          <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
         </div>
+
         {updateMode ? (
           <textarea
             className="singlePostDescInput"
-            rows="40"
-            cols="50"
+            rows="20"
             value={desc}
-            autoFocus
             onChange={(e) => setDesc(e.target.value)}
           />
         ) : (
           <div
             className="singlePostDesc"
-            dangerouslySetInnerHTML={{ __html: marked(desc) }}
+            dangerouslySetInnerHTML={{ __html: marked.parse(desc) }}
           />
-          // <pre className="singlePostDesc">{desc}</pre>
         )}
+
         {updateMode && (
           <Button
             variant="contained"
             onClick={handleUpdate}
             sx={{
-              backgroundColor: "purple",
-              "&:hover": {
-                backgroundColor: "darkpurple", 
+              backgroundColor: "#6a1b9a",
+              mt: 2,
+              alignSelf: "flex-end",
+              '&:hover': {
+                backgroundColor: "#4a148c",
               },
             }}
           >
