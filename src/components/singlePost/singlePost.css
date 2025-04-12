@@ -1,11 +1,13 @@
+/* Main container for single post view */
 .singlePost {
-  flex: 9;
-  padding: 2em;
+  width: 100%;
   display: flex;
   justify-content: center;
   background: #fafafa;
+  box-sizing: border-box;
 }
 
+/* Loader wrapper */
 .loaderWrapper {
   flex: 1;
   display: flex;
@@ -14,7 +16,9 @@
   height: 80vh;
 }
 
+/* Main post wrapper */
 .singlePostWrapper {
+  width: 100%;
   max-width: 800px;
   background: white;
   padding: 2em;
@@ -23,8 +27,10 @@
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
+/* Post image */
 .singlePostImg {
   width: 100%;
   max-height: 400px;
@@ -37,6 +43,7 @@
   transform: scale(1.02);
 }
 
+/* Post title */
 .singlePostTitle {
   font-size: 2rem;
   text-align: center;
@@ -45,6 +52,7 @@
   position: relative;
 }
 
+/* Title input when editing */
 .singlePostTitleInput {
   font-size: 2rem;
   text-align: center;
@@ -58,26 +66,27 @@
   border-color: #6a1b9a;
 }
 
+/* Edit icon wrapper */
 .singlePostEdit {
   position: absolute;
   top: 0;
   right: 0;
 }
 
+/* Icons (edit/delete) */
 .singlePostIcon {
   font-size: 1.2rem;
   margin-left: 10px;
   cursor: pointer;
 }
-
 .singlePostIcon:first-child {
   color: #1e88e5;
 }
-
 .singlePostIcon:last-child {
   color: #e53935;
 }
 
+/* Info section (author/date) */
 .singlePostInfo {
   display: flex;
   justify-content: space-between;
@@ -86,12 +95,15 @@
   margin-bottom: 1em;
 }
 
+/* Post description */
 .singlePostDesc {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #333;
   white-space: pre-line;
 }
+
+/* Code block inside post */
 .singlePostDesc pre {
   background-color: #282c34;
   color: #eee;
@@ -99,33 +111,69 @@
   border-radius: 10px;
   overflow-x: auto;
 }
+
+/* Links inside post */
 .singlePostDesc a {
   color: #1e88e5;
   text-decoration: underline;
 }
 
+/* Editable description textarea */
 .singlePostDescInput {
   font-size: 1rem;
   padding: 1em;
   border-radius: 10px;
   border: 1px solid #ccc;
   resize: vertical;
+  box-sizing: border-box;
+  width: 100%;
 }
 
+/* Responsive Design */
 @media (max-width: 600px) {
+  .singlePost {
+    padding: 1em;
+  }
+
   .singlePostWrapper {
     padding: 1em;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .singlePostTitle,
+  .singlePostTitleInput {
+    font-size: 1.4rem;
+    padding: 0.5em;
   }
 
   .singlePostDesc {
     font-size: 0.95rem;
+    line-height: 1.6;
   }
 
-  .singlePostTitle {
-    font-size: 1.5rem;
+  .singlePostDescInput {
+    font-size: 0.95rem;
+    padding: 0.8em;
   }
 
-  .singlePostTitleInput {
-    font-size: 1.5rem;
+  .singlePostImg {
+    max-height: 250px;
+    border-radius: 8px;
+  }
+
+  .singlePostInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+  }
+
+  .singlePostEdit {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-top: 10px;
+    text-align: center;
   }
 }

@@ -73,6 +73,9 @@
   }
 
   .endElement {
+    &:hover{
+      color: yellow;
+    }
     img {
       height: 34px;
       width: 34px;
@@ -92,6 +95,12 @@
     gap: 1.5rem;
     list-style: none;
     margin: 0 auto;
+    a{
+      &:hover{
+        color: yellow;
+
+      }
+    }
 
     .navItem a {
       text-decoration: none;

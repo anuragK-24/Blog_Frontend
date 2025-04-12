@@ -33,10 +33,10 @@
     border-radius: 5px;
     transition: background-color 0.3s ease;
     text-align: center;  // Ensure the text is centered in the links
-  }
-
-  & a:hover {
-    background-color: #34495e;  // Lighter shade of the sidebar background for hover effect
+    
+    &:hover {
+      color: yellow;  // Lighter shade of the sidebar background for hover effect
+    }
   }
 
   // Divider between sections

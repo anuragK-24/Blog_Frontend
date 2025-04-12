@@ -1,8 +1,4 @@
 .posts {
-  flex: 9 1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Horizontally aligns the container in the center */
 }
 
 .text {

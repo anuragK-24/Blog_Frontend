@@ -1,5 +1,5 @@
 .single{
-    padding:3em;
+    /* padding:3em; */
     display: flex;
 }
 @media only screen and (max-width: 600px) {

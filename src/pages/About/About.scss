@@ -1,48 +1,76 @@
-.About{
+.About {
     padding: 4em;
-    margin-top: 0px;
-    font-family: Arial, sans-serif;
+    margin-top: 0;
+    font-family: 'Arial', sans-serif;
     color: #333;
-
-    &_Heading{
-        text-align: center;
-        font-size: 2.5em;
-        margin-bottom: 20px;
-        color: #2c3e50;
+    line-height: 1.6;
+    
+    &_Heading {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      font-weight: bold;
     }
+  
     &_Subheading {
-        font-size: 2em;
-        margin-top: 20px;
-        margin-bottom: 10px;
-        color: #34495e;
+      font-size: 2.1em;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #34495e;
+      font-weight: 600;
     }
-
+  
     &_Text {
-        font-size: 1.2em;
-        line-height: 1.6;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      color: #555;
+    }
+  
+    &_Links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+  
+      a {
+        color: #1e88e5;
+        text-decoration: none;
+        font-family: 'Monospace', sans-serif;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  /* Responsive design for mobile devices */
+  @media only screen and (max-width: 600px) {
+    .About {
+      &_Heading {
+        font-size: 2em;
         margin-bottom: 15px;
       }
-      &_Links{
-        a{
-            color: blue;
-            text-decoration: none;
-            font-family: monospace;
-            font-weight: 700;
-        }
+  
+      &_Subheading {
+        font-size: 1.6em;
       }
-}
-@media only screen and (max-width: 600px) {
-    .About{
-        &_Text {
-            font-size: 1em;
-        }
-        &_Subheading {
-            font-size: 1.4em;
-        }
-        &_Heading {
-            text-align: center;
-            font-size: 2em;
-            margin-bottom: 11px;
-        }
+  
+      &_Text {
+        font-size: 1em;
+      }
+  
+      &_Links {
+        flex-direction: column;
+        align-items: center;
+      }
     }
-}
+  }
+  
