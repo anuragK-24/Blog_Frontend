@@ -69,6 +69,7 @@ export default function Posts() {
           <SearchSkeleton />
           <PostSkeleton />
           <PostSkeleton />
+          <PostSkeleton />
         </div>
       ) : (
         <div className="posts">
