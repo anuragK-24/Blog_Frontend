@@ -22,7 +22,7 @@ export default function Post({ post, classN }) {
             dangerouslySetInnerHTML={{ __html: marked(post.desc) }}
           />
         </div>
-        {post.photo && post.photo.length !== 0 && (
+        {post.photo && (
           <img className="post_Img" src={post.photo} alt="Blog Thumbnail" />
         )}
       </div>
