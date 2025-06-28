@@ -2,53 +2,105 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 64px;
+  width: -webkit-fill-available;
+  padding: 0.75rem 1.5rem;
   background-color: #ffffff;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.5rem;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  gap: 1rem;
   font-family: "Inter", sans-serif;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+  flex-wrap: wrap; // ✅ allow content to wrap if needed
+  max-width: 100vw; // ✅ prevent horizontal overflow
 }
 
+/* Left section: hamburger + logo */
+.navbar__left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* Hamburger button */
 .hamburger {
   background: none;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  display: none;
 }
 
-.navLinks {
-  list-style: none;
-  display: flex;
-  gap: 1.2rem;
-}
-
-.navItem a {
-  text-decoration: none;
-  color: #1f2937;
-  font-weight: 600;
-}
-
+/* Brand text */
 .brand-gradient {
   font-weight: bold;
   font-size: 1.4rem;
   background: linear-gradient(90deg, #6366f1, #9333ea, #f43f5e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 
-.Session__link {
-  margin: 0 0.4rem;
+/* Navigation links */
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  justify-content: center;
+  flex-wrap: nowrap;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.navItem a {
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Right section */
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 1; // ✅ allow shrinking
+  min-width: 0; // ✅ allow flex items to shrink properly
+  overflow: hidden; // ✅ prevent content overflow
+  white-space: nowrap;
+}
+
+.Session__link,
+.navbar__toggle,
+.navbar__SignOut {
   font-weight: 600;
   color: #1f2937;
   text-decoration: none;
+  cursor: pointer;
 }
+
+.Session__divider {
+  color: #9ca3af;
+}
+
+/* Responsive fixes */
 @media (max-width: 768px) {
-  .navLinks, .Session__link {
+  .navbar {
+    padding: 0.75rem 0.75rem; // ✅ reduce padding for smaller screens
+  }
+
+  .navLinks,
+  .navbar__right {
     display: none;
+  }
+
+  .hamburger {
+    display: block;
   }
 }

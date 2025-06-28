@@ -20,44 +20,45 @@ const NavBar = () => {
   const handleLogout = () => dispatch({ type: "LOGOUT" });
 
   return (
-    <>
-      <motion.nav
-        className="navbar"
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
+    <motion.nav className="navbar">
+      <div className="navbar__left">
         <button className="hamburger" onClick={() => setOpen(!open)}>
           {open ? <FaTimes /> : <FaBars />}
         </button>
-
-        <a className="endElement" href="/">
-          <span className="brand-gradient">BlogSpark</span>
+        <a className="brand-gradient" href="/">
+          BlogSpark
         </a>
+      </div>
 
-        <ul className="navLinks">
-          {headingData.map((item, index) => (
-            <li key={index} className="navItem">
-              <a href={item.url}>{item.name}</a>
-            </li>
-          ))}
-        </ul>
+      <ul className="navLinks">
+        {headingData.map((item, index) => (
+          <li key={index} className="navItem">
+            <a href={item.url}>{item.name}</a>
+          </li>
+        ))}
+      </ul>
 
-        {user ? (
-          <div className="navbar__user">
-            <div className="navbar__toggle">Hi, {user.username.toUpperCase()}!</div>
-            <div className="navbar__SignOut" onClick={handleLogout}>Sign Out</div>
+      {user ? (
+        <div className="navbar__right">
+          <div className="navbar__toggle">
+            Hi, {user.username.toUpperCase()}!
           </div>
-        ) : (
-          <div className="Session">
-            <a href="/login" className="Session__link">Sign In</a> /
-            <a href="/register" className="Session__link">Sign Up</a>
+          <div className="navbar__SignOut" onClick={handleLogout}>
+            Sign Out
           </div>
-        )}
-      </motion.nav>
-
-      {open && <Sidebar onClose={() => setOpen(false)} />}
-    </>
+        </div>
+      ) : (
+        <div className="navbar__right">
+          <a href="/login" className="Session__link">
+            Sign In
+          </a>
+          <span className="Session__divider"> / </span>
+          <a href="/register" className="Session__link">
+            Sign Up
+          </a>
+        </div>
+      )}
+    </motion.nav>
   );
 };
 
