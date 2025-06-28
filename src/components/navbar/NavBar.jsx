@@ -20,45 +20,50 @@ const NavBar = () => {
   const handleLogout = () => dispatch({ type: "LOGOUT" });
 
   return (
-    <motion.nav className="navbar">
-      <div className="navbar__left">
-        <button className="hamburger" onClick={() => setOpen(!open)}>
-          {open ? <FaTimes /> : <FaBars />}
-        </button>
-        <a className="brand-gradient" href="/">
-          BlogSpark
-        </a>
-      </div>
-
-      <ul className="navLinks">
-        {headingData.map((item, index) => (
-          <li key={index} className="navItem">
-            <a href={item.url}>{item.name}</a>
-          </li>
-        ))}
-      </ul>
-
-      {user ? (
-        <div className="navbar__right">
-          <div className="navbar__toggle">
-            Hi, {user.username.toUpperCase()}!
-          </div>
-          <div className="navbar__SignOut" onClick={handleLogout}>
-            Sign Out
-          </div>
-        </div>
-      ) : (
-        <div className="navbar__right">
-          <a href="/login" className="Session__link">
-            Sign In
-          </a>
-          <span className="Session__divider"> / </span>
-          <a href="/register" className="Session__link">
-            Sign Up
+    <>
+      <motion.nav className="navbar">
+        <div className="navbar__left">
+          <button className="hamburger" onClick={() => setOpen(!open)}>
+            {open ? <FaTimes /> : <FaBars />}
+          </button>
+          <a className="brand-gradient" href="/">
+            BlogSpark
           </a>
         </div>
-      )}
-    </motion.nav>
+
+        <ul className="navLinks">
+          {headingData.map((item, index) => (
+            <li key={index} className="navItem">
+              <a href={item.url}>{item.name}</a>
+            </li>
+          ))}
+        </ul>
+
+        {user ? (
+          <div className="navbar__right">
+            <div className="navbar__toggle">
+              Hi, {user.username.toUpperCase()}!
+            </div>
+            <div className="navbar__SignOut" onClick={handleLogout}>
+              Sign Out
+            </div>
+          </div>
+        ) : (
+          <div className="navbar__right">
+            <a href="/login" className="Session__link">
+              Sign In
+            </a>
+            <span className="Session__divider"> / </span>
+            <a href="/register" className="Session__link">
+              Sign Up
+            </a>
+          </div>
+        )}
+      </motion.nav>
+
+      {/* ✅ Conditionally render Sidebar */}
+      {open && <Sidebar setOpen={setOpen} />}
+    </>
   );
 };
 
