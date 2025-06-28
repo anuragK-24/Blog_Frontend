@@ -1,93 +1,134 @@
 .SignIn {
-  padding: 3em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; // center vertically
+  height: 100vh;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(to bottom right, #6366f1, #9333ea, #f43f5e);
+  background-size: 600% 600%;
+  animation: gradientShift 20s ease infinite;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+
+  &_Heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2rem;
+  }
 
   &_Content {
     display: flex;
-    margin: 1em;
-    height: 64vh;
-    box-shadow: 2px 1px 20px 6px grey;
-    width: 59em;
-    align-items: center;
-    border-radius:13px;
-    &_Image {
-      display: flex;
-      flex: 1 1;
-      border-right: 2px solid;
-      justify-content: center;
-      img {
-        height: 15em;
-      }
-    }
+    flex-direction: row;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
 
-    h1 {
-      font-size: 2.5em;
-      font-weight: 600;
-      margin-bottom: 3.5em;
-      font-family: cursive;
-    }
-    &_FormContainer {
+    &_Image {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100%;
-      &_error{
-        color: red;
-        font-size: 0.7em;
-        font-weight: 600;
-        max-width: 16em;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.08);
+
+      img {
+        max-width: 90%;
+        height: auto;
       }
+    }
+
+    &_FormContainer {
+      flex: 1;
+      padding: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
       &_Form {
-        font-size: 1.4em;
-        padding: 1em;
-        border-radius: 1em;
-        background: #64d764;
-        max-height: 12em;
+        width: 100%;
+        max-width: 350px;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
         &_Button {
-          border-radius: 0.3em;
-          font-size: 0.7em;
-          background-color: #2f2e41;
+          padding: 0.75rem;
+          font-size: 1rem;
+          font-weight: 600;
+          background-color: #1e3a8a;
           color: white;
-          margin: auto;
-          display: flex;
+          border: none;
+          border-radius: 8px;
           cursor: pointer;
-          margin-top: 0.7em;
-          &:active {
-            transform: scale(0.9);
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: #3b82f6;
+          }
+
+          &:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
           }
         }
-        button:disabled {
-          cursor: not-allowed;
-          background-color: rgb(243, 193, 175);
+
+        .google-login {
+          margin-top: 1rem;
+          display: flex;
+          justify-content: center;
         }
+      }
+
+      &_error {
+        color: #ef4444;
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-top: -0.5rem;
       }
     }
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .SignIn{
-    margin-left: 0;
-    &_Heading{
-      margin: 0.5em;
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .SignIn_Content {
+    flex-direction: column;
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 1rem;
+
+    &_Image {
+      display: none;
     }
-    &_Content{
-      height: 40vh;
-      width: auto;
-      &_Image{
-        display: none;
-      }
-      &_FormContainer{
-        width: 75vw;
-        &_Form{
-          margin: 0px 14px 0px 14px;
-          width: 65vw;
-        height: 54vw;
-        }
-      }
+
+    &_FormContainer {
+      padding: 1.5rem;
     }
+  }
+
+  .SignIn_Heading {
+    font-size: 1.8rem;
+  }
+
+  .SignIn_Content_FormContainer_Form_Button {
+    font-size: 0.95rem;
   }
 }

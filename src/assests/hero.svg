@@ -1,0 +1,24 @@
+<!-- Save this as hero-illustration.svg inside your /src/assets/ folder -->
+<svg
+  width="100%"
+  height="100%"
+  viewBox="0 0 800 600"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width="800" height="600" fill="#f3f4f6" />
+  <g id="content">
+    <rect x="120" y="100" width="560" height="400" rx="20" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+    <rect x="150" y="140" width="500" height="40" rx="8" fill="#e0e7ff" />
+    <rect x="150" y="200" width="360" height="20" rx="4" fill="#c7d2fe" />
+    <rect x="150" y="240" width="320" height="20" rx="4" fill="#dbeafe" />
+    <rect x="150" y="280" width="420" height="20" rx="4" fill="#dbeafe" />
+    <rect x="150" y="340" width="220" height="40" rx="8" fill="#4f46e5" />
+    <text x="165" y="368" font-family="Arial" font-size="16" fill="#ffffff">Start Writing</text>
+  </g>
+  <g id="decor">
+    <circle cx="60" cy="60" r="30" fill="#6366f1" opacity="0.3" />
+    <circle cx="740" cy="540" r="50" fill="#ec4899" opacity="0.2" />
+    <circle cx="700" cy="80" r="20" fill="#f59e0b" opacity="0.25" />
+  </g>
+</svg>

@@ -1,11 +1,10 @@
 import React from "react";
 import Posts from "../../components/posts/Posts";
-import "./home.scss";
+import "./Blogs.scss";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
-import SearchBar from "../../components/SearchBar/SearchBar";
 
-export default function Home() {
+export default function Blogs() {
   const { user } = useContext(Context);
 
   return (

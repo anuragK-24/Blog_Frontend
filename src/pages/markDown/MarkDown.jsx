@@ -20,16 +20,15 @@ const data = [
 export default function MarkDown() {
   return (
     <div className="MarkDown">
-      <div className="MarkDown__Heading"> Markdown </div>
+      <div className="MarkDown__Heading">Markdown</div>
       <hr />
       <div className="MarkDown__Desc">
-        Write neat and clean blogs with markdown. Here are some markdown 
+        Write neat and clean blogs with markdown. Here are some markdown
+        snippets:
       </div>
-      {data.map((e, key) => {
-        return (
-          <CopyText heading={e.heading} textToCopy={e.textToCopy} key={key} />
-        );
-      })}
+      {data.map((e, key) => (
+        <CopyText heading={e.heading} textToCopy={e.textToCopy} key={key} />
+      ))}
     </div>
   );
 }

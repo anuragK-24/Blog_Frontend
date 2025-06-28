@@ -1,44 +1,54 @@
-import TopBar from "./components/topbar/TopBar";
-import Home from "./pages/home/Home";
-import Write from "./pages/write/Write";
-import Single from "./pages/single/Single";
-import Register from "./pages/register/SignUp";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
-import MarkDown from "./pages/markDown/MarkDown";
-import Footer from "./components/footer/Footer";
+
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { ParallaxProvider } from "react-scroll-parallax";
+
+import NavBar from "./components/navbar/NavBar";
+
+import Write from "./pages/write/Write";
+import Single from "./pages/single/Single";
 import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/register/SignUp";
 import About from "./pages/About/About";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import MarkDown from "./pages/markDown/MarkDown";
+import LandingPage from "./pages/LandingPage/LandingPage";
+import Blogs from "./pages/Blogs/Blogs";
 
-// In react-router-dom v6, "Switch" is replaced by routes "Routes". You need to update the import from
+// Wrap Routes inside AppWrapper so we can use useLocation
+const AppWrapper = () => {
+  const { user } = useContext(Context);
+
+  return (
+    <>
+      <NavBar />
+
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/blogs" element={user ? <Blogs /> : <SignIn />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/register" element={user ? <Blogs /> : <SignUp />} />
+        <Route path="/login" element={user ? <Blogs /> : <SignIn />} />
+        <Route path="/write" element={user ? <Write /> : <SignIn />} />
+        <Route path="/markdown" element={<MarkDown />} />
+        <Route path="/post/:postID" element={<Single />} />
+      </Routes>
+
+      {/* Optional Footer */}
+      {/* <Footer /> */}
+    </>
+  );
+};
 
 function App() {
-  const { user } = useContext(Context);
   return (
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-      <Router>
-        <TopBar />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-
-          <Route path="/register" element={user ? <Home /> : <SignUp />} />
-
-          <Route path="/login" element={user ? <Home /> : <SignIn />} />
-
-          <Route path="/write" element={user ? <Write /> : <SignIn />} />
-
-          <Route path="/markdown" element={<MarkDown />} />
-
-          <Route path="/post/:postID" element={<Single />} />
-        </Routes>
-        {/* <Footer /> */}
-      </Router>
+      <ParallaxProvider>
+        <Router>
+          <AppWrapper />
+        </Router>
+      </ParallaxProvider>
     </GoogleOAuthProvider>
   );
 }

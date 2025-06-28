@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
-import "./Sidebar.scss";
 import { Context } from "../../context/Context";
+import "./Sidebar.scss";
+import { Link } from "react-router-dom";
 
-function Sidebar() {
+const Sidebar = ({ onClose }) => {
   const { user, dispatch } = useContext(Context);
-  const headingData = [
+
+  const navLinks = [
     { name: "Home", url: "/" },
+    { name: "Blogs", url: "/blogs" },
     { name: "About", url: "/about" },
     { name: "Write", url: "/write" },
     { name: "Markdown", url: "/markdown" },
@@ -13,35 +16,38 @@ function Sidebar() {
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" });
+    onClose();
   };
 
   return (
-    <div className="Sidebar active">
-      <div className="Sidebar__Data">
-        {headingData.map((item, key) => (
-          <a key={key} href={item.url}>
-            {item.name}
-          </a>
+    <aside className="sidebar" role="navigation" aria-label="Sidebar menu">
+      <nav className="sidebar__menu">
+        {navLinks.map((link) => (
+          <Link to={link.url} key={link.name} className="sidebar__link" onClick={onClose}>
+            {link.name}
+          </Link>
         ))}
-      </div>
+      </nav>
 
-      {/* Divider between the main navigation and the sign-in/sign-out section */}
-      <div className="Sidebar__Divider"></div>
+      <hr className="sidebar__divider" />
 
-      <div>
+      <div className="sidebar__session">
         {user ? (
-          <div className="Sidebar__SignOut" onClick={handleLogout}>
-            SignOut
-          </div>
+          <>
+            <span className="sidebar__user">Hi, {user.username.toUpperCase()}!</span>
+            <button className="sidebar__btn" onClick={handleLogout}>Sign Out</button>
+          </>
         ) : (
           <>
-            <a href="/login">SignIn</a>
-            <a href="/register">SignUp</a>
+            <Link to="/login" className="sidebar__btn" onClick={onClose}>Sign In</Link>
+            <Link to="/register" className="sidebar__btn sidebar__btn--secondary" onClick={onClose}>
+              Sign Up
+            </Link>
           </>
         )}
       </div>
-    </div>
+    </aside>
   );
-}
+};
 
 export default Sidebar;

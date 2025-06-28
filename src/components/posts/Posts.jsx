@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import "./posts.css";
 import Post from "../post/Post";
 import axios from "axios";
-import "../../pages/home/home.scss";
+import "../../pages/Blogs/Blogs.scss";
 import EndMsg from "../EndMsg/EndMsg";
 import PostSkeleton from "../../shimmer/PostSkeleton/PostSkeleton";
 import SearchSkeleton from "../../shimmer/SearchSkeleton/SearchSkeleton";
