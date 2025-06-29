@@ -3,9 +3,9 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin: 2rem auto;
   width: 100%;
   max-width: 400px;
+  margin: 0 auto;
 }
 
 .searchBar__inputWrapper {
@@ -15,8 +15,9 @@
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 1em;
-  overflow: hidden;
   background-color: white;
+  overflow: hidden;
+  padding-right: 2.5rem; // space for clear icon
 }
 
 .searchBar__input {
@@ -25,19 +26,20 @@
   font-size: 16px;
   border: none;
   outline: none;
+  background: transparent;
 }
 
 .searchBar__icon,
 .searchBar__clearIcon {
-  padding: 0 12px;
-  cursor: pointer;
+  position: absolute;
+  right: 12px;
+  font-size: 16px;
   color: #555;
+  cursor: pointer;
   transition: transform 0.2s ease;
 }
 
 .searchBar__clearIcon {
-  font-size: 14px;
-  position: absolute;
   right: 35px;
 }
 
@@ -46,10 +48,10 @@
 }
 
 @keyframes shake {
-  0% { transform: rotate(0); }
-  25% { transform: rotate(8deg); }
-  50% { transform: rotate(-8deg); }
-  75% { transform: rotate(4deg); }
+  0%   { transform: rotate(0); }
+  25%  { transform: rotate(8deg); }
+  50%  { transform: rotate(-8deg); }
+  75%  { transform: rotate(4deg); }
   100% { transform: rotate(0); }
 }
 
@@ -71,8 +73,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translate(-50%, 10px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
 }
 
 .searchBar__item {
@@ -80,8 +88,8 @@
   padding: 8px 10px;
   cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.2s;
   color: black;
+  transition: background-color 0.2s;
 }
 
 .searchBar__item:hover {
@@ -102,8 +110,9 @@
   text-align: center;
 }
 
-@media only screen and (max-width: 600px) {
+/* ✅ Responsive Design */
+@media only screen and (max-width: 768px) {
   .searchBar__container {
-    max-width: 300px;
-  }  
+    max-width: 75%;
+  }
 }

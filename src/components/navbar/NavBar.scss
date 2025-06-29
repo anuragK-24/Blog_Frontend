@@ -2,82 +2,58 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: -webkit-fill-available;
-  padding: 0.75rem 1.5rem;
+  width: 100%;
+  height: 3.5rem;
   background-color: #ffffff;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
   font-family: "Inter", sans-serif;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  overflow-x: hidden;
-  flex-wrap: wrap; // ✅ allow content to wrap if needed
-  max-width: 100vw; // ✅ prevent horizontal overflow
+  flex-wrap: nowrap;
+  max-width: 100vw;
 }
 
-/* Left section: hamburger + logo */
 .navbar__left {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-shrink: 0;
 }
 
-/* Hamburger button */
 .hamburger {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   cursor: pointer;
-  display: none;
 }
 
-/* Brand text */
+.navbar__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 200px;
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
 .brand-gradient {
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   background: linear-gradient(90deg, #6366f1, #9333ea, #f43f5e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
 }
 
-/* Navigation links */
-.navLinks {
-  list-style: none;
-  display: flex;
-  gap: 1.2rem;
-  padding: 0;
-  margin: 0;
-  flex: 1;
-  justify-content: center;
-  flex-wrap: nowrap;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.navItem a {
-  text-decoration: none;
-  color: #1f2937;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-/* Right section */
-.navbar__right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-shrink: 1; // ✅ allow shrinking
-  min-width: 0; // ✅ allow flex items to shrink properly
-  overflow: hidden; // ✅ prevent content overflow
-  white-space: nowrap;
-}
-
-.Session__link,
-.navbar__toggle,
 .navbar__SignOut {
   font-weight: 600;
   color: #1f2937;
@@ -85,22 +61,7 @@
   cursor: pointer;
 }
 
-.Session__divider {
-  color: #9ca3af;
-}
-
-/* Responsive fixes */
+/* Mobile layout */
 @media (max-width: 768px) {
-  .navbar {
-    padding: 0.75rem 0.75rem; // ✅ reduce padding for smaller screens
-  }
-
-  .navLinks,
-  .navbar__right {
-    display: none;
-  }
-
-  .hamburger {
-    display: block;
-  }
+  
 }

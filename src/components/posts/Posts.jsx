@@ -66,14 +66,12 @@ export default function Posts() {
     <>
       {!isResolved ? (
         <div className="CardShimmer">
-          <SearchSkeleton />
           <PostSkeleton />
           <PostSkeleton />
           <PostSkeleton />
         </div>
       ) : (
         <div className="posts">
-          <SearchBar />
           {posts.length === 0 && <h1 className="text">No Blog found</h1>}
           {posts.map((p, index) => (
             <div
