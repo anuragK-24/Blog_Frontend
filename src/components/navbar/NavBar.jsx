@@ -28,7 +28,7 @@ const NavBar = () => {
         </div>
       </motion.nav>
 
-      {open && <Sidebar setOpen={setOpen} />}
+      {open && <Sidebar onClose={() => setOpen(false)} />}
     </>
   );
 };
