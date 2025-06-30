@@ -1,9 +1,9 @@
 import "./post.scss";
 import { Link } from "react-router-dom";
-import { marked } from "marked";
 
 export default function Post({ post, classN }) {
   const normalizeName = (text) => text.replace(/anurag/gi, "Anurag");
+
   return (
     <Link to={`/post/${post._id}`} className="link">
       {classN === "firstPost" && <div className="latestLabel">Latest</div>}
@@ -18,10 +18,7 @@ export default function Post({ post, classN }) {
               {new Date(post.createdAt).toDateString()}
             </span>
           </div>
-          <div
-            className="post_Content_Desc"
-            dangerouslySetInnerHTML={{ __html: marked(post.desc) }}
-          />
+          {/* Description removed because it's not included in API response */}
         </div>
         {post.photo && post.photo.length !== 0 && (
           <img className="post_Img" src={post.photo} alt="" />
