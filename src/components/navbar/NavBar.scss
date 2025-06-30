@@ -23,6 +23,7 @@
 }
 
 .hamburger {
+  padding: 12px;
   background: none;
   border: none;
   font-size: 1.4rem;
@@ -46,6 +47,8 @@
 }
 
 .brand-gradient {
+  padding: 10px;
+
   font-weight: bold;
   font-size: 1.3rem;
   background: linear-gradient(90deg, #6366f1, #9333ea, #f43f5e);
@@ -63,5 +66,4 @@
 
 /* Mobile layout */
 @media (max-width: 768px) {
-  
 }
