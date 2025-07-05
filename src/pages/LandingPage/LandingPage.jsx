@@ -23,7 +23,7 @@ export default function LandingPage() {
             <div className="hero-text">
               <h2>Unleash Your Thoughts</h2>
               <p>Write. Share. Inspire. Your journey starts here.</p>
-              <Link to="/home" className="explore-button">
+              <Link to="/blogs" className="explore-button">
                 Explore Blogs
               </Link>
             </div>

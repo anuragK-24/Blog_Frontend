@@ -34,9 +34,6 @@ const AppWrapper = () => {
         <Route path="/markdown" element={<MarkDown />} />
         <Route path="/post/:postID" element={<Single />} />
       </Routes>
-
-      {/* Optional Footer */}
-      {/* <Footer /> */}
     </>
   );
 };
