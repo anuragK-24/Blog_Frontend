@@ -1,4 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// src/App.js
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { useContext } from "react";
 import { Context } from "./context/Context";
 
@@ -6,6 +13,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ParallaxProvider } from "react-scroll-parallax";
 
 import NavBar from "./components/navbar/NavBar";
+import BottomBar from "./components/BottomBar/BottomBar";
 
 import Write from "./pages/write/Write";
 import Single from "./pages/single/Single";
@@ -15,25 +23,51 @@ import About from "./pages/About/About";
 import MarkDown from "./pages/markDown/MarkDown";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import Blogs from "./pages/Blogs/Blogs";
+import ErrorPage from "./pages/ErrorPage/ErrorPage"; // ✅ NEW
+import Profile from "./pages/Profile/Profile";
 
-// Wrap Routes inside AppWrapper so we can use useLocation
+// ✅ Internal wrapper to conditionally show layout
 const AppWrapper = () => {
   const { user } = useContext(Context);
+  const location = useLocation();
+
+  const isErrorPage =
+    location.pathname !== "/" &&
+    ![
+      "/blogs",
+      "/about",
+      "/register",
+      "/login",
+      "/write",
+      "/markdown",
+      "/profile",
+    ].some((path) => location.pathname.startsWith(path)) &&
+    !/^\/post\/[^/]+$/.test(location.pathname); // Matches /post/:id
+
+  if (isErrorPage) {
+    return (
+      <Routes>
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    );
+  }
 
   return (
     <>
       <NavBar />
-
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/blogs" element={user ? <Blogs /> : <SignIn />} />
+        <Route path="/blogs" element={<Blogs />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={user ? <Blogs /> : <SignUp />} />
+        <Route path="/profile" element={user ? <Profile /> : <SignUp />} />
         <Route path="/login" element={user ? <Blogs /> : <SignIn />} />
         <Route path="/write" element={user ? <Write /> : <SignIn />} />
         <Route path="/markdown" element={<MarkDown />} />
         <Route path="/post/:postID" element={<Single />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
+      <BottomBar />
     </>
   );
 };
