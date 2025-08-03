@@ -1,22 +1,58 @@
 import React from "react";
 import CopyText from "../../components/CopyText/CopyText";
 import "./MarkDown.scss";
+
 const data = [
   {
-    heading: "CODE",
-    textToCopy: "```\n Insert code here \n```",
+    heading: "CODE BLOCK",
+    textToCopy: "```\nconst a = 10;\nconsole.log(a);\n```",
   },
   {
-    heading: "HEADING",
+    heading: "HEADINGS",
     textToCopy:
-      "# text -> for Largest size word \n\n## text -> for next Largest size word\n\n### text -> for next  smaller size word",
+      "# H1 Heading\n\n## H2 Heading\n\n### H3 Heading\n\n#### H4 Heading\n\n##### H5 Heading\n\n###### H6 Heading",
   },
   {
-    heading: "INSERT IMAGE",
-    textToCopy: `![](Insert here image URL)`,
+    heading: "BOLD & ITALIC",
+    textToCopy:
+      "**Bold Text**\n\n*Italic Text*\n\n***Bold & Italic Text***",
   },
-  { heading: "BOLD TEXT", textToCopy: `**Text**  ->  without any space` },
+  {
+    heading: "ORDERED LIST",
+    textToCopy: "1. First item\n2. Second item\n3. Third item",
+  },
+  {
+    heading: "UNORDERED LIST",
+    textToCopy: "- Item 1\n- Item 2\n- Item 3",
+  },
+  {
+    heading: "CHECKLIST",
+    textToCopy:
+      "- [x] Task 1\n- [ ] Task 2\n- [ ] Task 3",
+  },
+  {
+    heading: "LINK",
+    textToCopy: "[OpenAI](https://www.amazon.in)",
+  },
+  {
+    heading: "IMAGE",
+    textToCopy: "![Alt Text](https://via.placeholder.com/150)",
+  },
+  {
+    heading: "BLOCKQUOTE",
+    textToCopy: "> This is a blockquote.\n> - Author Name",
+  },
+  {
+    heading: "TABLE",
+    textToCopy:
+      "| Name | Age |\n|------|-----|\n| John | 25  |\n| Jane | 22  |",
+  },
+  {
+    heading: "STRIKETHROUGH",
+    textToCopy: "~~This text is strikethrough~~",
+  },
 ];
+
 export default function MarkDown() {
   return (
     <div className="MarkDown">
