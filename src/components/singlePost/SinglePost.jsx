@@ -17,6 +17,7 @@ export default function SinglePost() {
   const [photo, setPhoto] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [hasUpdatedView, setHasUpdatedView] = useState(false);
 
   useEffect(() => {
     const getPost = async () => {
@@ -27,16 +28,23 @@ export default function SinglePost() {
         setDesc(res.data.desc);
         setPhoto(res.data.photo);
         setLoading(false);
+
+        // Update view count only if user is NOT the author and view hasn't been updated yet
+        if (!hasUpdatedView && (!user || res.data.username !== user.username)) {
+          await axios.put(`${process.env.REACT_APP_API_URL}/api/posts/${path}/view`);
+          setHasUpdatedView(true);
+        }
       } catch (error) {
         console.error("Failed to fetch post:", error);
+        setLoading(false);
       }
     };
+
     getPost();
-  }, [path]);
+  }, [path, user, hasUpdatedView]);
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
-
     try {
       await axios.delete(`${process.env.REACT_APP_API_URL}/api/posts/${post._id}`, {
         data: { username: user.username },
@@ -113,6 +121,7 @@ export default function SinglePost() {
             </Link>
           </span>
           <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
+          <span className="singlePostViews">👁️ {post.views || 0} views</span>
         </div>
 
         {updateMode ? (

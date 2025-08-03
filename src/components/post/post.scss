@@ -58,6 +58,7 @@
     flex-direction: column;
     justify-content: space-between;
     width: 0;
+
     &_Author {
       color: brown;
       font-weight: 600;
@@ -80,12 +81,24 @@
       text-overflow: ellipsis;
     }
 
-    &_Info_Date {
-      font-family: "Roboto", sans-serif;
+    &_Info {
+      display: flex;
+      justify-content: space-between;
       font-size: 14px;
-      font-style: italic;
-      color: #777;
-      margin-bottom: 0.5em;
+      color: #888;
+      margin-top: 8px;
+      &_Views {
+        margin-left: 12px;
+        display: flex;
+        align-items: center;
+      }
+      &_Date {
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+        font-style: italic;
+        color: #777;
+        margin-bottom: 0.5em;
+      }
     }
 
     &_Desc {
