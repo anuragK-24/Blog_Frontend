@@ -48,14 +48,25 @@
 }
 
 @keyframes shake {
-  0%   { transform: rotate(0); }
-  25%  { transform: rotate(8deg); }
-  50%  { transform: rotate(-8deg); }
-  75%  { transform: rotate(4deg); }
-  100% { transform: rotate(0); }
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
 }
 
 .searchBar__results {
+  min-width: 44em;
   position: absolute;
   top: calc(100% + 8px);
   left: 50%;
@@ -63,7 +74,6 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
-  width: 100%;
   max-height: 300px;
   overflow-y: auto;
   z-index: 100;
@@ -112,7 +122,12 @@
 
 /* ✅ Responsive Design */
 @media only screen and (max-width: 768px) {
-  .searchBar__container {
-    max-width: 75%;
+  .searchBar {
+    &__container {
+      max-width: 75%;
+    }
+    &__results {
+      min-width: 15em;
+    }
   }
 }
