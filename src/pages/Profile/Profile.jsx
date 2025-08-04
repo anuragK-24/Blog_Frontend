@@ -8,6 +8,7 @@ import DashBoard from "../../components/DashBoard/DashBoard";
 const Profile = () => {
   const { user, dispatch } = useContext(Context);
   const [isEditing, setIsEditing] = useState(false);
+
   const [formData, setFormData] = useState({
     username: user?.username || "",
     techSkills: Array.isArray(user?.techSkills)
@@ -16,6 +17,7 @@ const Profile = () => {
     photo: user?.photo || "",
     about: user?.about || "",
   });
+
   const [message, setMessage] = useState({ type: "", text: "" });
 
   const handleChange = (e) => {
@@ -25,22 +27,28 @@ const Profile = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const updatedData = {
+      userId: user._id,
+      username: formData.username.trim(),
+      techSkills: formData.techSkills
+        .split(",")
+        .map((skill) => skill.trim())
+        .filter((skill) => skill !== ""),
+      photo: formData.photo.trim(),
+      about: formData.about.trim(),
+    };
+
     try {
       const res = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/users/${user._id}`,
-        {
-          userId: user._id,
-          username: formData.username,
-          techSkills: formData.techSkills,
-          photo: formData.photo,
-          about: formData.about,
-        }
+        updatedData
       );
 
       setMessage({ type: "success", text: "Profile updated successfully!" });
       setIsEditing(false);
 
-      // Update user context
+      // Update context with new user data
       dispatch({ type: "UPDATE_USER", payload: res.data });
     } catch (err) {
       console.error(err);
@@ -68,19 +76,15 @@ const Profile = () => {
     <div className="profile">
       {!isEditing ? (
         <div className="profile-view">
-          {user.photo || formData.photo ? (
-            <img
-              className="profile-photo"
-              src={user.photo || formData.photo}
-              alt="Profile"
-            />
+          {user?.photo ? (
+            <img className="profile-photo" src={user.photo} alt="Profile" />
           ) : (
             <div className="profile-icon">
               <FaUserCircle />
             </div>
           )}
-          <h2>{user.username}</h2>
-          <p>{user.about}</p>
+          <h2>{user?.username}</h2>
+          <p>{user?.about}</p>
           <button onClick={() => setIsEditing(true)}>Edit Profile</button>
         </div>
       ) : (
@@ -104,6 +108,7 @@ const Profile = () => {
               value={formData.username}
               onChange={handleChange}
               placeholder="Enter your username"
+              required
             />
 
             <label>Tech Skills (comma-separated)</label>
