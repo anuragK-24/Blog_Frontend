@@ -2,7 +2,7 @@
   padding: 2rem 1rem;
   display: flex;
   justify-content: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .singlePostWrapper {
@@ -69,6 +69,15 @@
   color: #333;
 }
 
+.singlePostDesc img {
+  width: -webkit-fill-available;
+  height: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+  display: block;
+}
+
 .singlePostDesc h1,
 .singlePostDesc h2,
 .singlePostDesc h3 {
@@ -83,7 +92,7 @@
   display: block;
   margin-top: 1rem;
   border-radius: 6px;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   overflow-x: auto;
 }
 
