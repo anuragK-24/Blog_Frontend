@@ -2,7 +2,13 @@ import { useContext, useState } from "react";
 import "./write.css";
 import axios from "axios";
 import { Context } from "../../context/Context";
-import { TextField, Button, Card, CardContent, Typography } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Card,
+  CardContent,
+  Typography,
+} from "@mui/material";
 
 export default function Write() {
   const [title, setTitle] = useState("");
@@ -14,12 +20,14 @@ export default function Write() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const newPost = {
-      username: user.username,
+      userId: user._id, // ✅ use userId instead of username
       title,
       desc,
       photo,
     };
+
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/posts`,
@@ -64,9 +72,8 @@ export default function Write() {
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <Typography className="note-text">
-              Note: Use Markdown for beautiful formatting. Visit the markdown
-              help page before writing.
+            <Typography className="note-text" sx={{ fontSize: 12, color: "gray" }}>
+              Note: Use Markdown for formatting (e.g. **bold**, _italic_, # heading).
             </Typography>
 
             <TextField

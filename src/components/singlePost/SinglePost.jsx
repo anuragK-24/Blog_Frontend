@@ -1,17 +1,18 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
-import { Context } from "../../context/Context";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { marked } from "marked";
+import { CircularProgress, Button } from "@mui/material";
+import { Context } from "../../context/Context";
 import "./singlePost.css";
-import { Button, CircularProgress } from "@mui/material";
 
 export default function SinglePost() {
   const location = useLocation();
-  const path = location.pathname.split("/")[2];
-  const [post, setPost] = useState({});
+  const blog_id = location.pathname.split("/")[2];
   const { user } = useContext(Context);
+  const navigate = useNavigate();
+  const [author, setAuthor] = useState();
+  const [post, setPost] = useState(null);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [photo, setPhoto] = useState("");
@@ -20,18 +21,24 @@ export default function SinglePost() {
   const [hasUpdatedView, setHasUpdatedView] = useState(false);
 
   useEffect(() => {
-    const getPost = async () => {
+    const fetchPost = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/posts/${path}`);
-        setPost(res.data);
-        setTitle(res.data.title);
-        setDesc(res.data.desc);
-        setPhoto(res.data.photo);
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/posts/${blog_id}`,
+          {
+            params: { userId: user?._id },
+          }
+        );
+
+        const postData = res.data;
+        setPost(postData);
+        setTitle(postData.title);
+        setDesc(postData.desc);
+        setPhoto(postData.photo);
+        setAuthor(postData.author);
         setLoading(false);
 
-        // Update view count only if user is NOT the author and view hasn't been updated yet
-        if (!hasUpdatedView && (!user || res.data.username !== user.username)) {
-          await axios.put(`${process.env.REACT_APP_API_URL}/api/posts/${path}/view`);
+        if (user._id !== author._id) {
           setHasUpdatedView(true);
         }
       } catch (error) {
@@ -40,16 +47,20 @@ export default function SinglePost() {
       }
     };
 
-    getPost();
-  }, [path, user, hasUpdatedView]);
+    fetchPost();
+  }, [blog_id, user, hasUpdatedView]);
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
+
     try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/api/posts/${post._id}`, {
-        data: { username: user.username },
-      });
-      window.location.replace("/");
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/posts/${post._id}`,
+        {
+          data: { userId: user._id },
+        }
+      );
+      navigate("/blogs");
     } catch (err) {
       console.error("Error deleting post:", err);
     }
@@ -57,13 +68,17 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`${process.env.REACT_APP_API_URL}/api/posts/${post._id}`, {
-        username: user.username,
-        title,
-        desc,
-        photo,
-      });
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/posts/${post._id}`,
+        {
+          userId: user._id,
+          title,
+          desc,
+          photo,
+        }
+      );
       setUpdateMode(false);
+      navigate("/blogs");
     } catch (err) {
       console.error("Error updating post:", err);
     }
@@ -76,6 +91,16 @@ export default function SinglePost() {
       </div>
     );
   }
+
+  if (!post) {
+    return <div className="error">Post not found.</div>;
+  }
+
+  // ✅ Check author permission
+  const isAuthor = user && user._id === author._id;
+  console.log(user);
+  console.log(author);
+  console.log("Has access ", isAuthor);
 
   return (
     <div className="singlePost">
@@ -98,16 +123,21 @@ export default function SinglePost() {
             type="text"
             value={title}
             className="singlePostTitleInput"
-            autoFocus
             onChange={(e) => setTitle(e.target.value)}
           />
         ) : (
           <h1 className="singlePostTitle">
             {title}
-            {post.username === user?.username && (
+            {isAuthor && (
               <div className="singlePostEdit">
-                <i className="singlePostIcon far fa-edit" onClick={() => setUpdateMode(true)} />
-                <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete} />
+                <i
+                  className="singlePostIcon far fa-edit"
+                  onClick={() => setUpdateMode(true)}
+                />
+                <i
+                  className="singlePostIcon far fa-trash-alt"
+                  onClick={handleDelete}
+                />
               </div>
             )}
           </h1>
@@ -115,12 +145,18 @@ export default function SinglePost() {
 
         <div className="singlePostInfo">
           <span className="singlePostAuthor">
-            Author:
-            <Link to={`/?user=${post.username}`} className="link">
-              <b> {post.username?.toUpperCase()}</b>
-            </Link>
+            Author:{" "}
+            {author ? (
+              <Link to={`/?user=${author.username}`} className="link">
+                <b>{author.username.toUpperCase()}</b>
+              </Link>
+            ) : (
+              <b>Unknown</b>
+            )}
           </span>
-          <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
+          <span className="singlePostDate">
+            {new Date(post.createdAt).toDateString()}
+          </span>
           <span className="singlePostViews">👁️ {post.views || 0} views</span>
         </div>
 
@@ -146,7 +182,7 @@ export default function SinglePost() {
               backgroundColor: "#6a1b9a",
               mt: 2,
               alignSelf: "flex-end",
-              '&:hover': {
+              "&:hover": {
                 backgroundColor: "#4a148c",
               },
             }}
