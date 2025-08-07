@@ -9,6 +9,7 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function Write() {
   const [title, setTitle] = useState("");
@@ -72,8 +73,13 @@ export default function Write() {
               onChange={(e) => setTitle(e.target.value)}
             />
 
-            <Typography className="note-text" sx={{ fontSize: 12, color: "gray" }}>
-              Note: Use Markdown for formatting (e.g. **bold**, _italic_, # heading).
+            <Typography
+              className="note-text"
+              sx={{ fontSize: 12, color: "gray" }}
+            >
+              Note: Use <Link to="/markdown">Markdown</Link> for formatting
+              (e.g. <code>**bold**</code>, <code>_italic_</code>,{" "}
+              <code># heading</code>).
             </Typography>
 
             <TextField

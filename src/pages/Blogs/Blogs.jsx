@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import Posts from "../../components/posts/Posts";
 import "./Blogs.scss";
-import { useContext } from "react";
 import { Context } from "../../context/Context";
 
 export default function Blogs() {
@@ -12,16 +11,13 @@ export default function Blogs() {
       <div className="home__content">
         {user?.username ? (
           <h2 className="greeting">
-            Welcome{" "}
-            <b>
-              <i>{user.username.toUpperCase()}</i>
-            </b>
+            Welcome <b><i>{user.username.toUpperCase()}</i></b>
           </h2>
         ) : (
           <h2 className="greeting">Welcome, Guest!</h2>
         )}
         <div className="home__content__posts">
-          <Posts />
+          <Posts user={user} />
         </div>
       </div>
     </div>

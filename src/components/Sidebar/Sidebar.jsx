@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = ({ onClose }) => {
   const { user, dispatch } = useContext(Context);
+  console.log(user.username);
 
   const navLinks = [
     { name: "Home", url: "/" },
@@ -23,7 +24,12 @@ const Sidebar = ({ onClose }) => {
     <aside className="sidebar" role="navigation" aria-label="Sidebar menu">
       <nav className="sidebar__menu">
         {navLinks.map((link) => (
-          <Link to={link.url} key={link.name} className="sidebar__link" onClick={onClose}>
+          <Link
+            to={link.url}
+            key={link.name}
+            className="sidebar__link"
+            onClick={onClose}
+          >
             {link.name}
           </Link>
         ))}
@@ -34,13 +40,21 @@ const Sidebar = ({ onClose }) => {
       <div className="sidebar__session">
         {user ? (
           <>
-            <span className="sidebar__user">Hi, {user.username.toUpperCase()}!</span>
-            <button className="sidebar__btn" onClick={handleLogout}>Sign Out</button>
+            <span className="">Hi, {user.username.toUpperCase()}!</span>
+            <button className="sidebar__btn" onClick={handleLogout}>
+              Sign Out
+            </button>
           </>
         ) : (
           <>
-            <Link to="/login" className="sidebar__btn" onClick={onClose}>Sign In</Link>
-            <Link to="/register" className="sidebar__btn sidebar__btn--secondary" onClick={onClose}>
+            <Link to="/login" className="sidebar__btn" onClick={onClose}>
+              Sign In
+            </Link>
+            <Link
+              to="/register"
+              className="sidebar__btn sidebar__btn--secondary"
+              onClick={onClose}
+            >
               Sign Up
             </Link>
           </>

@@ -1,9 +1,7 @@
-.navbar__icon-avatar{
+.navbar__icon-avatar {
   cursor: pointer;
   font-size: 2em;
 }
-
-
 
 .navbar {
   position: sticky;
@@ -22,13 +20,13 @@
     right: 20px;
     background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 999;
     display: flex;
     flex-direction: column;
     padding: 10px;
     min-width: 160px;
-  
+
     div {
       display: flex;
       align-items: center;
@@ -37,11 +35,11 @@
       cursor: pointer;
       font-size: 14px;
       transition: background 0.2s ease;
-  
+
       &:hover {
         background-color: #f0f0f0;
       }
-  
+
       svg {
         font-size: 16px;
       }
@@ -104,17 +102,18 @@
 }
 
 .brand-gradient {
-  background: linear-gradient(90deg, #6366f1, #9333ea, #f43f5e);
+  font-size: 1.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #1e3a8a, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  white-space: nowrap;
 }
 
 @media (max-width: 768px) {
   .navbar__center {
     display: none;
   }
-  .hamburger{
+  .hamburger {
     display: none;
   }
 }

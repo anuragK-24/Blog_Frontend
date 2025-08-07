@@ -1,61 +1,53 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+// Blogs.scss
 
 .home {
-  min-height: 100vh;
-  background: linear-gradient(120deg, #6366f1, #9333ea, #f43f5e);
-  background-size: 600% 600%;
-  animation: gradientShift 20s ease infinite;
   display: flex;
   justify-content: center;
-  padding:  2rem;
-  font-family: 'Inter', sans-serif;
-  color: #fff;
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.home__content {
-  width: 100%;
-  max-width: 1100px;
   padding: 2rem;
-  backdrop-filter: blur(6px);
-  border-radius: 16px;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+
+  &__content {
+    width: 100%;
+    max-width: 1000px;
+
+    .greeting {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #333;
+
+      b {
+        color: #007bff;
+      }
+
+      i {
+        font-style: italic;
+      }
+    }
+
+    &__posts {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+  }
 }
 
-.greeting {
-  font-size: 1.8rem;
-  font-weight: 600;
-  text-align: center;
-  color: #facc15;
-  margin-bottom: 2rem;
-}
-
-.home__content__posts {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-@media screen and (max-width: 768px) {
+// Optional: responsive design
+@media (max-width: 768px) {
   .home {
-    padding: 2rem 1rem;
-  }
+    padding: 1rem;
 
-  .home__content {
-    padding: 3rem 1rem;
-  }
+    &__content {
+      .greeting {
+        font-size: 1.5rem;
+      }
 
-  .greeting {
-    font-size: 1.5rem;
+      &__posts {
+        gap: 1.5rem;
+      }
+    }
   }
 }
+  

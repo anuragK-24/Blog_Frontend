@@ -5,31 +5,29 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import LabelledInput from "../../components/LabelledInput/LabelledInput";
 import Login_image from "../../image/signIn.svg";
+import { Link } from "react-router-dom";
 
 export default function SignIn() {
   const [error, setError] = useState("");
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [passWord, setPassword] = useState("");
   const { dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const username = userName.toLowerCase();
-    const password = passWord;
-
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/auth/login`,
         {
-          username,
-          password,
+          email: email.toLowerCase(),
+          password: passWord,
         }
       );
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (error) {
-      setUserName("");
+      setEmail("");
       setPassword("");
-      setError("* Invalid username or password!");
+      setError("* Invalid email or password!");
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
@@ -42,7 +40,6 @@ export default function SignIn() {
           token: credentialResponse.credential,
         }
       );
-
       const userData = response.data.user;
       dispatch({ type: "LOGIN_SUCCESS", payload: userData });
     } catch (error) {
@@ -54,29 +51,29 @@ export default function SignIn() {
 
   return (
     <div className="SignIn">
-      <h1 className="SignIn_Heading">SignIn</h1>
       <div className="SignIn_Content">
         <div className="SignIn_Content_Image">
-          <img src={Login_image} alt="SignIn" />
+          <img src={Login_image} alt="SignIn illustration" />
         </div>
 
         <div className="SignIn_Content_FormContainer">
-          <div
+          <h2 className="SignIn_Heading">Sign In</h2>
+          <form
             className="SignIn_Content_FormContainer_Form"
             onSubmit={handleSubmit}
           >
             <LabelledInput
-              label="Username"
-              type="text"
-              placeholder="For demo enter : test"
-              value={userName}
+              label="Email"
+              type="email"
+              placeholder="For demo: test@example.com"
+              value={email}
               errorMsg={error}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <LabelledInput
               label="Password"
               type="password"
-              placeholder="For demo enter : 1234"
+              placeholder="For demo: 1234"
               value={passWord}
               errorMsg={error}
               onChange={(e) => setPassword(e.target.value)}
@@ -85,18 +82,24 @@ export default function SignIn() {
             <button
               className="SignIn_Content_FormContainer_Form_Button"
               disabled={isFetching}
-              onClick={handleSubmit}
+              type="submit"
             >
               Sign In
             </button>
 
-            {/* Google Login Button */}
-            <GoogleLogin
-              onSuccess={handleGoogleLogin}
-              onFailure={() => setError("Google Login failed.")}
-              useOneTap
-            />
-          </div>
+            <div className="google-login">
+              <GoogleLogin
+                onSuccess={handleGoogleLogin}
+                onFailure={() => setError("Google Login failed.")}
+                useOneTap
+              />
+            </div>
+
+            <div className="SignIn_Content_FormContainer_Form_Footer">
+              <span>Don’t have an account?</span>
+              <Link to="/register" className="signup-link">Sign up</Link>
+            </div>
+          </form>
         </div>
       </div>
     </div>
