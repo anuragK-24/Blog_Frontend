@@ -1,106 +1,83 @@
 .CopyText {
-  border: 1px solid rgba(229, 231, 235, 0.7);
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
-  margin: 1.25rem auto;
-  max-width: 800px;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2rem;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.2s ease;
+  user-select: none;
+  transition: box-shadow 0.2s ease;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 1rem;
 
   &:hover {
-    background-color: #f3f4f6;
-    transform: scale(1.01);
-  }
-
-  &:active {
-    background-color: #e0f2fe;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
 
   &__Heading {
     font-size: 1.25rem;
-    font-weight: 600;
-    color: #1f2937;
-    margin-bottom: 0.75rem;
+    color: #4a148c;
+    margin-bottom: 0.5rem;
   }
 
   &__Content {
-    background: #ffffff;
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
     position: relative;
 
     &__Box {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.75rem;
-
-      &__Copied {
-        color: #10b981;
-        font-size: 0.95rem;
-        font-weight: 600;
-      }
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
 
       &__Title {
-        width: 1.5em;
-        height: 1.5em;
-        opacity: 0.65;
-        transition: transform 0.2s ease;
+        width: 20px;
+        height: 20px;
+      }
 
-        &:hover {
-          transform: scale(1.1);
-          opacity: 1;
-        }
+      &__Copied {
+        font-size: 0.9rem;
+        color: #388e3c;
+        margin-left: auto;
+        font-weight: 600;
+        animation: fadeInOut 1s ease-in-out;
       }
     }
   }
 
   &__Code {
-    white-space: pre-wrap;
-    word-break: break-word;
-    font-family: 'Courier New', monospace;
-    background-color: #f3f4f6;
-    padding: 1rem;
-    border-radius: 6px;
-    color: #1f2937;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 0.95rem;
-    overflow-x: auto;
-    border-left: 4px solid #3b82f6;
+    white-space: pre-wrap;
+    background-color: #eaeaea;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px dashed #ccc;
+    color: #333;
+    outline: none;
+    overflow: scroll;
+
+    &:focus {
+      border-color: #6a1b9a;
+    }
   }
 }
 
-@media (max-width: 768px) {
-  .CopyText {
-    padding: 1rem;
-
-    &__Heading {
-      font-size: 1.1rem;
-    }
-
-    &__Content {
-      padding: 0.75rem 0.9rem;
-
-      &__Box {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-      }
-
-      &__Box__Copied {
-        font-size: 0.85rem;
-      }
-
-      &__Box__Title {
-        width: 1.4em;
-        height: 1.4em;
-      }
-    }
-
-    &__Code {
-      font-size: 0.88rem;
-      padding: 0.75rem;
-    }
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-5px);
   }
 }
