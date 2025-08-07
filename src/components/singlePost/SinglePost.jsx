@@ -42,7 +42,6 @@ export default function SinglePost() {
           setHasUpdatedView(true);
         }
       } catch (error) {
-        console.error("Failed to fetch post:", error);
         setLoading(false);
       }
     };
@@ -62,7 +61,7 @@ export default function SinglePost() {
       );
       navigate("/blogs");
     } catch (err) {
-      console.error("Error deleting post:", err);
+      
     }
   };
 
@@ -98,9 +97,7 @@ export default function SinglePost() {
 
   // ✅ Check author permission
   const isAuthor = user && user._id === author._id;
-  console.log(user);
-  console.log(author);
-  console.log("Has access ", isAuthor);
+  
 
   return (
     <div className="singlePost">

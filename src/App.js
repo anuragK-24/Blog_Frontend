@@ -25,6 +25,7 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 import Blogs from "./pages/Blogs/Blogs";
 import ErrorPage from "./pages/ErrorPage/ErrorPage"; // ✅ NEW
 import Profile from "./pages/Profile/Profile";
+import Dashboard from "./components/DashBoard/DashBoard";
 
 // ✅ Internal wrapper to conditionally show layout
 const AppWrapper = () => {
@@ -41,6 +42,7 @@ const AppWrapper = () => {
       "/write",
       "/markdown",
       "/profile",
+      "/stats",
     ].some((path) => location.pathname.startsWith(path)) &&
     !/^\/post\/[^/]+$/.test(location.pathname); // Matches /post/:id
 
@@ -61,6 +63,7 @@ const AppWrapper = () => {
         <Route path="/about" element={<About />} />
         <Route path="/register" element={user ? <Blogs /> : <SignUp />} />
         <Route path="/profile" element={user ? <Profile /> : <SignUp />} />
+        <Route path="/stats" element={user ? <Dashboard /> : <SignUp />} />
         <Route path="/login" element={user ? <Blogs /> : <SignIn />} />
         <Route path="/write" element={user ? <Write /> : <SignIn />} />
         <Route path="/markdown" element={<MarkDown />} />

@@ -3,7 +3,6 @@ import "./Profile.scss";
 import { Context } from "../../context/Context";
 import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
-import DashBoard from "../../components/DashBoard/DashBoard";
 
 const Profile = () => {
   const { user, dispatch } = useContext(Context);
@@ -152,7 +151,7 @@ const Profile = () => {
         </div>
       )}
 
-      <DashBoard />
+      
     </div>
   );
 };
