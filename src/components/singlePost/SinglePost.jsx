@@ -60,9 +60,7 @@ export default function SinglePost() {
         }
       );
       navigate("/blogs");
-    } catch (err) {
-      
-    }
+    } catch (err) {}
   };
 
   const handleUpdate = async () => {
@@ -97,7 +95,6 @@ export default function SinglePost() {
 
   // ✅ Check author permission
   const isAuthor = user && user._id === author._id;
-  
 
   return (
     <div className="singlePost">
@@ -144,7 +141,7 @@ export default function SinglePost() {
           <span className="singlePostAuthor">
             Author:{" "}
             {author ? (
-              <Link to={`/?user=${author.username}`} className="link">
+              <Link to={`/user/${author._id}`} className="link">
                 <b>{author.username.toUpperCase()}</b>
               </Link>
             ) : (

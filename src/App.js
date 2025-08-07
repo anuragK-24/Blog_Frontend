@@ -44,7 +44,8 @@ const AppWrapper = () => {
       "/profile",
       "/stats",
     ].some((path) => location.pathname.startsWith(path)) &&
-    !/^\/post\/[^/]+$/.test(location.pathname); // Matches /post/:id
+    !/^\/post\/[^/]+$/.test(location.pathname) &&
+    !/^\/user\/[^/]+$/.test(location.pathname); // ✅ Allow /user/:userId
 
   if (isErrorPage) {
     return (
@@ -63,6 +64,7 @@ const AppWrapper = () => {
         <Route path="/about" element={<About />} />
         <Route path="/register" element={user ? <Blogs /> : <SignUp />} />
         <Route path="/profile" element={user ? <Profile /> : <SignUp />} />
+        <Route path="/user/:userId" element={<Profile />} />
         <Route path="/stats" element={user ? <Dashboard /> : <SignUp />} />
         <Route path="/login" element={user ? <Blogs /> : <SignIn />} />
         <Route path="/write" element={user ? <Write /> : <SignIn />} />

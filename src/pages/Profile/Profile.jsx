@@ -1,23 +1,45 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Profile.scss";
 import { Context } from "../../context/Context";
 import { FaUserCircle } from "react-icons/fa";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const Profile = () => {
   const { user, dispatch } = useContext(Context);
+  const { userId } = useParams(); // userId from URL if visiting someone else's profile
+
+  const isOwnProfile = !userId || userId === user?._id;
+
+  const [profileData, setProfileData] = useState(null);
+  const [formData, setFormData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-
-  const [formData, setFormData] = useState({
-    username: user?.username || "",
-    techSkills: Array.isArray(user?.techSkills)
-      ? user.techSkills.join(", ")
-      : user?.techSkills || "",
-    photo: user?.photo || "",
-    about: user?.about || "",
-  });
-
   const [message, setMessage] = useState({ type: "", text: "" });
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        if (isOwnProfile) {
+          setProfileData(user);
+          setFormData({
+            username: user?.username || "",
+            techSkills: Array.isArray(user?.techSkills)
+              ? user.techSkills.join(", ")
+              : user?.techSkills || "",
+            photo: user?.photo || "",
+            about: user?.about || "",
+          });
+        } else {
+          const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users/${userId}`);
+          setProfileData(res.data);
+        }
+      } catch (err) {
+        console.error("Failed to load profile", err);
+      }
+    };
+
+    loadProfile();
+  }, [userId, user, isOwnProfile]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,8 +68,6 @@ const Profile = () => {
 
       setMessage({ type: "success", text: "Profile updated successfully!" });
       setIsEditing(false);
-
-      // Update context with new user data
       dispatch({ type: "UPDATE_USER", payload: res.data });
     } catch (err) {
       console.error(err);
@@ -71,34 +91,17 @@ const Profile = () => {
     setIsEditing(false);
   };
 
+  if (!profileData) return <div className="profile">Loading...</div>;
+
   return (
     <div className="profile">
-      {!isEditing ? (
-        <div className="profile-view">
-          {user?.photo ? (
-            <img className="profile-photo" src={user.photo} alt="Profile" />
-          ) : (
-            <div className="profile-icon">
-              <FaUserCircle />
-            </div>
-          )}
-          <h2>{user?.username}</h2>
-          <p>{user?.about}</p>
-          <button onClick={() => setIsEditing(true)}>Edit Profile</button>
-        </div>
-      ) : (
+      {isOwnProfile && isEditing ? (
         <div className="profile-edit">
           <h2>Edit Profile</h2>
           {formData.photo ? (
-            <img
-              className="profile-photo-preview"
-              src={formData.photo}
-              alt="Profile Preview"
-            />
+            <img className="profile-photo-preview" src={formData.photo} alt="Profile" />
           ) : (
-            <div className="profile-icon">
-              <FaUserCircle />
-            </div>
+            <div className="profile-icon"><FaUserCircle /></div>
           )}
           <form onSubmit={handleSubmit}>
             <label>Username</label>
@@ -115,7 +118,7 @@ const Profile = () => {
               name="techSkills"
               value={formData.techSkills}
               onChange={handleChange}
-              placeholder="e.g., React, Node.js, AWS"
+              placeholder="e.g., React, Node.js"
             />
 
             <label>Photo URL (optional)</label>
@@ -131,27 +134,38 @@ const Profile = () => {
               name="about"
               value={formData.about}
               onChange={handleChange}
-              placeholder="Tell us about yourself..."
               rows={4}
+              placeholder="Tell us about yourself..."
             />
 
             {message.text && (
-              <p className={message.type === "error" ? "error" : "success"}>
-                {message.text}
-              </p>
+              <p className={message.type === "error" ? "error" : "success"}>{message.text}</p>
             )}
 
             <div className="button-container">
               <button type="submit">Update</button>
-              <button type="button" onClick={handleCancel}>
-                Cancel
-              </button>
+              <button type="button" onClick={handleCancel}>Cancel</button>
             </div>
           </form>
         </div>
-      )}
+      ) : (
+        <div className="profile-view">
+          {profileData.photo ? (
+            <img className="profile-photo" src={profileData.photo} alt="Profile" />
+          ) : (
+            <div className="profile-icon"><FaUserCircle /></div>
+          )}
+          <h2>{profileData.username}</h2>
+          <p>{profileData.about}</p>
+          {Array.isArray(profileData.techSkills) && (
+            <p><strong>Skills:</strong> {profileData.techSkills.join(", ")}</p>
+          )}
 
-      
+          {isOwnProfile && (
+            <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
