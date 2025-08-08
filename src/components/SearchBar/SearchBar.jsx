@@ -11,6 +11,40 @@ export default function SearchBar() {
   const searchContainerRef = useRef(null);
   const [isFocused, setIsFocused] = useState(false);
   const [error, setError] = useState("");
+  const inputRef = useRef(null);
+  const [placeholderText, setPlaceholderText] = useState(
+    "Search for blogs (Ctrl + K)"
+  );
+
+  useEffect(() => {
+    const updatePlaceholder = () => {
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      if (isMobile) {
+        setPlaceholderText("Search...");
+      } else {
+        setPlaceholderText("Search for blogs (Ctrl + K)");
+      }
+    };
+
+    updatePlaceholder(); // set on load
+    window.addEventListener("resize", updatePlaceholder);
+
+    return () => window.removeEventListener("resize", updatePlaceholder);
+  }, []);
+
+  // 2️⃣ Inside useEffect, add a listener for Ctrl+K
+  useEffect(() => {
+    const handleShortcut = (e) => {
+      if (e.ctrlKey && e.key.toLowerCase() === "k") {
+        e.preventDefault(); // Prevent browser's default "search in page"
+        inputRef.current?.focus();
+        setIsFocused(true);
+      }
+    };
+
+    document.addEventListener("keydown", handleShortcut);
+    return () => document.removeEventListener("keydown", handleShortcut);
+  }, []);
 
   const fetchPosts = async (searchQuery) => {
     try {
@@ -58,13 +92,15 @@ export default function SearchBar() {
         onFocus={() => setIsFocused(true)}
       >
         <input
+          ref={inputRef}
           className="searchBar__input"
-          placeholder="Search blogs..."
+          placeholder={placeholderText}
           type="text"
           onChange={(e) => setSearchInput(e.target.value)}
           value={searchInput}
           onFocus={() => setIsFocused(true)}
         />
+
         {searchInput && (
           <i
             className="searchBar__clearIcon fa-solid fa-xmark"
