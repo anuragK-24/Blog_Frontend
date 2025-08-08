@@ -47,3 +47,11 @@
   width: max-content;
   margin-top: 8em;
 }
+@media (max-width: 768px) {
+  .posts {
+    padding: 0 1em 5em 1rem;
+  }
+  .CardShimmer {
+    padding: 0 1em 5em 1rem;
+  }
+}

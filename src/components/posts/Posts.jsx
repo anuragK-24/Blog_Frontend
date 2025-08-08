@@ -5,8 +5,6 @@ import axios from "axios";
 import "../../pages/Blogs/Blogs.scss";
 import EndMsg from "../EndMsg/EndMsg";
 import PostSkeleton from "../../shimmer/PostSkeleton/PostSkeleton";
-import SearchSkeleton from "../../shimmer/SearchSkeleton/SearchSkeleton";
-import SearchBar from "../SearchBar/SearchBar";
 
 export default function Posts() {
   const [isResolved, setIsResolved] = useState(false);
@@ -69,6 +67,7 @@ export default function Posts() {
           <PostSkeleton />
           <PostSkeleton />
           <PostSkeleton />
+          <PostSkeleton />
         </div>
       ) : (
         <div className="posts">
@@ -89,9 +88,9 @@ export default function Posts() {
               />
             </div>
           ))}
+          {isResolved && !hasMore && posts.length > 0 && <EndMsg />}
         </div>
       )}
-      {!hasMore && posts.length > 0 && <EndMsg />}
     </>
   );
 }

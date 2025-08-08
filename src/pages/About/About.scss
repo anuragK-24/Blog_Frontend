@@ -68,8 +68,7 @@
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .About {
-    padding: 1rem;
-
+    padding: 0 1em 5em 1rem;
     &_Heading {
       font-size: 2rem;
     }

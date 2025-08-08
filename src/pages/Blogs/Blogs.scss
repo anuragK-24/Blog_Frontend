@@ -1,53 +1,23 @@
-// Blogs.scss
-
 .home {
   display: flex;
-  justify-content: center;
-  padding: 2rem;
-  background-color: #f7f7f7;
-  min-height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  align-items: flex-start; // prevents vertical centering
 
   &__content {
-    width: 100%;
-    max-width: 1000px;
+    flex: 3;
+  }
 
-    .greeting {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #333;
-
-      b {
-        color: #007bff;
-      }
-
-      i {
-        font-style: italic;
-      }
-    }
-
-    &__posts {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
+  &__sidebar {
+    flex: 1;
+    height: fit-content;
+    position: sticky;
+    top: 7em; // match header gap
+    align-self: flex-start; // keep it from shifting
   }
 }
-
-// Optional: responsive design
 @media (max-width: 768px) {
-  .home {
-    padding: 1rem;
-
-    &__content {
-      .greeting {
-        font-size: 1.5rem;
-      }
-
-      &__posts {
-        gap: 1.5rem;
-      }
-    }
+  .home__sidebar{
+    display: none;
   }
 }
-  

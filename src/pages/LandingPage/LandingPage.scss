@@ -114,7 +114,7 @@
 
 .LandingPage_Features {
   padding: 3rem 1rem;
-  margin: 0 6em;  
+  margin: 0 6em;
   background-color: #f9f9f9;
 
   &_Grid {
@@ -171,6 +171,9 @@
   font-size: 0.95rem;
 }
 @media screen and (max-width: 768px) {
+  .LandingPage_Container {
+    padding: 0 1em 5em 1rem;
+  }
   .LandingPage_Hero_Text {
     flex: 1 1;
     min-width: 300px;

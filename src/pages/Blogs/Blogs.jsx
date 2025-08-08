@@ -1,23 +1,19 @@
-import React, { useContext } from "react";
 import Posts from "../../components/posts/Posts";
 import "./Blogs.scss";
-import { Context } from "../../context/Context";
+import TopView from "../../components/TopView/TopView";
 
 export default function Blogs() {
-  const { user } = useContext(Context);
-
   return (
     <div className="home">
+      {/* Sidebar */}
+      <div className="home__sidebar">
+        <TopView />
+      </div>
+
+      {/* Main content */}
       <div className="home__content">
-        {user?.username ? (
-          <h2 className="greeting">
-            Welcome <b><i>{user.username.toUpperCase()}</i></b>
-          </h2>
-        ) : (
-          <h2 className="greeting">Welcome, Guest!</h2>
-        )}
         <div className="home__content__posts">
-          <Posts user={user} />
+          <Posts />
         </div>
       </div>
     </div>
