@@ -11,7 +11,7 @@ export default function TopView() {
 
   useEffect(() => {
     axios
-      .get("/posts/top")
+      .get("api/posts/top")
       .then((res) => setPost(res.data))
       .catch((err) => console.error("Error fetching top view:", err));
   }, []);
@@ -20,20 +20,26 @@ export default function TopView() {
 
   return (
     <div className="top-view">
-      <h3>👋 Welcome {user ? username : "Guest"} !</h3>
-      <h3>🔥 Most Famous Blog</h3>
+      {post ? (
+          <>
+          <h3>👋 Welcome {user ? username : "Guest"} !</h3>
+          <h3>🔥 Most Famous Blog</h3>
 
-      <Link to={`/post/${post.postId}`}>
-        <div className="top-card">
-          <img src={post.postPhoto} alt={post.postName} />
-          <div className="top-details">
-            <h4>{post.postName}</h4>
-            <p>
-              by <span>{post.authorName}</span>
-            </p>
-          </div>
-        </div>
-      </Link>
+          <Link to={`/post/${post.postId}`}>
+            <div className="top-card">
+              <img src={post.postPhoto} alt={post.postName} />
+              <div className="top-details">
+                <h4>{post.postName}</h4>
+                <p>
+                  by <span>{post.authorName}</span>
+                </p>
+              </div>
+            </div>
+          </Link>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
