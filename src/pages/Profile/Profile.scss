@@ -1,3 +1,10 @@
+.profile-view p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem; /* space between icon and link */
+}
+
 .profile {
   max-width: 900px;
   margin: 2rem auto;
@@ -5,7 +12,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
   background-color: #fff;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 
   .profile-photo,
   .profile-photo-preview,
@@ -46,6 +53,18 @@
       font-size: 1rem;
       line-height: 1.5;
       text-align: center;
+      word-wrap: break-word;
+      max-width: 600px;
+    }
+
+    a {
+      color: #0066ff;
+      text-decoration: none;
+      word-break: break-all;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     button {
@@ -78,7 +97,6 @@
     }
 
     input,
-    select,
     textarea {
       padding: 0.6rem;
       font-size: 1rem;
