@@ -8,8 +8,10 @@ import {
   Card,
   CardContent,
   Typography,
+  Divider,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { ImagePlus } from "lucide-react"; // modern icon
 
 export default function Write() {
   const [title, setTitle] = useState("");
@@ -21,9 +23,8 @@ export default function Write() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const newPost = {
-      userId: user._id, // ✅ use userId instead of username
+      userId: user._id,
       title,
       desc,
       photo,
@@ -42,14 +43,18 @@ export default function Write() {
 
   return (
     <div className="write-container">
-      <Card className="write-card" elevation={3}>
+      <Card className="write-card" elevation={4}>
         <CardContent>
           <Typography variant="h4" className="write-heading" gutterBottom>
-            Create a New Blog Post
+            ✏️ Create a New Blog Post
           </Typography>
 
+          <Divider sx={{ mb: 3 }} />
+
           {photo && (
-            <img className="write-img-preview" src={photo} alt="Preview" />
+            <div className="write-img-container">
+              <img className="write-img-preview" src={photo} alt="Preview" />
+            </div>
           )}
 
           <form className="write-form" onSubmit={handleSubmit}>
@@ -61,6 +66,9 @@ export default function Write() {
               margin="normal"
               value={photo}
               onChange={(e) => setPhoto(e.target.value)}
+              InputProps={{
+                startAdornment: <ImagePlus size={18} style={{ marginRight: 8 }} />,
+              }}
             />
 
             <TextField
@@ -75,9 +83,9 @@ export default function Write() {
 
             <Typography
               className="note-text"
-              sx={{ fontSize: 12, color: "gray" }}
+              sx={{ fontSize: 12, color: "gray", mt: 0.5 }}
             >
-              Note: Use <Link to="/markdown">Markdown</Link> for formatting
+              💡 Tip: Use <Link to="/markdown">Markdown</Link> for formatting
               (e.g. <code>**bold**</code>, <code>_italic_</code>,{" "}
               <code># heading</code>).
             </Typography>
@@ -95,8 +103,19 @@ export default function Write() {
             />
 
             <div className="submit-btn-container">
-              <Button variant="contained" color="primary" type="submit">
-                Publish
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{
+                  borderRadius: 2,
+                  textTransform: "none",
+                  fontWeight: 600,
+                  px: 4,
+                  py: 1.2,
+                }}
+              >
+                🚀 Publish Post
               </Button>
             </div>
           </form>
