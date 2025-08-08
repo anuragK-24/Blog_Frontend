@@ -30,8 +30,7 @@ export default function SignIn() {
 
       const userData = res.data?.user || res.data;
       const token = res.data?.token; // Make sure your backend returns it
-      console.log("userData ", userData);
-      
+
       // Save to localStorage
       if (token) {
         localStorage.setItem("token", token);
@@ -58,7 +57,6 @@ export default function SignIn() {
       );
 
       const userData = response.data?.user || response.data;
-      console.log("userData in google login", userData);
 
       const token = response.data?.token;
 
