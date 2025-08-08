@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { ImagePlus } from "lucide-react"; // modern icon
 
 export default function Write() {
+  const token = localStorage.getItem("token");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [photo, setPhoto] = useState(
@@ -33,7 +34,8 @@ export default function Write() {
     try {
       const res = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/posts`,
-        newPost
+        newPost,
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       window.location.replace("/post/" + res.data._id);
     } catch (err) {
@@ -67,7 +69,9 @@ export default function Write() {
               value={photo}
               onChange={(e) => setPhoto(e.target.value)}
               InputProps={{
-                startAdornment: <ImagePlus size={18} style={{ marginRight: 8 }} />,
+                startAdornment: (
+                  <ImagePlus size={18} style={{ marginRight: 8 }} />
+                ),
               }}
             />
 

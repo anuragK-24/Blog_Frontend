@@ -9,6 +9,7 @@ import "./singlePost.css";
 export default function SinglePost() {
   const location = useLocation();
   const blog_id = location.pathname.split("/")[2];
+  const token = localStorage.getItem("token");
   const { user } = useContext(Context);
   const navigate = useNavigate();
   const [author, setAuthor] = useState();
@@ -56,11 +57,14 @@ export default function SinglePost() {
       await axios.delete(
         `${process.env.REACT_APP_API_URL}/api/posts/${post._id}`,
         {
-          data: { userId: user._id },
+          data: { userId: user._id }, // body for DELETE
+          headers: { Authorization: `Bearer ${token}` }, // auth header
         }
       );
       navigate("/blogs");
-    } catch (err) {}
+    } catch (err) {
+      console.error("Failed to delete post", err);
+    }
   };
 
   const handleUpdate = async () => {
@@ -72,7 +76,8 @@ export default function SinglePost() {
           title,
           desc,
           photo,
-        }
+        },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
       setUpdateMode(false);
       navigate("/blogs");

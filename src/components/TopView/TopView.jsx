@@ -11,7 +11,7 @@ export default function TopView() {
 
   useEffect(() => {
     axios
-      .get("api/posts/top")
+      .get(`${process.env.REACT_APP_API_URL}/api/posts/top`)
       .then((res) => setPost(res.data))
       .catch((err) => console.error("Error fetching top view:", err));
   }, []);

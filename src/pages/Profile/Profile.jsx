@@ -6,6 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const Profile = () => {
+  const token = localStorage.getItem("token");
   const { user, dispatch } = useContext(Context);
   const { userId } = useParams(); // userId from URL if visiting someone else's profile
 
@@ -63,7 +64,8 @@ const Profile = () => {
     try {
       const res = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/users/${user._id}`,
-        updatedData
+        updatedData,
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       setMessage({ type: "success", text: "Profile updated successfully!" });

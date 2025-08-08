@@ -5,55 +5,79 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import LabelledInput from "../../components/LabelledInput/LabelledInput";
 import Login_image from "../../image/signIn.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignIn() {
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [passWord, setPassword] = useState("");
   const { dispatch, isFetching } = useContext(Context);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/login`,
-        {
-          email: email.toLowerCase(),
-          password: passWord,
-        }
-      );
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-    } catch (error) {
-      setEmail("");
-      setPassword("");
-      setError("* Invalid email or password!");
-      dispatch({ type: "LOGIN_FAILURE" });
+  e.preventDefault();
+  setError("");
+  dispatch({ type: "LOGIN_START" });
+
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/auth/login`,
+      {
+        email: email.toLowerCase(),
+        password: passWord,
+      }
+    );
+
+    const userData = res.data?.user || res.data;
+    const token = res.data?.token; // Make sure your backend returns it
+
+    // Save to localStorage
+    if (token) {
+      localStorage.setItem("token", token);
     }
-  };
+
+    dispatch({ type: "LOGIN_SUCCESS", payload: userData });
+    navigate("/");
+  } catch (error) {
+    setEmail("");
+    setPassword("");
+    setError("* Invalid email or password!");
+    dispatch({ type: "LOGIN_FAILURE" });
+  }
+};
 
   const handleGoogleLogin = async (credentialResponse) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/google-login`,
-        {
-          token: credentialResponse.credential,
-        }
-      );
-      const userData = response.data.user;
-      dispatch({ type: "LOGIN_SUCCESS", payload: userData });
-    } catch (error) {
-      console.error("Google login error:", error);
-      dispatch({ type: "LOGIN_FAILURE" });
-      setError("Google Login Failed.");
+  dispatch({ type: "LOGIN_START" });
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/auth/google-login`,
+      {
+        token: credentialResponse.credential,
+      }
+    );
+
+    const userData = response.data?.user || response.data;
+    const token = response.data?.token;
+
+    if (token) {
+      localStorage.setItem("token", token);
     }
-  };
+
+    dispatch({ type: "LOGIN_SUCCESS", payload: userData });
+    navigate("/");
+  } catch (error) {
+    console.error("Google login error:", error);
+    dispatch({ type: "LOGIN_FAILURE" });
+    setError("* Google Login Failed.");
+  }
+};
+
 
   return (
     <div className="SignIn">
       <div className="SignIn_Content">
         <div className="SignIn_Content_Image">
-          <img src={Login_image} alt="SignIn illustration" />
+          <img src={Login_image} alt="Sign In illustration" />
         </div>
 
         <div className="SignIn_Content_FormContainer">
@@ -84,13 +108,13 @@ export default function SignIn() {
               disabled={isFetching}
               type="submit"
             >
-              Sign In
+              {isFetching ? "Logging in..." : "Sign In"}
             </button>
 
             <div className="google-login">
               <GoogleLogin
                 onSuccess={handleGoogleLogin}
-                onFailure={() => setError("Google Login failed.")}
+                onError={() => setError("* Google Login failed.")}
                 useOneTap
               />
             </div>
