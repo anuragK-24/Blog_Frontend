@@ -1,15 +1,15 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  FaSignInAlt,
-  FaBars,
-  FaTimes,
-  FaUserCircle,
-  FaPen,
-  FaChartBar,
-  FaUser,
-  FaSignOutAlt,
-} from "react-icons/fa";
+  LogIn,
+  Menu,
+  X,
+  UserCircle,
+  PenSquare,
+  BarChart2,
+  User,
+  LogOut,
+} from "lucide-react"; // Modern icons
 import SearchBar from "../SearchBar/SearchBar";
 import "./NavBar.scss";
 import { Context } from "../../context/Context";
@@ -22,7 +22,7 @@ const NavBar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef();
 
-  // Close dropdown when clicking outside
+  // Close dropdown on outside click
   useEffect(() => {
     function handleClickOutside(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -42,6 +42,7 @@ const NavBar = () => {
   return (
     <>
       <nav className="navbar">
+        {/* Left: Brand + Sidebar toggle */}
         <div className="navbar__left" onClick={() => navigate("/")}>
           <button
             className="hamburger"
@@ -50,15 +51,17 @@ const NavBar = () => {
               setOpen(!open);
             }}
           >
-            {open ? <FaTimes /> : <FaBars />}
+            {open ? <X size={22} /> : <Menu size={22} />}
           </button>
           <span className="brand-gradient">BlogSpark</span>
         </div>
 
+        {/* Center: Search */}
         <div className="navbar__center">
           <SearchBar />
         </div>
 
+        {/* Right: User menu */}
         <div className="navbar__right" ref={dropdownRef}>
           {user ? (
             <>
@@ -74,7 +77,8 @@ const NavBar = () => {
                   }}
                 />
               ) : (
-                <FaUserCircle
+                <UserCircle
+                  size={26}
                   className="navbar__icon-avatar"
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                 />
@@ -82,33 +86,34 @@ const NavBar = () => {
               {dropdownOpen && (
                 <div className="navbar__dropdown">
                   <div onClick={() => { navigate("/profile"); setDropdownOpen(false); }}>
-                    <FaUser /> Profile
+                    <User size={18} /> Profile
                   </div>
                   <div onClick={() => { navigate("/write"); setDropdownOpen(false); }}>
-                    <FaPen /> Write
+                    <PenSquare size={18} /> Write
                   </div>
                   <div onClick={() => { navigate("/stats"); setDropdownOpen(false); }}>
-                    <FaChartBar /> Stats
+                    <BarChart2 size={18} /> Stats
                   </div>
                   <div onClick={handleLogout}>
-                    <FaSignOutAlt /> Logout
+                    <LogOut size={18} /> Logout
                   </div>
                 </div>
               )}
             </>
           ) : (
             <>
-              <FaSignInAlt
+              <LogIn
+                size={22}
                 className="navbar__loginIcon"
                 onClick={() => setDropdownOpen(!dropdownOpen)}
               />
               {dropdownOpen && (
                 <div className="navbar__dropdown">
                   <div onClick={() => { navigate("/login"); setDropdownOpen(false); }}>
-                    <FaSignInAlt /> Login
+                    <LogIn size={18} /> Login
                   </div>
                   <div onClick={() => { navigate("/register"); setDropdownOpen(false); }}>
-                    <FaUser /> Sign Up
+                    <User size={18} /> Sign Up
                   </div>
                 </div>
               )}

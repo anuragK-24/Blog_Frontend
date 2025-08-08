@@ -1,44 +1,40 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
-  FaHome,
-  FaBook,
-  FaInfoCircle,
-  FaPen,
-  FaCode,
-} from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+  Home,
+  BookOpen,
+  Info,
+  PenSquare,
+  Code2,
+} from "lucide-react"; // Modern icons
 import "./BottomBar.scss";
 
 export default function BottomBar() {
   const navigate = useNavigate();
-
+  const location = useLocation();
 
   const items = [
-    { label: "Home", icon: <FaHome />, route: "/" },
-    { label: "Blogs", icon: <FaBook />, route: "/blogs" },
-    { label: "About", icon: <FaInfoCircle />, route: "/about" },
-    { label: "Write", icon: <FaPen />, route: "/write" },
-    { label: "Markdown", icon: <FaCode />, route: "/markdown" },
+    { icon: <Home size={22} />, route: "/" },
+    { icon: <BookOpen size={22} />, route: "/blogs" },
+    { icon: <PenSquare size={22} />, route: "/write" },
+    { icon: <Code2 size={22} />, route: "/markdown" },
+    { icon: <Info size={22} />, route: "/about" },
   ];
 
   return (
     <div className="bottom-bar">
-      {items.map((item, idx) => (
-        <div
-          className="bottom-bar__item"
-          key={idx}
-          onClick={() => {
-            if (item.onClick) {
-              item.onClick();
-            } else {
-              navigate(item.route);
-            }
-          }}
-        >
-          {item.icon}
-          <span>{item.label}</span>
-        </div>
-      ))}
+      {items.map((item, idx) => {
+        const active = location.pathname === item.route;
+        return (
+          <div
+            className={`bottom-bar__item ${active ? "active" : ""}`}
+            key={idx}
+            onClick={() => navigate(item.route)}
+          >
+            {item.icon}
+          </div>
+        );
+      })}
     </div>
   );
 }
