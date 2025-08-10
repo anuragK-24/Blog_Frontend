@@ -5,7 +5,13 @@ import { Link } from "react-router-dom";
 
 const Sidebar = ({ onClose }) => {
   const { user, dispatch } = useContext(Context);
-  console.log(user.username);
+
+  // Safe log
+  if (user) {
+    console.log(user.username);
+  } else {
+    console.log("No user logged in");
+  }
 
   const navLinks = [
     { name: "Home", url: "/" },
@@ -40,7 +46,7 @@ const Sidebar = ({ onClose }) => {
       <div className="sidebar__session">
         {user ? (
           <>
-            <span className="">Hi, {user.username.toUpperCase()}!</span>
+            <span>Hi, {user.username?.toUpperCase()}!</span>
             <button className="sidebar__btn" onClick={handleLogout}>
               Sign Out
             </button>
